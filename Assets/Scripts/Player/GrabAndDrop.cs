@@ -6,21 +6,23 @@ public class GrabAndDrop : MonoBehaviour {
 	float grabbedObjectSize;
 
 	GameObject GetMouseHoverObject(float range) {
-		Vector3 position = gameObject.transform.position;
-		RaycastHit raycastHit;
-		Vector3 target = position + Camera.main.transform.forward * range;
 
-		if (Physics.Linecast (position, target, out raycastHit)) {
-			// object under cursor
-			if (raycastHit.collider.gameObject.name == "Floor") { return null; }
-
-			return raycastHit.collider.gameObject;
+		RaycastHit hit = new RaycastHit();
+		if (
+			!Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition).origin,
+		                 Camera.main.ScreenPointToRay(Input.mousePosition).direction, out hit, 100,
+		                 Physics.DefaultRaycastLayers)){
+			return null;
 		}
 
-		// nothing found
-		return null;
-	}
+		// We need to hit a rigidbody that is not kinematic
+		if (!hit.rigidbody || hit.rigidbody.isKinematic) {
+			return null;
+		}
 
+		return hit.rigidbody.gameObject;
+	}
+	
 	void TryGrabObject(GameObject grabObject) {
 		if (grabObject) {
 			grabbedObject = grabObject;
@@ -44,8 +46,7 @@ public class GrabAndDrop : MonoBehaviour {
 		}
 
 		// float object in front of camera 
-		if (grabbedObject) {
-			Vector3 newPosition = gameObject.transform.position + Camera.main.transform.forward * grabbedObjectSize;
+		if (grabbedObject) {			Vector3 newPosition = Camera.main.ScreenPointToRay(Input.mousePosition).origin + Camera.main.ScreenPointToRay(Input.mousePosition).direction * grabbedObjectSize;
 			grabbedObject.transform.position = newPosition;
 		}
 
