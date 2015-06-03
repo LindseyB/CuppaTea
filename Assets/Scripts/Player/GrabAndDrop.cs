@@ -46,7 +46,8 @@ public class GrabAndDrop : MonoBehaviour {
 		}
 
 		// float object in front of camera 
-		if (grabbedObject) {			Vector3 newPosition = Camera.main.ScreenPointToRay(Input.mousePosition).origin + Camera.main.ScreenPointToRay(Input.mousePosition).direction * grabbedObjectSize;
+		if (grabbedObject) {			
+			Vector3 newPosition = Camera.main.ScreenPointToRay(Input.mousePosition).origin + Camera.main.ScreenPointToRay(Input.mousePosition).direction * grabbedObjectSize;
 			grabbedObject.transform.position = newPosition;
 		}
 
