@@ -3,7 +3,7 @@ using System.Collections;
 
 [RequireComponent(typeof (HandCursor))]
 public class GrabAndDrop : MonoBehaviour {
-	private GameObject grabbedObject;
+	public GameObject grabbedObject;
 	private float grabbedObjectSize;
 	private HandCursor cursor;
 
