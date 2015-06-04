@@ -49,7 +49,7 @@ public class GrabAndDrop : MonoBehaviour {
 		// pick up or drop object
 		if (Input.GetMouseButtonDown (0)) {
 			if (!grabbedObject) {
-				TryGrabObject(GetMouseHoverObject(5.0f));
+				TryGrabObject(GetMouseHoverObject(10.0f));
 			} else {
 				DropObject();
 			}
