@@ -3,6 +3,8 @@ using System.Collections;
 
 [RequireComponent(typeof (HandCursor))]
 public class GrabAndDrop : MonoBehaviour {
+	[SerializeField] private float reach;
+
 	public GameObject grabbedObject;
 	private float grabbedObjectSize;
 	private HandCursor cursor;
@@ -12,21 +14,18 @@ public class GrabAndDrop : MonoBehaviour {
 	}
 
 	GameObject GetMouseHoverObject(float range) {
+		RaycastHit[] hits;
+		hits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition).origin, 
+		                          Camera.main.ScreenPointToRay(Input.mousePosition).direction,
+		                          range);
 
-		RaycastHit hit = new RaycastHit();
-		if (
-			!Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition).origin,
-		                 Camera.main.ScreenPointToRay(Input.mousePosition).direction, out hit, 100,
-		                 Physics.DefaultRaycastLayers)){
-			return null;
+		foreach (RaycastHit hit in hits) {
+			if (hit.rigidbody && !hit.rigidbody.isKinematic) {
+				return hit.rigidbody.gameObject;
+			}
 		}
 
-		// We need to hit a rigidbody that is not kinematic
-		if (!hit.rigidbody || hit.rigidbody.isKinematic) {
-			return null;
-		}
-
-		return hit.rigidbody.gameObject;
+		return null;
 	}
 	
 	void TryGrabObject(GameObject grabObject) {
@@ -49,7 +48,7 @@ public class GrabAndDrop : MonoBehaviour {
 		// pick up or drop object
 		if (Input.GetMouseButtonDown (0)) {
 			if (!grabbedObject) {
-				TryGrabObject(GetMouseHoverObject(10.0f));
+				TryGrabObject(GetMouseHoverObject(reach));
 			} else {
 				DropObject();
 			}
