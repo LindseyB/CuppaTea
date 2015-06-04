@@ -2,10 +2,13 @@
 using System.Collections;
 
 public class HandCursor : MonoBehaviour {
-	[SerializeField] private Texture2D customCursor;
+	[SerializeField] private Texture2D openCursor;
+	[SerializeField] private Texture2D closedCursor;
 
-	// Use this for initialization
+	private Texture2D customCursor;
+	
 	void Start () {
+		customCursor = openCursor;
 		Cursor.visible = false;
 	}
 
@@ -19,9 +22,12 @@ public class HandCursor : MonoBehaviour {
 		    ScaleMode.ScaleToFit, 
 		    true);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	public void ToggleCursor() {
+		if (customCursor == openCursor) {
+			customCursor = closedCursor;
+		} else {
+			customCursor = openCursor;
+		}
 	}
 }

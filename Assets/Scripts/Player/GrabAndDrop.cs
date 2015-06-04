@@ -1,9 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof (HandCursor))]
 public class GrabAndDrop : MonoBehaviour {
-	GameObject grabbedObject;
-	float grabbedObjectSize;
+	private GameObject grabbedObject;
+	private float grabbedObjectSize;
+	private HandCursor cursor;
+
+	void Start () {
+		cursor = FindObjectOfType (typeof(HandCursor)) as HandCursor;
+	}
 
 	GameObject GetMouseHoverObject(float range) {
 
@@ -27,7 +33,7 @@ public class GrabAndDrop : MonoBehaviour {
 		if (grabObject) {
 			grabbedObject = grabObject;
 			grabbedObjectSize = grabObject.GetComponent<Renderer>().bounds.size.magnitude;
-
+			cursor.ToggleCursor();
 		}
 	}
 
@@ -35,6 +41,7 @@ public class GrabAndDrop : MonoBehaviour {
 		if (grabbedObject) {
 			grabbedObject.GetComponent<Collider>().enabled = true;
 			grabbedObject = null;
+			cursor.ToggleCursor();
 		}
 	}
 
