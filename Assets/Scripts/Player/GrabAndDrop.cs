@@ -3,7 +3,7 @@ using System.Collections;
 
 [RequireComponent(typeof (HandCursor))]
 public class GrabAndDrop : MonoBehaviour {
-	[SerializeField] private float reach;
+	[SerializeField] public float reach;
 
 	public GameObject grabbedObject;
 	private float grabbedObjectSize;
@@ -13,7 +13,7 @@ public class GrabAndDrop : MonoBehaviour {
 		cursor = FindObjectOfType (typeof(HandCursor)) as HandCursor;
 	}
 
-	GameObject GetMouseHoverObject(float range) {
+	public GameObject GetMouseHoverObject(float range) {
 		RaycastHit[] hits;
 		hits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition).origin, 
 		                          Camera.main.ScreenPointToRay(Input.mousePosition).direction,
