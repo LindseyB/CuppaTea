@@ -9,7 +9,7 @@ public class MoveTo : MonoBehaviour {
 	
 	void Start () {
 		grabber = FindObjectOfType (typeof(GrabAndDrop)) as GrabAndDrop;
-		adjust = new Vector3 (0, snapObject.GetComponent<Renderer> ().bounds.size.y, 0);
+		adjust = new Vector3 (0, GameObject.Find(snapObject.name).GetComponent<Renderer>().bounds.size.y, 0);
 	}
 
 	void OnCollisionEnter(Collision collision) {
@@ -18,7 +18,7 @@ public class MoveTo : MonoBehaviour {
 		}
 
 		if (collision.collider.name != snapObject.name) {
-			gameObject.transform.position = snapObject.transform.position + adjust;
+			gameObject.transform.position = GameObject.Find(snapObject.name).transform.position + adjust;
 		}
 	}
 }
