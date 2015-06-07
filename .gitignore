@@ -8,3 +8,5 @@ Temp
 *.unityproj
 *.sln
 *.userprefs
+Thumbs.db
+Thumbs.db.meta
