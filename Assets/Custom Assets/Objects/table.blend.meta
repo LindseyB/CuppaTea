@@ -1,21 +1,29 @@
 fileFormatVersion: 2
-guid: 2e42cfab2f186d04f80afc0e3ddc773a
-timeCreated: 1433538931
+guid: b4209fcb954436247ad470e813c6087e
+timeCreated: 1433696940
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
     100000: //RootNode
+    100002: table
+    100004: table_cloth
     400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Ellipse_1
-    4300002: Sphere
+    400002: table
+    400004: table_cloth
+    2300000: table
+    2300002: table_cloth
+    2300004: //RootNode
+    3300000: table
+    3300002: table_cloth
+    3300004: //RootNode
+    4300000: table
+    4300002: table_cloth
     7400000: Default Take
     9500000: //RootNode
   materials:
     importMaterials: 1
-    materialName: 2
+    materialName: 0
     materialSearch: 1
   animations:
     legacyGenerateAnimations: 4
@@ -48,11 +56,11 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
-    normalSmoothAngle: 0
+    normalSmoothAngle: 60
     splitTangentsAcrossUV: 1
     normalImportMode: 0
     tangentImportMode: 1
-  importAnimation: 0
+  importAnimation: 1
   copyAvatar: 0
   humanDescription:
     human: []
