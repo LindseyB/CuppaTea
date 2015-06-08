@@ -20,6 +20,10 @@ public class Kettle : MonoBehaviour, Usable {
 	}
 
 	void Update() {
+		if (heating) {
+			gameObject.transform.Translate(Vector3.forward * Time.deltaTime);
+		}
+
 		// if we are heating or cooling
 		if (temp != 20 || heating) {
 			timer -= Time.deltaTime;
