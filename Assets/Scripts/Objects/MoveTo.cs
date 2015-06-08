@@ -5,11 +5,11 @@ public class MoveTo : MonoBehaviour {
 	[SerializeField] private GameObject snapObject;
 
 	private GrabAndDrop grabber;
-	private Vector3 adjust;
+	private Vector3 startPosition;
 	
 	void Start () {
 		grabber = FindObjectOfType (typeof(GrabAndDrop)) as GrabAndDrop;
-		adjust = new Vector3 (0, GameObject.Find(snapObject.name).GetComponent<Renderer>().bounds.size.y, 0);
+		startPosition = gameObject.transform.position;
 	}
 
 	void OnCollisionEnter(Collision collision) {
@@ -18,7 +18,7 @@ public class MoveTo : MonoBehaviour {
 		}
 
 		if (collision.collider.name != snapObject.name) {
-			gameObject.transform.position = GameObject.Find(snapObject.name).transform.position + adjust;
+			gameObject.transform.position = startPosition;
 		}
 	}
 }
