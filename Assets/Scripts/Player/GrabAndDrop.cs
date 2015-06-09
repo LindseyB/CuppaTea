@@ -28,7 +28,7 @@ public class GrabAndDrop : MonoBehaviour {
 		return null;
 	}
 	
-	void TryGrabObject(GameObject grabObject) {
+	public void TryGrabObject(GameObject grabObject) {
 		if (grabObject) {
 			grabbedObject = grabObject;
 			grabbedObjectSize = grabObject.GetComponent<Renderer>().bounds.size.magnitude;
