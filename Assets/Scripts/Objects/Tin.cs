@@ -13,4 +13,12 @@ public class Tin : MonoBehaviour, Usable {
 		grabber.TryGrabObject(gameObject.transform.GetChild(0).gameObject);
 		gameObject.transform.GetChild(0).gameObject.SetActive(true);
 	}
+
+	public void OnMouseEnter() {
+		gameObject.transform.GetChild(1).gameObject.SetActive(true);
+	}
+
+	public void OnMouseExit() {
+		gameObject.transform.GetChild(1).gameObject.SetActive(false);
+	}
 }
