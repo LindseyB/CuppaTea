@@ -36,7 +36,7 @@ public class GrabAndDrop : MonoBehaviour {
 		}
 	}
 
-	void DropObject() {
+	public void DropObject() {
 		if (grabbedObject) {
 			grabbedObject.GetComponent<Collider>().enabled = true;
 			grabbedObject = null;
