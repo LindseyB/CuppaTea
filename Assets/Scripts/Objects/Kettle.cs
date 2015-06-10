@@ -5,7 +5,7 @@ public class Kettle : MonoBehaviour, Usable {
 	[SerializeField] private ParticleSystem steam;
 
 	private bool heating;
-	private int temp;
+	public int temp;
 	private float timer;
 
 	void Start () {
