@@ -2,7 +2,11 @@
 using System.Collections;
 
 public class MoveCamera : MonoBehaviour {
-	[SerializeField] private GameObject boundsObject;
+	private GameObject[] bounds;
+
+	void Start() {
+		bounds = GameObject.FindGameObjectsWithTag("Boundary");
+	}
 
 	void Update () {
 		Vector3 position = gameObject.transform.position;
@@ -34,10 +38,13 @@ public class MoveCamera : MonoBehaviour {
 	}
 
 	void boundsCheck(Vector3 position) {
-		if(gameObject.GetComponent<CharacterController>().bounds.Intersects(boundsObject.GetComponent<Renderer>().bounds)){
-			// if intersecting bounds object move back
-			gameObject.transform.position = position;			
-		}	
+		foreach (GameObject boundary in bounds) {
+			if (gameObject.GetComponent<CharacterController>().bounds.Intersects(boundary.GetComponent<Renderer>().bounds)) {
+				// if intersecting bounds object move back
+				gameObject.transform.position = position;
+				return;
+			}
+		}
 	}
 }
 
