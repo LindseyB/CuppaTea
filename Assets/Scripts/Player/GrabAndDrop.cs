@@ -59,6 +59,14 @@ public class GrabAndDrop : MonoBehaviour {
 			Vector3 newPosition = Camera.main.ScreenPointToRay(Input.mousePosition).origin + Camera.main.ScreenPointToRay(Input.mousePosition).direction * grabbedObjectSize;
 			grabbedObject.transform.position = newPosition;
 			grabbedObject.GetComponent<Collider>().enabled = false;
+
+			if (Input.GetKey(KeyCode.Q)){
+				grabbedObject.transform.Rotate(Vector3.left);
+			}
+
+			if (Input.GetKey(KeyCode.E)) {
+				grabbedObject.transform.Rotate(Vector3.up);
+			}
 		}
 
 	}
