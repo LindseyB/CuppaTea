@@ -11,7 +11,7 @@ public class UseObject : MonoBehaviour {
 	}
 
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.E)) {
+		if (Input.GetKeyDown(KeyCode.F)) {
 			GameObject hoverObject;
 			hoverObject = grabber.GetMouseHoverObject(reach);
 
