@@ -10,6 +10,7 @@ public class Mug : MonoBehaviour, Usable {
 	private bool hasWater;
 	private int temp;
 	private float timer;
+	private Color teaColor;
 
 	void Start () {
 		grabber = GameObject.Find ("FPSController").GetComponent<GrabAndDrop>();
@@ -19,6 +20,9 @@ public class Mug : MonoBehaviour, Usable {
 		hasTea = false;
 		temp = 20;
 		timer = 20;
+
+		// TODO: base this off of the type of tea brewing
+		teaColor = new Color(0.1412f, 0.0863f, 0.0196f, 0.1f);
 	}
 
 	public void Use() {
@@ -49,8 +53,12 @@ public class Mug : MonoBehaviour, Usable {
 			steam.Stop();
 		}
 
-		if (hasWater && hasTea) {
-			// brew 
+		if (hasWater && hasTea && temp > 40) {
+			// darken
+			gameObject.transform.GetChild(0).gameObject.SetActive(true);
+			teaColor.a += (Time.deltaTime/51);
+			if(teaColor.a > 0.8f){ teaColor.a = 0.8f; }
+			gameObject.transform.GetChild(0).GetComponent<Renderer>().material.color = teaColor;
 		}
 	}
 }
