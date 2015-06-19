@@ -8,6 +8,7 @@ public class Mug : MonoBehaviour, Usable {
 
 	private bool hasTea;
 	private bool hasWater;
+	private bool hasSugar;
 	private int temp;
 	private float timer;
 	private Color teaColor;
@@ -18,6 +19,9 @@ public class Mug : MonoBehaviour, Usable {
 		steam = gameObject.transform.GetChild(1).gameObject.GetComponent<ParticleSystem>();
 
 		hasTea = false;
+		hasSugar = false;
+		hasWater = false;
+
 		temp = 20;
 		timer = 20;
 
@@ -30,6 +34,9 @@ public class Mug : MonoBehaviour, Usable {
 			gameObject.transform.GetChild(0).gameObject.SetActive(true);
 			temp = kettle.GetComponent<Kettle>().temp;
 			hasWater = true;
+		} else if(grabber.grabbedObject && grabber.grabbedObject.name == "sugar") {
+			grabber.DropObject();
+			hasSugar = true;
 		} else if (grabber.grabbedObject && grabber.grabbedObject.tag == "Tea") {
 			grabber.DropObject();
 			hasTea = true;
