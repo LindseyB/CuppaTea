@@ -19,6 +19,8 @@ public class MouseLook : MonoBehaviour {
 	
 	Quaternion originalRotation;
 
+	private GameState gameState;
+
 	void Start ()
 	{
 		// Make the rigid body not change rotation
@@ -26,9 +28,12 @@ public class MouseLook : MonoBehaviour {
 			GetComponent<Rigidbody>().freezeRotation = true;
 		}
 		originalRotation = transform.localRotation;
+		gameState = FindObjectOfType (typeof(GameState)) as GameState;
 	}
 	
 	void Update () {
+		if (gameState.InMainMenu) { return; }
+
 		if (axes == RotationAxes.MouseXAndY) {
 			// Read the mouse input axis
 			rotationX += Input.GetAxis("Mouse X") * sensitivityX;

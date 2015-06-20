@@ -8,9 +8,12 @@ public class GrabAndDrop : MonoBehaviour {
 	public GameObject grabbedObject;
 	private float grabbedObjectSize;
 	private HandCursor cursor;
+	private GameState gameState;
+
 
 	void Start () {
 		cursor = FindObjectOfType (typeof(HandCursor)) as HandCursor;
+		gameState = FindObjectOfType (typeof(GameState)) as GameState;
 	}
 
 	public GameObject GetMouseHoverObject(float range) {
@@ -45,6 +48,8 @@ public class GrabAndDrop : MonoBehaviour {
 	}
 
 	void Update () {
+		if (gameState.InMainMenu) { return; }
+
 		// pick up or drop object
 		if (Input.GetMouseButtonDown (0)) {
 			if (!grabbedObject) {

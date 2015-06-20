@@ -2,15 +2,19 @@
 using System.Collections;
 
 public class UseObject : MonoBehaviour {
+	private GameState gameState;
 	private GrabAndDrop grabber;
 	private float reach;
 
 	void Start () {
 		grabber = FindObjectOfType (typeof(GrabAndDrop)) as GrabAndDrop;
+		gameState = FindObjectOfType (typeof(GameState)) as GameState;
 		reach = grabber.reach;
 	}
 
 	void Update () {
+		if (gameState.InMainMenu) { return; }
+
 		if (Input.GetKeyDown(KeyCode.F)) {
 			GameObject hoverObject;
 			hoverObject = grabber.GetMouseHoverObject(reach);

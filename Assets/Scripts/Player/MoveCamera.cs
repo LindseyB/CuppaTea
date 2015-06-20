@@ -3,12 +3,16 @@ using System.Collections;
 
 public class MoveCamera : MonoBehaviour {
 	private GameObject[] bounds;
+	private GameState gameState;
 
 	void Start() {
 		bounds = GameObject.FindGameObjectsWithTag("Boundary");
+		gameState = FindObjectOfType (typeof(GameState)) as GameState;
 	}
 
 	void Update () {
+		if (gameState.InMainMenu) { return; }
+
 		Vector3 position = gameObject.transform.position;
 
 		if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) {
