@@ -13,6 +13,7 @@ public class StartButton : MonoBehaviour {
 
 	private void startGame(){
 		gameState.InMainMenu = false;
+		GameObject.Find ("FirstPersonCharacter").GetComponent<UnityStandardAssets.ImageEffects.VignetteAndChromaticAberration>().enabled = false;
 		GameObject.Find("Canvas").SetActive(false);
 	}
 }
