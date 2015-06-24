@@ -19,7 +19,6 @@ public class StartButton : MonoBehaviour {
 	}
 
 	private void startGame(){
-		gameState.InMainMenu = false;
 		foreach (Text text in GameObject.Find("Canvas").GetComponentsInChildren<Text>()) {
 			text.CrossFadeAlpha (0.0f, 0.5f, true);
 		}
@@ -31,6 +30,7 @@ public class StartButton : MonoBehaviour {
 		yield return new WaitForSeconds(1);
 		GameObject.Find("Canvas").SetActive(false);
 		GameObject.Find("FirstPersonCharacter").GetComponent<UnityStandardAssets.ImageEffects.VignetteAndChromaticAberration>().enabled = false;
+		gameState.InMainMenu = false;
 		yield return null;
 	}
 
