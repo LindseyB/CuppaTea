@@ -16,7 +16,6 @@ public class Mug : MonoBehaviour, Usable {
 	private float timer;
 	private float scrollSpeed;
 	private Color teaColor;
-	private Vector3 startRot;
 
 	void Start () {
 		grabber = GameObject.Find ("FPSController").GetComponent<GrabAndDrop>();
@@ -24,8 +23,8 @@ public class Mug : MonoBehaviour, Usable {
 		steam = GameObject.Find("steam").GetComponent<ParticleSystem>();
 
 		normalWater = gameObject.transform.GetChild(0).gameObject;
-		spilledWater = gameObject.transform.GetChild(1).gameObject;
-		overflowingWater = gameObject.transform.GetChild(2).gameObject;
+		spilledWater = GameObject.Find("mug-spill");
+		overflowingWater = gameObject.transform.GetChild(1).gameObject;
 
 		hasTea = false;
 		hasSugar = false;
@@ -66,7 +65,12 @@ public class Mug : MonoBehaviour, Usable {
 
 		if (hasWater) {
 			float offset = Time.time * scrollSpeed;
-			normalWater.gameObject.GetComponent<Renderer> ().material.SetTextureOffset ("_MainTex", new Vector2 (offset, 0));
+			normalWater.gameObject.GetComponent<Renderer>().material.SetTextureOffset("_MainTex", new Vector2(offset, 0));
+			normalWater.gameObject.GetComponent<Renderer>().material.SetTextureOffset("_BumpMap", new Vector2(offset, 0));
+			spilledWater.gameObject.GetComponent<Renderer>().material.SetTextureOffset("_MainTex", new Vector2(offset, 0));
+			spilledWater.gameObject.GetComponent<Renderer>().material.SetTextureOffset("_BumpMap", new Vector2(offset, 0));
+			overflowingWater.gameObject.GetComponent<Renderer>().material.SetTextureOffset("_MainTex", new Vector2(offset, 0));
+			overflowingWater.gameObject.GetComponent<Renderer>().material.SetTextureOffset("_BumpMap", new Vector2(offset, 0));
 		}
 
 		// cool temp over time
@@ -84,20 +88,34 @@ public class Mug : MonoBehaviour, Usable {
 
 		if (hasWater && hasTea && temp > 40) {
 			// darken
+			// TODO: update to tint the texture
 			gameObject.transform.GetChild(0).gameObject.SetActive(true);
 			teaColor.a += (Time.deltaTime/51);
 			if(teaColor.a > 0.8f){ teaColor.a = 0.8f; }
 			gameObject.transform.GetChild(0).GetComponent<Renderer>().material.color = teaColor;
 		}
+		
 
-		if (hasWater && gameObject.transform.forward.y < 1 /*&& 
+		if (hasWater && gameObject.transform.forward.y < 1 && 
 		    (!grabber.grabbedObject ||
-		    grabber.grabbedObject.name != gameObject.name)*/) {
-			// TODO: figure out how to rotate this. :( 
-			normalWater.SetActive(false);
-			spilledWater.SetActive(true);
-		} else if (spilledWater.activeSelf) {
-			spilledWater.SetActive(false);
+		    grabber.grabbedObject.name != gameObject.name)) {
+			spilledWater.GetComponent<Renderer>().enabled = true; // display spilled water
+
+			// move to the location of the mug except for in y dir
+			Vector3 newPosition = gameObject.transform.position;
+			newPosition.y = spilledWater.transform.position.y;
+
+			// rotate to face out of mug
+			Quaternion newRotation = gameObject.transform.rotation;
+			newRotation.y = 0;
+			newRotation.w = 0;
+
+			spilledWater.transform.rotation = newRotation;
+			spilledWater.transform.position = newPosition;
+
+			normalWater.SetActive(false); // hide normal water
+		} else if (spilledWater.GetComponent<Renderer>().enabled) {
+			spilledWater.GetComponent<Renderer>().enabled = false;
 		}
 	}
 }
