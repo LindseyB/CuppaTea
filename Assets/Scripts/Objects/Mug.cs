@@ -42,9 +42,12 @@ public class Mug : MonoBehaviour, Usable {
 		if (grabber.grabbedObject == kettle) {
 			if(hasWater){
 				normalWater.SetActive(false);
+				spilledWater.GetComponent<Renderer>().enabled = false;
 				overflowingWater.SetActive(true);
 			} else {
 				normalWater.SetActive(true);
+				spilledWater.GetComponent<Renderer>().enabled = false;
+				overflowingWater.SetActive(false);
 				temp = kettle.GetComponent<Kettle>().temp;
 				hasWater = true;
 			}
@@ -57,6 +60,8 @@ public class Mug : MonoBehaviour, Usable {
 		} else {
 			// drink
 			normalWater.SetActive(false);
+			overflowingWater.SetActive(false);
+			spilledWater.GetComponent<Renderer>().enabled = false;
 			hasWater = false;
 		}
 	}
@@ -114,6 +119,7 @@ public class Mug : MonoBehaviour, Usable {
 			spilledWater.transform.position = newPosition;
 
 			normalWater.SetActive(false); // hide normal water
+			overflowingWater.SetActive(false) // hide overflowing water
 		} else if (spilledWater.GetComponent<Renderer>().enabled) {
 			spilledWater.GetComponent<Renderer>().enabled = false;
 		}
