@@ -23,7 +23,7 @@ public class GrabAndDrop : MonoBehaviour {
 		                          range);
 
 		foreach (RaycastHit hit in hits) {
-			if (hit.rigidbody && !hit.rigidbody.isKinematic) {
+			if (hit.rigidbody && hit.rigidbody.gameObject.tag == "Interactable") {
 				return hit.rigidbody.gameObject;
 			}
 		}
@@ -36,12 +36,13 @@ public class GrabAndDrop : MonoBehaviour {
 			grabbedObject = grabObject;
 			grabbedObjectSize = grabObject.GetComponent<Renderer>().bounds.size.magnitude;
 			cursor.ToggleCursor();
+			grabbedObject.tag = "Untagged";
 		}
 	}
 
 	public void DropObject() {
 		if (grabbedObject) {
-			grabbedObject.GetComponent<Collider>().enabled = true;
+			grabbedObject.tag = "Interactable";
 			grabbedObject = null;
 			cursor.ToggleCursor();
 		}
@@ -63,7 +64,8 @@ public class GrabAndDrop : MonoBehaviour {
 		if (grabbedObject) {			
 			Vector3 newPosition = Camera.main.ScreenPointToRay(Input.mousePosition).origin + Camera.main.ScreenPointToRay(Input.mousePosition).direction * grabbedObjectSize;
 			grabbedObject.transform.position = newPosition;
-			grabbedObject.GetComponent<Collider>().enabled = false;
+			grabbedObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+			grabbedObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
 
 			if (Input.GetKey(KeyCode.Q)){
 				grabbedObject.transform.Rotate(Vector3.left);

@@ -119,7 +119,7 @@ public class Mug : MonoBehaviour, Usable {
 			spilledWater.transform.position = newPosition;
 
 			normalWater.SetActive(false); // hide normal water
-			overflowingWater.SetActive(false) // hide overflowing water
+			overflowingWater.SetActive(false); // hide overflowing water
 		} else if (spilledWater.GetComponent<Renderer>().enabled) {
 			spilledWater.GetComponent<Renderer>().enabled = false;
 		}
