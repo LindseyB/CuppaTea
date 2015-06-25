@@ -20,7 +20,7 @@ public class Mug : MonoBehaviour, Usable {
 	void Start () {
 		grabber = GameObject.Find ("FPSController").GetComponent<GrabAndDrop>();
 		kettle = GameObject.Find("kettle");
-		steam = GameObject.Find("steam").GetComponent<ParticleSystem>();
+		steam = GameObject.Find("mug-steam").GetComponent<ParticleSystem>();
 
 		normalWater = gameObject.transform.GetChild(0).gameObject;
 		spilledWater = GameObject.Find("mug-spill");
