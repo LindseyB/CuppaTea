@@ -9,11 +9,13 @@ public class GrabAndDrop : MonoBehaviour {
 	private float grabbedObjectSize;
 	private HandCursor cursor;
 	private GameState gameState;
+	private GameObject table;
 
 
 	void Start () {
 		cursor = FindObjectOfType (typeof(HandCursor)) as HandCursor;
 		gameState = FindObjectOfType (typeof(GameState)) as GameState;
+		table = GameObject.Find("table");
 	}
 
 	public GameObject GetMouseHoverObject(float range) {
@@ -63,7 +65,9 @@ public class GrabAndDrop : MonoBehaviour {
 		// float object in front of camera 
 		if (grabbedObject) {			
 			Vector3 newPosition = Camera.main.ScreenPointToRay(Input.mousePosition).origin + Camera.main.ScreenPointToRay(Input.mousePosition).direction * grabbedObjectSize;
-			grabbedObject.transform.position = newPosition;
+			if (!table.GetComponent<BoxCollider>().bounds.Contains(newPosition)){
+				grabbedObject.transform.position = newPosition;
+			}
 			grabbedObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
 			grabbedObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
 
