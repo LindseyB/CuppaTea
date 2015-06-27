@@ -104,7 +104,7 @@ public class Mug : MonoBehaviour, Usable {
 			gameObject.transform.GetChild(0).gameObject.SetActive(true);
 			teaColor.a += (Time.deltaTime/51);
 			if(teaColor.a > 0.8f){ teaColor.a = 0.8f; }
-			gameObject.transform.GetChild(0).GetComponent<Renderer>().material.color = teaColor;
+			gameObject.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_TintColor", teaColor);
 		}
 		
 
