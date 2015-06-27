@@ -17,6 +17,11 @@ public class Mug : MonoBehaviour, Usable {
 	private float scrollSpeed;
 	private Color teaColor;
 
+	private int teaCount = 0;
+	private int sugarCount = 0;
+	private int milkCount = 0;
+	private int lemonCount = 0;
+
 	void Start () {
 		grabber = GameObject.Find ("FPSController").GetComponent<GrabAndDrop>();
 		kettle = GameObject.Find("kettle");
@@ -54,9 +59,11 @@ public class Mug : MonoBehaviour, Usable {
 		} else if(grabber.grabbedObject && grabber.grabbedObject.name == "sugar") {
 			grabber.DropObject();
 			hasSugar = true;
+			sugarCount++;
 		} else if (grabber.grabbedObject && grabber.grabbedObject.tag == "Tea") {
 			grabber.DropObject();
 			hasTea = true;
+			teaCount++;
 		} else {
 			// drink
 			normalWater.SetActive(false);
