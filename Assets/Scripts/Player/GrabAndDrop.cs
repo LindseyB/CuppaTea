@@ -38,13 +38,13 @@ public class GrabAndDrop : MonoBehaviour {
 			grabbedObject = grabObject;
 			grabbedObjectSize = grabObject.GetComponent<Renderer>().bounds.size.magnitude;
 			cursor.ToggleCursor();
-			grabbedObject.tag = "Untagged";
+			if(grabbedObject.tag != "Tea"){ grabbedObject.tag = "Untagged"; }
 		}
 	}
 
 	public void DropObject() {
 		if (grabbedObject) {
-			grabbedObject.tag = "Interactable";
+			if(grabbedObject.tag != "Tea"){ grabbedObject.tag = "Interactable"; }
 			grabbedObject = null;
 			cursor.ToggleCursor();
 		}
