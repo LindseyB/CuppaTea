@@ -100,11 +100,12 @@ public class Mug : MonoBehaviour, Usable {
 
 		if (hasWater && hasTea && temp > 40) {
 			// darken
-			// TODO: update to tint the texture
-			gameObject.transform.GetChild(0).gameObject.SetActive(true);
+			normalWater.gameObject.SetActive(true);
 			teaColor.a += (Time.deltaTime/51);
 			if(teaColor.a > 0.8f){ teaColor.a = 0.8f; }
-			gameObject.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_TintColor", teaColor);
+			normalWater.gameObject.GetComponent<Renderer>().material.SetColor("_TintColor", teaColor);
+			spilledWater.gameObject.GetComponent<Renderer>().material.SetColor("_TintColor", teaColor);
+			overflowingWater.gameObject.GetComponent<Renderer>().material.SetColor("_TintColor", teaColor);
 		}
 		
 
@@ -127,6 +128,8 @@ public class Mug : MonoBehaviour, Usable {
 
 			normalWater.SetActive(false); // hide normal water
 			overflowingWater.SetActive(false); // hide overflowing water
+
+			if (steam.isPlaying){ steam.Stop(); }
 		} else if (spilledWater.GetComponent<Renderer>().enabled) {
 			spilledWater.GetComponent<Renderer>().enabled = false;
 		}

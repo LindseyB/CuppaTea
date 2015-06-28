@@ -90,8 +90,7 @@ half4 frag (v2f i) : SV_Target
 	half4 col = tex2Dproj( _GrabTexture, UNITY_PROJ_COORD(i.uvgrab));
 	half4 tint = tex2D(_MainTex, i.uvmain);
 	col *= tint;
-	col = half4((col.rgb*col.a+_TintColor.rgb*_TintColor.a),col.a*_TintColor.a)
-	//col = (col + _TintColor) * 0.5;
+	col = lerp(col, _TintColor, _TintColor.a);
 	UNITY_APPLY_FOG(i.fogCoord, col);
 	return col;
 }
