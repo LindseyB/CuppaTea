@@ -8,10 +8,8 @@ public class Mug : MonoBehaviour, Usable {
 	private GameObject normalWater;
 	private GameObject spilledWater;
 	private GameObject overflowingWater;
-
-	private bool hasTea;
+	
 	private bool hasWater;
-	private bool hasSugar;
 	private int temp;
 	private float timer;
 	private float scrollSpeed;
@@ -19,7 +17,7 @@ public class Mug : MonoBehaviour, Usable {
 
 	private int teaCount = 0;
 	private int sugarCount = 0;
-	private int milkCount = 0;
+	private int creamCount = 0;
 	private int lemonCount = 0;
 
 	void Start () {
@@ -31,8 +29,6 @@ public class Mug : MonoBehaviour, Usable {
 		spilledWater = GameObject.Find("mug-spill");
 		overflowingWater = gameObject.transform.GetChild(1).gameObject;
 
-		hasTea = false;
-		hasSugar = false;
 		hasWater = false;
 	
 		temp = 20;
@@ -58,11 +54,15 @@ public class Mug : MonoBehaviour, Usable {
 			}
 		} else if(grabber.grabbedObject && grabber.grabbedObject.name == "sugar") {
 			grabber.DropObject();
-			hasSugar = true;
 			sugarCount++;
+		} else if(grabber.grabbedObject && grabber.grabbedObject.name == "lemon") { 
+			grabber.DropObject();
+			lemonCount++;
+		} else if(grabber.grabbedObject && grabber.grabbedObject.name == "creamer") { 
+			grabber.DropObject();
+			creamCount++;
 		} else if (grabber.grabbedObject && grabber.grabbedObject.tag == "Tea") {
 			grabber.DropObject();
-			hasTea = true;
 			teaCount++;
 		} else {
 			// drink
@@ -98,7 +98,7 @@ public class Mug : MonoBehaviour, Usable {
 			steam.Stop();
 		}
 
-		if (hasWater && hasTea && temp > 40) {
+		if (hasWater && teaCount > 0 && temp > 40) {
 			// darken
 			normalWater.gameObject.SetActive(true);
 			teaColor.a += (Time.deltaTime/51);
