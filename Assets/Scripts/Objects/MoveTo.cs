@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class MoveTo : MonoBehaviour {
-	[SerializeField] private GameObject snapObject;
+	[SerializeField] private GameObject avoidObject;
 
 	private GrabAndDrop grabber;
 	private Vector3 startPosition;
@@ -19,7 +19,7 @@ public class MoveTo : MonoBehaviour {
 			return;
 		}
 
-		if (collision.collider.name != snapObject.name) {
+		if (collision.collider.name == avoidObject.name) {
 			gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
 			gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
 			gameObject.transform.rotation = startRotation;
