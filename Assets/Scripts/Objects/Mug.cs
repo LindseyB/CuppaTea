@@ -8,6 +8,7 @@ public class Mug : MonoBehaviour, Usable {
 	private GameObject normalWater;
 	private GameObject spilledWater;
 	private GameObject overflowingWater;
+	private GameObject go;
 	
 	private bool hasWater;
 	private int temp;
@@ -55,11 +56,15 @@ public class Mug : MonoBehaviour, Usable {
 		} else if(grabber.grabbedObject && grabber.grabbedObject.name == "sugar") {
 			grabber.DropObject();
 			sugarCount++;
-		} else if(grabber.grabbedObject && grabber.grabbedObject.name == "lemon") { 
+		} else if(grabber.grabbedObject && grabber.grabbedObject.name == "lemon") {
+			go = grabber.grabbedObject;
 			grabber.DropObject();
+			go.GetComponent<MoveTo>().ResetPosition();
 			lemonCount++;
 		} else if(grabber.grabbedObject && grabber.grabbedObject.name == "creamer") { 
+			go = grabber.grabbedObject;
 			grabber.DropObject();
+			go.GetComponent<MoveTo>().ResetPosition();
 			creamCount++;
 		} else if (grabber.grabbedObject && grabber.grabbedObject.tag == "Tea") {
 			grabber.DropObject();

@@ -20,10 +20,14 @@ public class MoveTo : MonoBehaviour {
 		}
 
 		if (collision.collider.name == avoidObject.name) {
-			gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-			gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-			gameObject.transform.rotation = startRotation;
-			gameObject.transform.position = startPosition;
+			ResetPosition();
 		}
+	}
+
+	public void ResetPosition() {
+		gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+		gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+		gameObject.transform.rotation = startRotation;
+		gameObject.transform.position = startPosition;
 	}
 }
