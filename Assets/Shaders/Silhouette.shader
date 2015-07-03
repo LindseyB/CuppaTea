@@ -15,10 +15,11 @@ SubShader {
 
 		uniform sampler2D _MainTex; 
 		uniform float _Cutoff;
+		float4 _MainTex_ST;
 
 		struct v2f {
 			float4 pos : SV_POSITION;
-			float4 tex : TEXCOORD0;
+			half2 uv : TEXCOORD0;
 		};
 
 		struct appdata_t {
@@ -29,12 +30,12 @@ SubShader {
 		v2f vert (appdata_t v) {
 			v2f o;
 			o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
-			o.tex = v.texcoord;
+			o.uv = TRANSFORM_TEX( v.texcoord, _MainTex );
 			return o;
 		}
 	  
 		half4 frag (v2f i) : COLOR {
-			float4 textureColor = tex2D(_MainTex, i.tex.xy);
+			float4 textureColor = tex2D(_MainTex, i.uv.xy);
 			if (textureColor.a < _Cutoff) {
 				discard;
 			}
