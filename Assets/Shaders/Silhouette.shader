@@ -7,7 +7,6 @@ Properties  {
 SubShader { 
 	Pass {
 		ZTest Greater
-		Cull Off
 	 
 		CGPROGRAM
 		#pragma fragment frag
