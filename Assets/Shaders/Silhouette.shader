@@ -6,7 +6,8 @@ Properties  {
 
 SubShader { 
 	Pass {
-		ZTest Greater
+		ZTest Always 
+		ZWrite Off
 	 
 		CGPROGRAM
 		#pragma fragment frag
