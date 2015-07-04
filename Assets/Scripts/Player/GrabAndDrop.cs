@@ -38,6 +38,8 @@ public class GrabAndDrop : MonoBehaviour {
 			grabbedObject = grabObject;
 			grabbedObjectSize = grabObject.GetComponent<Renderer>().bounds.size.magnitude;
 			cursor.ToggleCursor();
+			// disable the stripes overlay
+			grabbedObject.GetComponent<HoverHighlight>().DisableHighlight();
 			if(grabbedObject.tag != "Tea"){ grabbedObject.tag = "Untagged"; }
 		}
 	}

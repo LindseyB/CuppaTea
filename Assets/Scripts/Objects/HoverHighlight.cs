@@ -2,36 +2,23 @@
 using System.Collections;
 
 public class HoverHighlight : MonoBehaviour {
-	[SerializeField] public Material hoverMat;
-
-	GameObject hoverObject;
+	Texture2D overlayTexture;
+	Material material;
 
 	public void Start() {
-		hoverObject = Instantiate(gameObject) as GameObject;
-		hoverObject.SetActive(false);
-		removeJunk();	
-		hoverObject.GetComponent<Renderer>().material = hoverMat;
+		overlayTexture = Resources.Load("stripes") as Texture2D;
+		material = gameObject.GetComponent<Renderer>().material;
 	}
 
 	public void OnMouseEnter() {
-		hoverObject.SetActive(true);
+		material.SetTexture("_Detail", overlayTexture);
 	}
 
 	public void OnMouseExit() {
-		hoverObject.SetActive(false);
+		DisableHighlight();
 	}
 
-	void removeJunk() {
-		// remove all scripts
-		foreach(MonoBehaviour script in hoverObject.GetComponents<MonoBehaviour>()) {
-			script.enabled = false;
-		}
-
-		hoverObject.tag = "Untagged";
-		hoverObject.GetComponent<Rigidbody>().isKinematic = true;
-
-		foreach(BoxCollider collider in hoverObject.GetComponents<BoxCollider>()) {
-			collider.enabled = false;
-		}
+	public void DisableHighlight() {
+		material.SetTexture("_Detail", null);
 	}
 }
