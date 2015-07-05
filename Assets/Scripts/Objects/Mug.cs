@@ -56,6 +56,7 @@ public class Mug : MonoBehaviour, Usable {
 		} else if(grabber.grabbedObject && grabber.grabbedObject.name.Contains("sugar")) {
 			grabber.grabbedObject.transform.position = gameObject.transform.position;
 			grabber.grabbedObject.tag = "Interactable";
+			grabber.grabbedObject.transform.SetParent(gameObject.transform);
 			grabber.DropObject();
 			sugarCount++;
 		} else if(grabber.grabbedObject && grabber.grabbedObject.name == "lemon") {
@@ -71,6 +72,7 @@ public class Mug : MonoBehaviour, Usable {
 		} else if (grabber.grabbedObject && grabber.grabbedObject.tag == "Tea") {
 			grabber.grabbedObject.transform.position = gameObject.transform.position;
 			grabber.grabbedObject.tag = "Interactable";
+			grabber.grabbedObject.transform.SetParent(gameObject.transform);
 			grabber.DropObject();
 			teaCount++;
 		} else {
@@ -79,6 +81,7 @@ public class Mug : MonoBehaviour, Usable {
 			overflowingWater.SetActive(false);
 			spilledWater.GetComponent<Renderer>().enabled = false;
 			hasWater = false;
+			sugarCount = lemonCount = creamCount = teaCount = 0;
 		}
 	}
 
