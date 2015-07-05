@@ -59,10 +59,11 @@ public class Mug : MonoBehaviour, Usable {
 			grabber.grabbedObject.transform.SetParent(gameObject.transform);
 			grabber.DropObject();
 			sugarCount++;
-		} else if(grabber.grabbedObject && grabber.grabbedObject.name == "lemon") {
-			go = grabber.grabbedObject;
+		} else if(grabber.grabbedObject && grabber.grabbedObject.name.Contains("lemon-slice")) {
+			grabber.grabbedObject.transform.position = gameObject.transform.position;
+			grabber.grabbedObject.tag = "Interactable";
+			grabber.grabbedObject.transform.SetParent(gameObject.transform);
 			grabber.DropObject();
-			go.GetComponent<MoveTo>().ResetPosition();
 			lemonCount++;
 		} else if(grabber.grabbedObject && grabber.grabbedObject.name == "creamer") { 
 			go = grabber.grabbedObject;
