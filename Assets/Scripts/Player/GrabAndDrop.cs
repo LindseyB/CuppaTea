@@ -70,13 +70,7 @@ public class GrabAndDrop : MonoBehaviour {
 
 		// float object in front of camera 
 		if (grabbedObject) {			
-			Vector3 newPosition = Camera.main.ScreenPointToRay(Input.mousePosition).origin + Camera.main.ScreenPointToRay(Input.mousePosition).direction * grabbedObjectSize;
-			if (!table.GetComponent<BoxCollider>().bounds.Contains(newPosition)){
-				grabbedObject.transform.position = newPosition;
-			}
-			grabbedObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-			grabbedObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-
+			RepositionObject();
 			if (Input.GetKey(KeyCode.Q)){
 				grabbedObject.transform.Rotate(Vector3.left);
 			}
@@ -86,5 +80,14 @@ public class GrabAndDrop : MonoBehaviour {
 			}
 		}
 
+	}
+
+	public void RepositionObject() {
+		Vector3 newPosition = Camera.main.ScreenPointToRay(Input.mousePosition).origin + Camera.main.ScreenPointToRay(Input.mousePosition).direction * grabbedObjectSize;
+		if (!table.GetComponent<BoxCollider>().bounds.Contains(newPosition)){
+			grabbedObject.transform.position = newPosition;
+		}
+		grabbedObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+		grabbedObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
 	}
 }

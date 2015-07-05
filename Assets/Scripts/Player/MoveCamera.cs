@@ -4,10 +4,12 @@ using System.Collections;
 public class MoveCamera : MonoBehaviour {
 	private GameObject[] bounds;
 	private GameState gameState;
+	private GrabAndDrop grabber;
 
 	void Start() {
 		bounds = GameObject.FindGameObjectsWithTag("Boundary");
 		gameState = FindObjectOfType (typeof(GameState)) as GameState;
+		grabber = GameObject.Find ("FPSController").GetComponent<GrabAndDrop>();
 	}
 
 	void Update () {
@@ -39,6 +41,8 @@ public class MoveCamera : MonoBehaviour {
 			gameObject.transform.Translate(Vector3.up * Time.deltaTime);
 			boundsCheck(position);
 		}
+
+		if(grabber.grabbedObject){ grabber.RepositionObject(); }
 	}
 
 	void boundsCheck(Vector3 position) {
