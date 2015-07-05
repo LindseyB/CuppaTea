@@ -53,7 +53,9 @@ public class Mug : MonoBehaviour, Usable {
 				temp = kettle.GetComponent<Kettle>().temp;
 				hasWater = true;
 			}
-		} else if(grabber.grabbedObject && grabber.grabbedObject.name == "sugar") {
+		} else if(grabber.grabbedObject && grabber.grabbedObject.name.Contains("sugar")) {
+			grabber.grabbedObject.transform.position = gameObject.transform.position;
+			grabber.grabbedObject.tag = "Interactable";
 			grabber.DropObject();
 			sugarCount++;
 		} else if(grabber.grabbedObject && grabber.grabbedObject.name == "lemon") {
@@ -67,6 +69,8 @@ public class Mug : MonoBehaviour, Usable {
 			go.GetComponent<MoveTo>().ResetPosition();
 			creamCount++;
 		} else if (grabber.grabbedObject && grabber.grabbedObject.tag == "Tea") {
+			grabber.grabbedObject.transform.position = gameObject.transform.position;
+			grabber.grabbedObject.tag = "Interactable";
 			grabber.DropObject();
 			teaCount++;
 		} else {
