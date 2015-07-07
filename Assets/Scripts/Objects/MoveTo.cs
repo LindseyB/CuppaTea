@@ -7,15 +7,18 @@ public class MoveTo : MonoBehaviour {
 	private GrabAndDrop grabber;
 	private Vector3 startPosition;
 	private Quaternion startRotation;
+	private TableFlip tableFlip;
 	
 	void Start () {
 		grabber = FindObjectOfType (typeof(GrabAndDrop)) as GrabAndDrop;
+		tableFlip = FindObjectOfType (typeof(TableFlip)) as TableFlip;
 		startPosition = gameObject.transform.position;
 		startRotation = gameObject.transform.rotation;
 	}
 
 	void OnCollisionEnter(Collision collision) {
-		if (gameObject == grabber.grabbedObject) {
+
+		if (gameObject == grabber.grabbedObject || tableFlip.animate) {
 			return;
 		}
 
