@@ -2,8 +2,9 @@
 using System.Collections;
 
 public class HoverHighlight : MonoBehaviour {
-	Texture2D overlayTexture;
-	Material material;
+	private Texture2D overlayTexture;
+	private Material material;
+	private GameState gameState;
 
 	private GrabAndDrop grabber;
 
@@ -11,9 +12,12 @@ public class HoverHighlight : MonoBehaviour {
 		overlayTexture = Resources.Load("stripes") as Texture2D;
 		material = gameObject.GetComponent<Renderer>().material;
 		grabber = FindObjectOfType (typeof(GrabAndDrop)) as GrabAndDrop;
+		gameState = FindObjectOfType (typeof(GameState)) as GameState;
 	}
 
 	public void OnMouseEnter() {
+		if (gameState.InMainMenu) { return; }
+
 		if (gameObject != grabber.grabbedObject) {
 			material.SetTexture("_Detail", overlayTexture);
 		}

@@ -6,11 +6,13 @@ public class Tin : MonoBehaviour, Usable {
 	private GameObject teaObject;
 	private GameObject teaObjectDupe;
 	private Vector3 scale;
+	private GameState gameState;
 
 	public void Start() {
 		grabber = GameObject.Find("FPSController").GetComponent<GrabAndDrop>();
 		scale = gameObject.transform.GetChild(0).gameObject.transform.localScale;
 		teaObject = gameObject.transform.GetChild(0).gameObject;
+		gameState = FindObjectOfType (typeof(GameState)) as GameState;
 	}
 
 	public void Use() {
@@ -23,6 +25,7 @@ public class Tin : MonoBehaviour, Usable {
 	}
 
 	public void OnMouseEnter() {
+		if (gameState.InMainMenu) { return; }
 		gameObject.transform.GetChild(1).gameObject.SetActive(true);
 	}
 
