@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class TableFlip : MonoBehaviour {
-	private const float ROTATION_MAX = 180.0f;
+	private const float ROTATION_MAX = 360.0f;
 	private const float ROTATE_TIME = 1.0f;
 	private float timer = 0.0f;
 	public bool animate = false;
