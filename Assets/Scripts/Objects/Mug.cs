@@ -21,6 +21,8 @@ public class Mug : MonoBehaviour, Usable {
 	private int creamCount = 0;
 	private int lemonCount = 0;
 
+	private Hashtable teaColors = new Hashtable();
+
 	void Start () {
 		grabber = GameObject.Find ("FPSController").GetComponent<GrabAndDrop>();
 		kettle = GameObject.Find("kettle");
@@ -36,8 +38,11 @@ public class Mug : MonoBehaviour, Usable {
 		timer = 20;
 		scrollSpeed = 0.5f;
 
-		// TODO: base this off of the type of tea brewing
-		teaColor = new Color(0.1412f, 0.0863f, 0.0196f, 0.1f);
+		// tea colors for each tea type
+		teaColors.Add("puerh", new Color(0.2588f, 0.2f, 0.0509f, 0.1f));
+		teaColors.Add("darjeeling", new Color(0.1412f, 0.0863f, 0.0196f, 0.1f));
+		teaColors.Add("oolong", new Color(0.7411f, 0.6078f, 0.2549f, 0.1f));
+		teaColors.Add("sencha", new Color(0.3647f, 0.5294f, 0.1058f, 0.1f));
 	}
 
 	public void Use() {
@@ -54,16 +59,10 @@ public class Mug : MonoBehaviour, Usable {
 				hasWater = true;
 			}
 		} else if(grabber.grabbedObject && grabber.grabbedObject.name.Contains("sugar")) {
-			grabber.grabbedObject.transform.position = gameObject.transform.position;
-			grabber.grabbedObject.tag = "Interactable";
-			grabber.grabbedObject.transform.SetParent(gameObject.transform);
-			grabber.DropObject();
+			UseDupedObject();
 			sugarCount++;
 		} else if(grabber.grabbedObject && grabber.grabbedObject.name.Contains("lemon-slice")) {
-			grabber.grabbedObject.transform.position = gameObject.transform.position;
-			grabber.grabbedObject.tag = "Interactable";
-			grabber.grabbedObject.transform.SetParent(gameObject.transform);
-			grabber.DropObject();
+			UseDupedObject();
 			lemonCount++;
 		} else if(grabber.grabbedObject && grabber.grabbedObject.name == "creamer") { 
 			go = grabber.grabbedObject;
@@ -71,10 +70,8 @@ public class Mug : MonoBehaviour, Usable {
 			go.GetComponent<MoveTo>().ResetPosition();
 			creamCount++;
 		} else if (grabber.grabbedObject && grabber.grabbedObject.tag == "Tea") {
-			grabber.grabbedObject.transform.position = gameObject.transform.position;
-			grabber.grabbedObject.tag = "Interactable";
-			grabber.grabbedObject.transform.SetParent(gameObject.transform);
-			grabber.DropObject();
+			SetTeaColor();
+			UseDupedObject();
 			teaCount++;
 		} else {
 			// drink
@@ -145,6 +142,23 @@ public class Mug : MonoBehaviour, Usable {
 			if (steam.isPlaying){ steam.Stop(); }
 		} else if (spilledWater.GetComponent<Renderer>().enabled) {
 			spilledWater.GetComponent<Renderer>().enabled = false;
+		}
+	}
+
+	private void UseDupedObject(){
+		grabber.grabbedObject.transform.position = gameObject.transform.position;
+		grabber.grabbedObject.tag = "Interactable";
+		grabber.grabbedObject.transform.SetParent(gameObject.transform);
+		grabber.DropObject();
+	}
+
+	private void SetTeaColor() {
+		char[] delimiterChars = { '-' };
+		string teaName = grabber.grabbedObject.name.Split(delimiterChars)[0];
+		if(teaCount == 0){
+			teaColor = (Color)teaColors[teaName];
+		} else {
+			teaColor = ((Color)teaColors[teaName] + teaColor)/2;
 		}
 	}
 }
