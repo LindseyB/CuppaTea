@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FluidSim : MonoBehaviour
-{
+// TODO: move into shader
+public class FluidSim : MonoBehaviour {
 	public float dt = 0.8f;
 	public float visc = 0;
 	public float volatilize = 0;
@@ -25,7 +25,9 @@ public class FluidSim : MonoBehaviour
 	
 	void Start(){
 		// duplicate the original texture and assign to the material
-		tex = new Texture2D(256, 256);
+		tex = new Texture2D(256, 256, TextureFormat.ARGB32, false);
+		tex.alphaIsTransparency = true;
+		tex.filterMode = FilterMode.Bilinear;
 		GetComponent<Renderer>().material.mainTexture = tex;
 		// get grid dimensions from texture
 		width = tex.width;
@@ -267,8 +269,9 @@ public class FluidSim : MonoBehaviour
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
 				int i = (x + 1) + (y + 1) * rowSize;
-				float d = 5f * dens[i];
-				tex.SetPixel(x, y, new Color(u[i]*20, v[i]*20 + 0.5f + d * 0.5f, 1 + d, d + 0.5f));
+				float d = 5f * dens[i] + u[i] + v[i];
+
+				tex.SetPixel(x, y, new Color(1,1,1, d));
 			}
 		}
 		tex.Apply(false);
