@@ -25,7 +25,7 @@ public class FluidSim : MonoBehaviour {
 	
 	void Start(){
 		// duplicate the original texture and assign to the material
-		tex = new Texture2D(256, 256, TextureFormat.ARGB32, false);
+		tex = new Texture2D(128, 128, TextureFormat.ARGB32, false);
 		tex.alphaIsTransparency = true;
 		tex.filterMode = FilterMode.Bilinear;
 		GetComponent<Renderer>().material.mainTexture = tex;
