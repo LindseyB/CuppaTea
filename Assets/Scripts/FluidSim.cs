@@ -9,7 +9,7 @@ public class FluidSim : MonoBehaviour
 	public int iterations = 10;
 	public Texture2D border;
 	public Texture2D flow;
-	
+
 	Texture2D tex;
 	int width, height;
 	float[] u, v, u_prev, v_prev;
@@ -25,7 +25,7 @@ public class FluidSim : MonoBehaviour
 	
 	void Start(){
 		// duplicate the original texture and assign to the material
-		tex = Instantiate(GetComponent<Renderer>().material.mainTexture) as Texture2D;
+		tex = new Texture2D(256, 256);
 		GetComponent<Renderer>().material.mainTexture = tex;
 		// get grid dimensions from texture
 		width = tex.width;
@@ -268,7 +268,7 @@ public class FluidSim : MonoBehaviour
 			for (int x = 0; x < width; x++) {
 				int i = (x + 1) + (y + 1) * rowSize;
 				float d = 5f * dens[i];
-				tex.SetPixel(x, y, new Color(u[i]*20 + bndX[i] + 0.5f, v[i]*20 + bndY[i] + 0.5f + d * 0.5f, 1 + d));
+				tex.SetPixel(x, y, new Color(u[i]*20, v[i]*20 + 0.5f + d * 0.5f, 1 + d, d + 0.5f));
 			}
 		}
 		tex.Apply(false);

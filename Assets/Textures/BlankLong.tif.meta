@@ -20,7 +20,7 @@ TextureImporter:
     heightScale: .25
     normalMapFilter: 0
   isReadable: 1
-  grayScaleToAlpha: 0
+  grayScaleToAlpha: 1
   generateCubemap: 0
   cubemapConvolution: 0
   cubemapConvolutionSteps: 8
@@ -44,7 +44,7 @@ TextureImporter:
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   textureType: 5
   buildTargetSettings: []
   spriteSheet:
