@@ -9,12 +9,14 @@ public class Mug : MonoBehaviour, Usable {
 	private GameObject spilledWater;
 	private GameObject overflowingWater;
 	private GameObject go;
+	private GameObject milkSwirl;
 	
 	private bool hasWater;
 	private int temp;
 	private float timer;
 	private float scrollSpeed;
 	private Color teaColor;
+	private Color milkColor;
 
 	private int teaCount = 0;
 	private int sugarCount = 0;
@@ -29,6 +31,7 @@ public class Mug : MonoBehaviour, Usable {
 		steam = GameObject.Find("mug-steam").GetComponent<ParticleSystem>();
 
 		normalWater = gameObject.transform.GetChild(0).gameObject;
+		milkSwirl = normalWater.transform.GetChild(0).gameObject;
 		spilledWater = GameObject.Find("mug-spill");
 		overflowingWater = gameObject.transform.GetChild(1).gameObject;
 
@@ -43,6 +46,9 @@ public class Mug : MonoBehaviour, Usable {
 		teaColors.Add("darjeeling", new Color(0.1412f, 0.0863f, 0.0196f, 0.1f));
 		teaColors.Add("oolong", new Color(0.7411f, 0.6078f, 0.2549f, 0.1f));
 		teaColors.Add("sencha", new Color(0.3647f, 0.5294f, 0.1058f, 0.1f));
+
+		milkColor = new Color(1f, 1f, 1f, 0.8f);
+		teaColor = new Color(1f, 1f, 1f, 0.0f);
 	}
 
 	public void Use() {
@@ -69,6 +75,16 @@ public class Mug : MonoBehaviour, Usable {
 			grabber.DropObject();
 			go.GetComponent<MoveTo>().ResetPosition();
 			creamCount++;
+			if(creamCount <= 3){ 
+				milkSwirl.SetActive(true);
+				milkSwirl.GetComponent<FluidSim>().StartAdd();
+			} else if(creamCount > 3) {
+				milkSwirl.SetActive(false);
+				teaColor = (milkColor + teaColor)/2;
+				normalWater.gameObject.GetComponent<Renderer>().material.SetColor("_TintColor", teaColor);
+				spilledWater.gameObject.GetComponent<Renderer>().material.SetColor("_TintColor", teaColor);
+				overflowingWater.gameObject.GetComponent<Renderer>().material.SetColor("_TintColor", teaColor);
+			}
 		} else if (grabber.grabbedObject && grabber.grabbedObject.tag == "Tea") {
 			SetTeaColor();
 			UseDupedObject();
@@ -117,7 +133,6 @@ public class Mug : MonoBehaviour, Usable {
 			spilledWater.gameObject.GetComponent<Renderer>().material.SetColor("_TintColor", teaColor);
 			overflowingWater.gameObject.GetComponent<Renderer>().material.SetColor("_TintColor", teaColor);
 		}
-		
 
 		if (hasWater && gameObject.transform.forward.y < 1 && 
 		    (!grabber.grabbedObject ||

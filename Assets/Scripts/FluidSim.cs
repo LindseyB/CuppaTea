@@ -22,16 +22,21 @@ public class FluidSim : MonoBehaviour {
 	float t = 0;
 	float radX = 0;
 	float radY = 0;
-	
-	void Start(){
-		// duplicate the original texture and assign to the material
-		tex = new Texture2D(128, 128, TextureFormat.ARGB32, false);
+
+	const float ADD_TIME = 5f;
+
+	float timeForAdds = ADD_TIME;
+	bool add = false;
+
+	void Start() {
+		// basic empty texture
+		tex = new Texture2D(32, 32, TextureFormat.ARGB32, false);
 		tex.alphaIsTransparency = true;
 		tex.filterMode = FilterMode.Bilinear;
 		GetComponent<Renderer>().material.mainTexture = tex;
-		// get grid dimensions from texture
 		width = tex.width;
 		height = tex.height;
+
 		// initialize fluid arrays
 		rowSize = width + 2;
 		size = (width+2)*(height+2);
@@ -55,7 +60,7 @@ public class FluidSim : MonoBehaviour {
 			velY[i] = (flow.GetPixel(x, y).grayscale - flow.GetPixel(x, y+1).grayscale) * 0.1f;
 		}
 	}
-	
+
 	void Update() {
 		// reset values
 		for (int i = 0; i < size; i++) {
@@ -63,7 +68,7 @@ public class FluidSim : MonoBehaviour {
 			u_prev[i] = velX[i];
 			v_prev[i] = velY[i];
 		}
-		UserInput();
+		AddMilk();
 		vel_step(u, v, u_prev, v_prev, dt);
 		dens_step(dens, dens_prev, u, v, dt);
 		Draw();
@@ -75,7 +80,7 @@ public class FluidSim : MonoBehaviour {
 		}
 	}
 
-	void set_bnd(int b, float[] x){
+	void set_bnd(int b, float[] x) {
 		// b/w texture as obstacles
 		for (int j = 1; j <= height; j++) {
 			for (int i = 1; i <= width; i++) {
@@ -110,8 +115,9 @@ public class FluidSim : MonoBehaviour {
 					int nextRow = (j + 1) * rowSize;
 					float lastX = x[currentRow];
 					++currentRow;
-					for (int i=1; i<=width; i++)
+					for (int i=1; i<=width; i++) {
 						lastX = x[currentRow] = (x0[currentRow] + a * (lastX + x[++currentRow] + x[++lastRow] + x[++nextRow])) / c;
+					}
 				}
 				set_bnd(0, x);
 			}
@@ -163,16 +169,18 @@ public class FluidSim : MonoBehaviour {
 			for (int i = 1; i <= width; i++) {
 				float x = i - dt0 * u[++pos]; 
 				float y = j - dt0 * v[pos];
-				if (x < 0.5f)
+				if (x < 0.5f) {
 					x = 0.5f;
-				else if (x > Wp5)
+				} else if (x > Wp5) {
 					x = Wp5;
+				}
 				int i0 = (int)x;
 				int i1 = i0 + 1;
-				if (y < 0.5f)
+				if (y < 0.5f) {
 					y = 0.5f;
-				else if (y > Hp5)
+				} else if (y > Hp5) {
 					y = Hp5;
+				}
 				int j0 = (int)y;
 				int j1 = j0 + 1;
 				float s1 = x - i0;
@@ -242,8 +250,17 @@ public class FluidSim : MonoBehaviour {
 		advect(2, v, v0, u0, v0, dt);
 		project(u, v, u0, v0);
 	}
-	
-	void UserInput() {
+
+	public void StartAdd() {
+		add = true;
+		timeForAdds = ADD_TIME;
+	}
+
+	void AddMilk() {
+		if(!add){ return; }
+		timeForAdds -= Time.deltaTime;
+
+		// outward spiral parametric equation
 		t += Time.deltaTime;
 		radX += Time.deltaTime;
 		radY += Time.deltaTime;
@@ -256,11 +273,11 @@ public class FluidSim : MonoBehaviour {
 		int y = (int) (height/2 + Mathf.Sin(t)*radY);
 
 		int i = (x + 1) + (y + 1) * rowSize;
-		// add or dec density
 		dens_prev[i] += 3f;
-		// add velocity
 		u_prev[i] += 0.025f;
 		v_prev[i] += 0.025f;
+
+		if(timeForAdds <= 0){ add = false; }
 	}
 	
 	void Draw()
@@ -270,6 +287,8 @@ public class FluidSim : MonoBehaviour {
 			for (int x = 0; x < width; x++) {
 				int i = (x + 1) + (y + 1) * rowSize;
 				float d = 5f * dens[i] + u[i] + v[i];
+
+				if(d > 0.7f) { d = 0.7f; }
 
 				tex.SetPixel(x, y, new Color(1,1,1, d));
 			}
