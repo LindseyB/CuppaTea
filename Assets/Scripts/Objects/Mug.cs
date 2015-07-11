@@ -24,6 +24,7 @@ public class Mug : MonoBehaviour, Usable {
 	private int lemonCount = 0;
 
 	private Hashtable teaColors = new Hashtable();
+	private GameObject[] waterObjects;
 
 	void Start () {
 		grabber = GameObject.Find ("FPSController").GetComponent<GrabAndDrop>();
@@ -34,6 +35,8 @@ public class Mug : MonoBehaviour, Usable {
 		milkSwirl = normalWater.transform.GetChild(0).gameObject;
 		spilledWater = GameObject.Find("mug-spill");
 		overflowingWater = gameObject.transform.GetChild(1).gameObject;
+
+		waterObjects = new GameObject[]{ normalWater, spilledWater, overflowingWater };
 
 		hasWater = false;
 	
@@ -81,9 +84,9 @@ public class Mug : MonoBehaviour, Usable {
 			} else if(creamCount > 3) {
 				milkSwirl.SetActive(false);
 				teaColor = (milkColor + teaColor)/2;
-				normalWater.gameObject.GetComponent<Renderer>().material.SetColor("_TintColor", teaColor);
-				spilledWater.gameObject.GetComponent<Renderer>().material.SetColor("_TintColor", teaColor);
-				overflowingWater.gameObject.GetComponent<Renderer>().material.SetColor("_TintColor", teaColor);
+				foreach(GameObject water in waterObjects){
+					water.gameObject.GetComponent<Renderer>().material.SetColor("_TintColor", teaColor);
+				}
 			}
 		} else if (grabber.grabbedObject && grabber.grabbedObject.tag == "Tea") {
 			SetTeaColor();
@@ -103,12 +106,10 @@ public class Mug : MonoBehaviour, Usable {
 
 		if (hasWater) {
 			float offset = Time.time * scrollSpeed;
-			normalWater.gameObject.GetComponent<Renderer>().material.SetTextureOffset("_MainTex", new Vector2(offset, 0));
-			normalWater.gameObject.GetComponent<Renderer>().material.SetTextureOffset("_BumpMap", new Vector2(offset, 0));
-			spilledWater.gameObject.GetComponent<Renderer>().material.SetTextureOffset("_MainTex", new Vector2(offset, 0));
-			spilledWater.gameObject.GetComponent<Renderer>().material.SetTextureOffset("_BumpMap", new Vector2(offset, 0));
-			overflowingWater.gameObject.GetComponent<Renderer>().material.SetTextureOffset("_MainTex", new Vector2(offset, 0));
-			overflowingWater.gameObject.GetComponent<Renderer>().material.SetTextureOffset("_BumpMap", new Vector2(offset, 0));
+			foreach(GameObject water in waterObjects){
+				water.gameObject.GetComponent<Renderer>().material.SetTextureOffset("_MainTex", new Vector2(offset, 0));
+				water.gameObject.GetComponent<Renderer>().material.SetTextureOffset("_BumpMap", new Vector2(offset, 0));
+			}
 		}
 
 		// cool temp over time
@@ -129,12 +130,12 @@ public class Mug : MonoBehaviour, Usable {
 			normalWater.gameObject.SetActive(true);
 			teaColor.a += (Time.deltaTime/51);
 			if(teaColor.a > 0.8f){ teaColor.a = 0.8f; }
-			normalWater.gameObject.GetComponent<Renderer>().material.SetColor("_TintColor", teaColor);
-			spilledWater.gameObject.GetComponent<Renderer>().material.SetColor("_TintColor", teaColor);
-			overflowingWater.gameObject.GetComponent<Renderer>().material.SetColor("_TintColor", teaColor);
+			foreach(GameObject water in waterObjects){
+				water.gameObject.GetComponent<Renderer>().material.SetColor("_TintColor", teaColor);
+			}
 		}
 
-		if (hasWater && gameObject.transform.forward.y < 1 && 
+		if (hasWater && gameObject.transform.forward.y < 0.8 && 
 		    (!grabber.grabbedObject ||
 		    grabber.grabbedObject.name != gameObject.name)) {
 			spilledWater.GetComponent<Renderer>().enabled = true; // display spilled water
