@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-// TODO: move into shader
 public class FluidSim : MonoBehaviour {
 	public float dt = 0.8f;
 	public float visc = 0;
