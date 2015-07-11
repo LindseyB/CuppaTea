@@ -103,7 +103,6 @@ public class Mug : MonoBehaviour, Usable {
 	}
 
 	void Update() {
-
 		if (hasWater) {
 			float offset = Time.time * scrollSpeed;
 			foreach(GameObject water in waterObjects){
