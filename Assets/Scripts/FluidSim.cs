@@ -2,12 +2,15 @@
 using System.Collections;
 
 public class FluidSim : MonoBehaviour {
+	const float ADD_TIME = 5f;
+
 	public float dt = 0.8f;
 	public float visc = 0;
 	public float volatilize = 0;
 	public int iterations = 10;
 	public Texture2D border;
 	public Texture2D flow;
+	public bool curdled = false;
 
 	Texture2D tex;
 	int width, height;
@@ -18,12 +21,7 @@ public class FluidSim : MonoBehaviour {
 	int rowSize;
 	int size;
 
-	float t = 0;
-	float radX = 0;
-	float radY = 0;
-
-	const float ADD_TIME = 5f;
-
+	float t, radX, radY = 0;
 	float timeForAdds = ADD_TIME;
 	bool add = false;
 
@@ -259,17 +257,24 @@ public class FluidSim : MonoBehaviour {
 		if(!add){ return; }
 		timeForAdds -= Time.deltaTime;
 
-		// outward spiral parametric equation
-		t += Time.deltaTime;
-		radX += Time.deltaTime;
-		radY += Time.deltaTime;
+		int x, y;
 
-		if(t > (2*Mathf.PI)) { t = 0; }
-		if(radX > width/2) { radX = 0; }
-		if(radY > height/2) { radY = 0; }
+		if(curdled){
+			x = Random.Range(0, width);
+			y = Random.Range(0, height);
+		} else {
+			// outward spiral parametric equation
+			t += Time.deltaTime;
+			radX += Time.deltaTime;
+			radY += Time.deltaTime;
 
-		int x = (int) (width/2 + Mathf.Cos(t)*radX);
-		int y = (int) (height/2 + Mathf.Sin(t)*radY);
+			if(t > (2*Mathf.PI)) { t = 0; }
+			if(radX > width/2) { radX = 0; }
+			if(radY > height/2) { radY = 0; }
+
+			x = (int) (width/2 + Mathf.Cos(t)*radX);
+			y = (int) (height/2 + Mathf.Sin(t)*radY);
+		}
 
 		int i = (x + 1) + (y + 1) * rowSize;
 		dens_prev[i] += 3f;

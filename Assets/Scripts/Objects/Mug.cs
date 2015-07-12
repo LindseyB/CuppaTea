@@ -80,8 +80,10 @@ public class Mug : MonoBehaviour, Usable {
 			creamCount++;
 			if(creamCount <= 3){ 
 				milkSwirl.SetActive(true);
+				milkSwirl.GetComponent<FluidSim>().curdled = lemonCount > 0;
 				milkSwirl.GetComponent<FluidSim>().StartAdd();
-			} else if(creamCount > 3) {
+
+			} else if(creamCount > 3 && !milkSwirl.GetComponent<FluidSim>().curdled) {
 				milkSwirl.SetActive(false);
 				teaColor = (milkColor + teaColor)/2;
 				foreach(GameObject water in waterObjects){
