@@ -12,7 +12,6 @@ public class GrabAndDrop : MonoBehaviour {
 	private GameObject table;
 	private HoverHighlight hh;
 
-
 	void Start () {
 		cursor = FindObjectOfType (typeof(HandCursor)) as HandCursor;
 		gameState = FindObjectOfType (typeof(GameState)) as GameState;
@@ -21,9 +20,16 @@ public class GrabAndDrop : MonoBehaviour {
 
 	public GameObject GetMouseHoverObject(float range) {
 		RaycastHit[] hits;
-		hits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition).origin, 
-		                          Camera.main.ScreenPointToRay(Input.mousePosition).direction,
-		                          range);
+		if(grabbedObject) {
+			hits = Physics.SphereCastAll(Camera.main.ScreenPointToRay(Input.mousePosition).origin, 
+			                             grabbedObject.GetComponent<Collider>().bounds.extents.x,
+			                             Camera.main.ScreenPointToRay(Input.mousePosition).direction,
+			                             range);
+		} else {
+			hits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition).origin, 
+			                          Camera.main.ScreenPointToRay(Input.mousePosition).direction,
+			                          range);
+		}
 
 		foreach (RaycastHit hit in hits) {
 			if (hit.rigidbody && hit.rigidbody.gameObject.tag == "Interactable") {
