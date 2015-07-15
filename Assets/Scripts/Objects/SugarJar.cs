@@ -14,6 +14,8 @@ public class SugarJar : MonoBehaviour, Usable {
 	}
 	
 	public void Use() {
+		if (grabber.grabbedObject) { return; }
+
 		// grab some sugar 
 		sugarObjectDupe = (GameObject) Instantiate(sugarObject);
 		sugarObjectDupe.transform.SetParent(gameObject.transform);

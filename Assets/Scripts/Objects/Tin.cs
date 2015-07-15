@@ -16,6 +16,8 @@ public class Tin : MonoBehaviour, Usable {
 	}
 
 	public void Use() {
+		if (grabber.grabbedObject) { return; }
+
 		// grab some tea leaves
 		teaObjectDupe = Instantiate(teaObject);
 		teaObjectDupe.transform.SetParent(gameObject.transform);

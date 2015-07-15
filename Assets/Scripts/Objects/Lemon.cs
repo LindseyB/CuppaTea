@@ -14,6 +14,8 @@ public class Lemon : MonoBehaviour, Usable {
 	}
 
 	public void Use() {
+		if (grabber.grabbedObject) { return; }
+
 		// grab a lemon slice
 		lemonObjectDupe = Instantiate(lemonObject);
 		lemonObjectDupe.transform.SetParent(gameObject.transform);
