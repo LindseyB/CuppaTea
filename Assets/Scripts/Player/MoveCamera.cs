@@ -6,6 +6,8 @@ public class MoveCamera : MonoBehaviour {
 	private GameState gameState;
 	private GrabAndDrop grabber;
 
+	float speed = 0.05f;
+
 	void Start() {
 		bounds = GameObject.FindGameObjectsWithTag("Boundary");
 		gameState = FindObjectOfType (typeof(GameState)) as GameState;
@@ -16,6 +18,17 @@ public class MoveCamera : MonoBehaviour {
 		if (gameState.InMainMenu) { return; }
 
 		Vector3 position = gameObject.transform.position;
+
+		// Move left / right
+		Vector3 right = transform.TransformDirection(Vector3.right);
+		float curSpeedRight = speed * Input.GetAxis("Horizontal");
+		
+		// Move forward / backward
+		Vector3 forward = transform.TransformDirection(Vector3.forward);
+		float curSpeedForward = speed * Input.GetAxis("Vertical");
+
+		gameObject.transform.Translate(forward*curSpeedForward + right*curSpeedRight);
+		boundsCheck(position);
 
 		if (Input.GetKey((KeyCode)GameControls.Controls.ForwardArrow) || Input.GetKey((KeyCode)GameControls.Controls.Forward)) {
 			gameObject.transform.Translate(Vector3.forward * Time.deltaTime);
@@ -37,7 +50,7 @@ public class MoveCamera : MonoBehaviour {
 			boundsCheck(position);
 		}
 
-		if (Input.GetKey((KeyCode)GameControls.Controls.Up)) {
+		if (Input.GetKey((KeyCode)GameControls.Controls.Up) || Input.GetKey(KeyCode.JoystickButton16)) {
 			gameObject.transform.Translate(Vector3.up * Time.deltaTime);
 			boundsCheck(position);
 		}

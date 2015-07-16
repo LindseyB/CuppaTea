@@ -16,6 +16,8 @@ public class MouseLook : MonoBehaviour {
 	
 	float rotationX = 0F;
 	float rotationY = 0F;
+
+	float speed = 1;
 	
 	Quaternion originalRotation;
 
