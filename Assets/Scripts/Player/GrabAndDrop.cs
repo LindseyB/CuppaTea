@@ -66,7 +66,7 @@ public class GrabAndDrop : MonoBehaviour {
 		if (gameState.InMainMenu) { return; }
 
 		// pick up or drop object
-		if (Input.GetMouseButtonDown (0)) {
+		if (Input.GetMouseButtonDown (0) || Input.GetKeyDown(KeyCode.JoystickButton19)) {
 			if (!grabbedObject) {
 				TryGrabObject(GetMouseHoverObject(reach));
 			} else {
@@ -77,11 +77,11 @@ public class GrabAndDrop : MonoBehaviour {
 		// float object in front of camera 
 		if (grabbedObject) {			
 			RepositionObject();
-			if (Input.GetKey((KeyCode)GameControls.Controls.RotateLeft)){
+			if (Input.GetKey((KeyCode)GameControls.Controls.RotateLeft) || Input.GetKey(KeyCode.JoystickButton13)){
 				grabbedObject.transform.Rotate(Vector3.left);
 			}
 
-			if (Input.GetKey((KeyCode)GameControls.Controls.RotateForward)) {
+			if (Input.GetKey((KeyCode)GameControls.Controls.RotateForward) || Input.GetKey(KeyCode.JoystickButton14)) {
 				grabbedObject.transform.Rotate(Vector3.up);
 			}
 		}

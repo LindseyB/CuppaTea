@@ -5,12 +5,14 @@ public class MoveCamera : MonoBehaviour {
 	private GameObject[] bounds;
 	private GameState gameState;
 	private GrabAndDrop grabber;
+	private MouseLook mouseLook;
 
 	float speed = 0.05f;
 
 	void Start() {
 		bounds = GameObject.FindGameObjectsWithTag("Boundary");
 		gameState = FindObjectOfType (typeof(GameState)) as GameState;
+		mouseLook = FindObjectOfType (typeof(MouseLook)) as MouseLook;
 		grabber = GameObject.Find ("FPSController").GetComponent<GrabAndDrop>();
 	}
 
@@ -19,17 +21,16 @@ public class MoveCamera : MonoBehaviour {
 
 		Vector3 position = gameObject.transform.position;
 		
-		// Move left / right
-		Vector3 right = transform.TransformDirection(Vector3.right);
-		float curSpeedRight = speed * Input.GetAxis("Horizontal");
-		
-		// Move forward / backward
-		Vector3 forward = transform.TransformDirection(Vector3.forward);
-		float curSpeedForward = speed * Input.GetAxis("Vertical");
+		// Joystick controls
+		if(mouseLook.axes == MouseLook.RotationAxes.Joy) {
+			Vector3 right = transform.TransformDirection(Vector3.right);
+			float curSpeedRight = speed * Input.GetAxis("Horizontal");
+			Vector3 forward = transform.TransformDirection(Vector3.up);
+			float curSpeedForward = speed * Input.GetAxis("Vertical");
 
-
-		gameObject.transform.Translate(forward*curSpeedForward + right*curSpeedRight);
-		boundsCheck(position);
+			gameObject.transform.Translate(forward*curSpeedForward + right*curSpeedRight);
+			boundsCheck(position);
+		}
 
 		if (Input.GetKey((KeyCode)GameControls.Controls.ForwardArrow) || Input.GetKey((KeyCode)GameControls.Controls.Forward)) {
 			gameObject.transform.Translate(Vector3.forward * Time.deltaTime);

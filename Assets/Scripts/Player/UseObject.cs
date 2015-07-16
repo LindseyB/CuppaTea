@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class UseObject : MonoBehaviour {
@@ -15,7 +15,7 @@ public class UseObject : MonoBehaviour {
 	void Update () {
 		if (gameState.InMainMenu) { return; }
 
-		if (Input.GetKeyDown((KeyCode)GameControls.Controls.Use)) {
+		if (Input.GetKeyDown((KeyCode)GameControls.Controls.Use) || Input.GetKeyDown(KeyCode.JoystickButton18)) {
 			GameObject hoverObject;
 			hoverObject = grabber.GetMouseHoverObject(reach);
 
