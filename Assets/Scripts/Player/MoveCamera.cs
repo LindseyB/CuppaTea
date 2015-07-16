@@ -17,27 +17,27 @@ public class MoveCamera : MonoBehaviour {
 
 		Vector3 position = gameObject.transform.position;
 
-		if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) {
+		if (Input.GetKey((KeyCode)GameControls.Controls.ForwardArrow) || Input.GetKey((KeyCode)GameControls.Controls.Forward)) {
 			gameObject.transform.Translate(Vector3.forward * Time.deltaTime);
 			boundsCheck(position);
 		}
 
-		if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) {
+		if (Input.GetKey((KeyCode)GameControls.Controls.BackwardsArrow) || Input.GetKey((KeyCode)GameControls.Controls.Backwards)) {
 			gameObject.transform.Translate(Vector3.back * Time.deltaTime);
 			boundsCheck(position);
 		}
 
-		if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
+		if (Input.GetKey((KeyCode)GameControls.Controls.RightArrow) || Input.GetKey((KeyCode)GameControls.Controls.Right)) {
 			gameObject.transform.Translate(Vector3.right * Time.deltaTime);
 			boundsCheck(position);
 		}
 
-		if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
+		if (Input.GetKey((KeyCode)GameControls.Controls.LeftArrow) || Input.GetKey((KeyCode)GameControls.Controls.Left)) {
 			gameObject.transform.Translate(Vector3.left * Time.deltaTime);
 			boundsCheck(position);
 		}
 
-		if (Input.GetKey(KeyCode.Space)) {
+		if (Input.GetKey((KeyCode)GameControls.Controls.Up)) {
 			gameObject.transform.Translate(Vector3.up * Time.deltaTime);
 			boundsCheck(position);
 		}

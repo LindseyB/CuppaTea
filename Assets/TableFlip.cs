@@ -15,7 +15,7 @@ public class TableFlip : MonoBehaviour {
 	void Update () {
 		if (gameState.InMainMenu) { return; }
 
-		if (Input.GetKeyDown(".") && !animate){
+		if (Input.GetKeyDown((KeyCode)GameControls.Controls.Rage) && !animate){
 			timer = 0;
 			animate = true;
 			gameObject.GetComponent<Rigidbody>().isKinematic = false;

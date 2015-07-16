@@ -77,11 +77,11 @@ public class GrabAndDrop : MonoBehaviour {
 		// float object in front of camera 
 		if (grabbedObject) {			
 			RepositionObject();
-			if (Input.GetKey(KeyCode.Q)){
+			if (Input.GetKey((KeyCode)GameControls.Controls.RotateLeft)){
 				grabbedObject.transform.Rotate(Vector3.left);
 			}
 
-			if (Input.GetKey(KeyCode.E)) {
+			if (Input.GetKey((KeyCode)GameControls.Controls.RotateForward)) {
 				grabbedObject.transform.Rotate(Vector3.up);
 			}
 		}
