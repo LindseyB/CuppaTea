@@ -18,7 +18,7 @@ public class MoveCamera : MonoBehaviour {
 		if (gameState.InMainMenu) { return; }
 
 		Vector3 position = gameObject.transform.position;
-
+		
 		// Move left / right
 		Vector3 right = transform.TransformDirection(Vector3.right);
 		float curSpeedRight = speed * Input.GetAxis("Horizontal");
@@ -26,6 +26,7 @@ public class MoveCamera : MonoBehaviour {
 		// Move forward / backward
 		Vector3 forward = transform.TransformDirection(Vector3.forward);
 		float curSpeedForward = speed * Input.GetAxis("Vertical");
+
 
 		gameObject.transform.Translate(forward*curSpeedForward + right*curSpeedRight);
 		boundsCheck(position);

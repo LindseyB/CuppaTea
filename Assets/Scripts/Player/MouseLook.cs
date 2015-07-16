@@ -16,8 +16,6 @@ public class MouseLook : MonoBehaviour {
 	
 	float rotationX = 0F;
 	float rotationY = 0F;
-
-	float speed = 1;
 	
 	Quaternion originalRotation;
 
@@ -40,7 +38,10 @@ public class MouseLook : MonoBehaviour {
 			// Read the mouse input axis
 			rotationX += Input.GetAxis("Mouse X") * sensitivityX;
 			rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
-			
+
+			rotationX += Input.GetAxis("Joy X");
+			rotationY += Input.GetAxis("Joy Y");
+
 			rotationX = ClampAngle (rotationX, minimumX, maximumX);
 			rotationY = ClampAngle (rotationY, minimumY, maximumY);
 			
