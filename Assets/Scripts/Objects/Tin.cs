@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Tin : MonoBehaviour, Usable {
+public class Tin : RewindObject, Usable {
 	private GrabAndDrop grabber;
 	private GameObject teaObject;
 	private GameObject teaObjectDupe;

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Mug : MonoBehaviour, Usable {
+public class Mug : RewindObject, Usable {
 	private GrabAndDrop grabber;
 	private GameObject kettle;
 	private ParticleSystem steam;
@@ -104,7 +104,7 @@ public class Mug : MonoBehaviour, Usable {
 		}
 	}
 
-	void Update() {
+	new void Update() {
 		if (hasWater) {
 			float offset = Time.time * scrollSpeed;
 			foreach(GameObject water in waterObjects){
@@ -160,6 +160,8 @@ public class Mug : MonoBehaviour, Usable {
 		} else if (spilledWater.GetComponent<Renderer>().enabled) {
 			spilledWater.GetComponent<Renderer>().enabled = false;
 		}
+
+		base.Update();
 	}
 
 	private void UseDupedObject(){

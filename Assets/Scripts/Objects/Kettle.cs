@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Kettle : MonoBehaviour, Usable {
+public class Kettle : RewindObject, Usable {
 	[SerializeField] private ParticleSystem steam;
 
 	private bool heating;
@@ -19,7 +19,7 @@ public class Kettle : MonoBehaviour, Usable {
 		heating = !heating;
 	}
 
-	void Update() {
+	new void Update() {
 		if (heating) {
 			gameObject.transform.Translate(Vector3.forward * Time.deltaTime);
 		}
@@ -40,6 +40,8 @@ public class Kettle : MonoBehaviour, Usable {
 		} else if (temp < 100 && steam.isPlaying) {
 			steam.Stop();
 		}
+
+		base.Update();
 	}
 
 	private void updateTemp(){

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Lemon : MonoBehaviour, Usable {
+public class Lemon : RewindObject, Usable {
 	private GrabAndDrop grabber;
 	private GameObject lemonObject;
 	private GameObject lemonObjectDupe;

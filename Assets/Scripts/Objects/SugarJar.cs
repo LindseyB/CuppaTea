@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class SugarJar : MonoBehaviour, Usable {
+public class SugarJar : RewindObject, Usable {
 	private GrabAndDrop grabber;
 	private Vector3 scale;
 	private GameObject sugarObject;
