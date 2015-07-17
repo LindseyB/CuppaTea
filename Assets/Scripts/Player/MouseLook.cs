@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MouseLook : MonoBehaviour {
 
-	public enum RotationAxes { MouseXAndY = 0, MouseX = 1, MouseY = 2, Joy = 3 }
+	public enum RotationAxes { MouseXAndY = 0, MouseX = 1, MouseY = 2 }
 	public RotationAxes axes = RotationAxes.MouseXAndY;
 	public float sensitivityX = 15F;
 	public float sensitivityY = 15F;
@@ -42,14 +42,6 @@ public class MouseLook : MonoBehaviour {
 			rotationX = ClampAngle (rotationX, minimumX, maximumX);
 			rotationY = ClampAngle (rotationY, minimumY, maximumY);
 			
-			Quaternion xQuaternion = Quaternion.AngleAxis (rotationX, Vector3.up);
-			Quaternion yQuaternion = Quaternion.AngleAxis (rotationY, -Vector3.right);
-			
-			transform.localRotation = originalRotation * xQuaternion * yQuaternion;
-		} else if (axes == RotationAxes.Joy) {
-			rotationX += Input.GetAxis("Joy X");
-			rotationY += Input.GetAxis("Joy Y");
-
 			Quaternion xQuaternion = Quaternion.AngleAxis (rotationX, Vector3.up);
 			Quaternion yQuaternion = Quaternion.AngleAxis (rotationY, -Vector3.right);
 			

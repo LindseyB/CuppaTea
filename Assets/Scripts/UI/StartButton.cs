@@ -25,12 +25,6 @@ public class StartButton : MonoBehaviour {
 		StartCoroutine("DisableCanvas");
 	}
 
-	void Update() {
-		if(Input.GetKeyDown(KeyCode.JoystickButton9)){
-			startGame();
-		}
-	}
-	
 
 	IEnumerator DisableCanvas() {
 		yield return new WaitForSeconds(1);
