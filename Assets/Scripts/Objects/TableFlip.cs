@@ -8,11 +8,8 @@ public class TableFlip : RewindObject {
 	public bool animate = false;
 	private GameState gameState;
 
-	private Vector3 startPos;
-	
 	void Start () {
 		gameState = FindObjectOfType (typeof(GameState)) as GameState;
-		startPos = gameObject.transform.position;
 	}
 
 	new void Update () {
