@@ -2,15 +2,14 @@
 using System.Collections;
 
 public class DestroyOnFloor : MonoBehaviour {
-	private GameObject floor;
+	private GameObject table;
 
-	// Use this for initialization
 	void Start () {
-		floor = GameObject.Find("Floor");
+		table =  GameObject.Find("Table");
 	}
 	
 	void OnCollisionEnter(Collision collision) {
-		if (collision.collider.name == floor.name) {
+		if (collision.collider.name == "Floor" && table.transform.forward.y <= 0.8f) {
 			GameObject.Destroy(gameObject);
 		}
 	}
