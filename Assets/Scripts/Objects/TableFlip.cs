@@ -33,7 +33,9 @@ public class TableFlip : RewindObject {
 	}
 
 	void OnCollisionEnter(Collision collision) {
-		if (animate && timer > ROTATE_TIME && collision.collider.name == "Floor") {
+		if (animate && timer > ROTATE_TIME && 
+		    collision.collider.name == "Floor" && 
+		    gameObject.transform.forward.y < 0.8) {
 			gameObject.GetComponent<Rigidbody>().isKinematic = true;
 			animate = false;
 			timer = 0;
