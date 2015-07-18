@@ -8,17 +8,19 @@ public class MoveTo : MonoBehaviour {
 	private Vector3 startPosition;
 	private Quaternion startRotation;
 	private TableFlip tableFlip;
+	private GameObject table;
 	
 	void Start () {
 		grabber = FindObjectOfType (typeof(GrabAndDrop)) as GrabAndDrop;
 		tableFlip = FindObjectOfType (typeof(TableFlip)) as TableFlip;
 		startPosition = gameObject.transform.position;
 		startRotation = gameObject.transform.rotation;
+		table = GameObject.Find("table");
 	}
 
 	void OnCollisionEnter(Collision collision) {
 
-		if (gameObject == grabber.grabbedObject || tableFlip.animate) {
+		if (gameObject == grabber.grabbedObject || tableFlip.animate || table.transform.forward.y < 0.8) {
 			return;
 		}
 
