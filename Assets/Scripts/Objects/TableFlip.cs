@@ -8,17 +8,27 @@ public class TableFlip : RewindObject {
 	public bool animate = false;
 	private GameState gameState;
 
+	private Vector3 startPosition;
+	private Quaternion startRotation;
+
 	void Start () {
 		gameState = FindObjectOfType (typeof(GameState)) as GameState;
+		startPosition = gameObject.transform.position;
+		startRotation = gameObject.transform.rotation;
 	}
 
 	new void Update () {
 		if (gameState.InMainMenu) { return; }
 
+		if(gameObject.transform.rotation == startRotation && gameObject.transform.position == startPosition) {
+			gameObject.GetComponent<Rigidbody>().isKinematic = true;
+		} else {
+			gameObject.GetComponent<Rigidbody>().isKinematic = false;
+		}
+
 		if (Input.GetKeyDown((KeyCode)GameControls.Controls.Rage) && !animate){
 			timer = 0;
 			animate = true;
-			gameObject.GetComponent<Rigidbody>().isKinematic = false;
 		}
 
 		if (animate) {
@@ -36,7 +46,6 @@ public class TableFlip : RewindObject {
 		if (animate && timer > ROTATE_TIME && 
 		    collision.collider.name == "Floor" && 
 		    gameObject.transform.forward.y < 0.8) {
-			gameObject.GetComponent<Rigidbody>().isKinematic = true;
 			animate = false;
 			timer = 0;
 		}
