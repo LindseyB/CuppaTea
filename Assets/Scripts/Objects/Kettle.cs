@@ -8,10 +8,12 @@ public class Kettle : RewindObject, Usable {
 	public int temp;
 	private float timer;
 
-	void Start () {
+	new void Start () {
 		heating = false;
 		timer = 1;
 		temp = 20;
+
+		base.Start();
 	}
 
 	public void Use() {

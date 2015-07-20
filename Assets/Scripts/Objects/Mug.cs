@@ -26,7 +26,7 @@ public class Mug : RewindObject, Usable {
 	private Hashtable teaColors = new Hashtable();
 	private GameObject[] waterObjects;
 
-	void Start () {
+	new void Start () {
 		grabber = GameObject.Find ("FPSController").GetComponent<GrabAndDrop>();
 		kettle = GameObject.Find("kettle");
 		steam = GameObject.Find("mug-steam").GetComponent<ParticleSystem>();
@@ -52,6 +52,8 @@ public class Mug : RewindObject, Usable {
 
 		milkColor = new Color(1f, 1f, 1f, 0.8f);
 		teaColor = new Color(1f, 1f, 1f, 0.0f);
+
+		base.Start();
 	}
 
 	public void Use() {

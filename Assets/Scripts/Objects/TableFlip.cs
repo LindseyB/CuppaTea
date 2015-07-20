@@ -11,10 +11,12 @@ public class TableFlip : RewindObject {
 	private Vector3 startPosition;
 	private Quaternion startRotation;
 
-	void Start () {
+	new void Start () {
 		gameState = FindObjectOfType (typeof(GameState)) as GameState;
 		startPosition = gameObject.transform.position;
 		startRotation = gameObject.transform.rotation;
+
+		base.Start();
 	}
 
 	new void Update () {

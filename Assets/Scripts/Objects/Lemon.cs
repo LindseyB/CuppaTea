@@ -7,10 +7,12 @@ public class Lemon : RewindObject, Usable {
 	private GameObject lemonObjectDupe;
 	private Vector3 scale;
 
-	public void Start () {
+	new void Start () {
 		grabber = GameObject.Find("FPSController").GetComponent<GrabAndDrop>();
 		scale = gameObject.transform.GetChild(0).gameObject.transform.localScale;
-		lemonObject = gameObject.transform.GetChild(0).gameObject;	
+		lemonObject = gameObject.transform.GetChild(0).gameObject;
+
+		base.Start();
 	}
 
 	public void Use() {

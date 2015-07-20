@@ -8,11 +8,13 @@ public class Tin : RewindObject, Usable {
 	private Vector3 scale;
 	private GameState gameState;
 
-	public void Start() {
+	new void Start() {
 		grabber = GameObject.Find("FPSController").GetComponent<GrabAndDrop>();
 		scale = gameObject.transform.GetChild(0).gameObject.transform.localScale;
 		teaObject = gameObject.transform.GetChild(0).gameObject;
 		gameState = FindObjectOfType (typeof(GameState)) as GameState;
+
+		base.Start();
 	}
 
 	public void Use() {

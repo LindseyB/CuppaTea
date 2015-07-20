@@ -5,20 +5,28 @@ using System.Collections.Generic;
 public class RewindObject : MonoBehaviour {
 	const int LIMIT = 250;
 	private bool rewinding = false;
-	private Queue<Vector3> history = new Queue<Vector3>();
-	private Queue<Quaternion> rot_history = new Queue<Quaternion>();
+	private LinkedList<Vector3> history = new LinkedList<Vector3>();
+	private LinkedList<Quaternion> rot_history = new LinkedList<Quaternion>();
+
+	private Vector3 startPos;
+	private Quaternion startRot;
 
 	private bool moving = false;
+
+	public void Start() {
+		startPos = gameObject.transform.position;
+		startRot = gameObject.transform.rotation;
+	}
 
 	public void Update() {
 		if(!rewinding) {
 			if(history.Count == LIMIT) {
-				history.Dequeue();
-				rot_history.Dequeue();
+				history.RemoveFirst();
+				rot_history.RemoveFirst();
 			}
 
-			history.Enqueue(transform.position);
-			rot_history.Enqueue(transform.rotation);
+			history.AddLast(transform.position);
+			rot_history.AddLast(transform.rotation);
 		}
 
 		if(Input.GetKey(KeyCode.R)) {
@@ -30,8 +38,23 @@ public class RewindObject : MonoBehaviour {
 	}
 
 	void Rewind() {
-		if(history.Count > 0){
-			StartCoroutine(MoveFromTo(history.Dequeue(), rot_history.Dequeue(), 0.5f));
+		if(history.Last != null && rot_history.Last != null){
+			Vector3 pos;
+			Quaternion rot;
+			do {
+				pos = history.Last.Value;
+				rot = rot_history.Last.Value;
+				history.RemoveLast();
+				rot_history.RemoveLast();
+			} while (pos == gameObject.transform.position && 
+			         rot == gameObject.transform.rotation &&
+			         history.Last != null &&
+			         rot_history.Last != null);
+
+			StartCoroutine(MoveFromTo(pos, rot, 0.5f));
+		} else {
+			// return to start position
+			StartCoroutine(MoveFromTo(startPos, startRot, 0.5f));
 		}
 	}
 

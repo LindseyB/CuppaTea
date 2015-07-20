@@ -7,10 +7,12 @@ public class SugarJar : RewindObject, Usable {
 	private GameObject sugarObject;
 	private GameObject sugarObjectDupe;
 	
-	public void Start() {
+	new void Start() {
 		grabber = GameObject.Find("FPSController").GetComponent<GrabAndDrop>();
 		scale = gameObject.transform.GetChild(0).gameObject.transform.localScale;
 		sugarObject = gameObject.transform.GetChild(0).gameObject;
+
+		base.Start();
 	}
 	
 	public void Use() {
