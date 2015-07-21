@@ -12,12 +12,18 @@ public class AchievementGet : MonoBehaviour {
 
 
 	void Start () {
-		enabledPos = new Vector3(0f, -68.9f, 0f);
-		disabledPos = new Vector3(0f, -95f, 0f);
+		enabledPos = new Vector3(0f, -95f, 0f);
+		disabledPos = new Vector3(0f, -125f, 0f);
+	}
+
+	void Update() {
+		if(Input.GetKey(KeyCode.Alpha1)) {
+			DisplayAchievement("You did a thing!");
+		}
 	}
 
 	public void DisplayAchievement(string achievement) {
-		gameObject.GetComponent<Text>().text = achievement;
+		gameObject.GetComponentInChildren<Text>().text = achievement;
 		StartCoroutine(SlideDisplay());
 	}
 
