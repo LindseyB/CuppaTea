@@ -12,10 +12,10 @@ public class AchievementGet : MonoBehaviour {
 
 
 	void Start () {
-		enabledPos = new Vector3(0f, -95f, 0f);
-		disabledPos = new Vector3(0f, -200f, 0f);
+		enabledPos = new Vector3(0, -Screen.height/7, 0);
+		disabledPos = new Vector3(0, -Screen.height/7 - 40, 0);
 
-		gameObject.transform.position = disabledPos;
+		gameObject.transform.localPosition = disabledPos;
 	}
 
 	void Update() {
