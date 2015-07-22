@@ -13,7 +13,9 @@ public class AchievementGet : MonoBehaviour {
 
 	void Start () {
 		enabledPos = new Vector3(0f, -95f, 0f);
-		disabledPos = new Vector3(0f, -125f, 0f);
+		disabledPos = new Vector3(0f, -200f, 0f);
+
+		gameObject.transform.position = disabledPos;
 	}
 
 	void Update() {
