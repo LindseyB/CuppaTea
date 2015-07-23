@@ -14,9 +14,13 @@ public class RewindObject : MonoBehaviour {
 	private bool moving = false;
 	private bool hitSet = false;
 
+	private VHSPostProcessEffect vhs;
+
 	public void Start() {
 		startPos = gameObject.transform.position;
 		startRot = gameObject.transform.rotation;
+
+		vhs = GameObject.FindObjectOfType<VHSPostProcessEffect>();
 	}
 
 	void OnCollisionEnter(Collision collision) {
@@ -40,9 +44,11 @@ public class RewindObject : MonoBehaviour {
 		}
 
 		if(Input.GetKey(KeyCode.R)) {
+			vhs.enabled = true;
 			rewinding = true;
 			Rewind();
 		} else {
+			vhs.enabled = false;
 			rewinding = false;
 		}
 	}
