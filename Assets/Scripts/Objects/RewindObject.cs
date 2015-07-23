@@ -12,10 +12,20 @@ public class RewindObject : MonoBehaviour {
 	private Quaternion startRot;
 
 	private bool moving = false;
+	private bool hitSet = false;
 
 	public void Start() {
 		startPos = gameObject.transform.position;
 		startRot = gameObject.transform.rotation;
+	}
+
+	void OnCollisionEnter(Collision collision) {
+		// set on table hit to get the position after being pulled by gravity
+		if (collision.collider.name == "table" && !hitSet) {
+			hitSet = true;
+			startPos = gameObject.transform.position;
+			startRot = gameObject.transform.rotation;
+		}
 	}
 
 	public void Update() {

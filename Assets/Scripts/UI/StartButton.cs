@@ -19,7 +19,7 @@ public class StartButton : MonoBehaviour {
 	}
 
 	private void startGame(){
-		foreach (Text text in GameObject.Find("Canvas").GetComponentsInChildren<Text>()) {
+		foreach (Text text in GameObject.Find("MainMenuCanvas").GetComponentsInChildren<Text>()) {
 			text.CrossFadeAlpha (0.0f, 0.5f, true);
 		}
 
@@ -40,7 +40,7 @@ public class StartButton : MonoBehaviour {
 
 	IEnumerator DisableCanvas() {
 		yield return new WaitForSeconds(0.6f);
-		GameObject.Find("Canvas").SetActive(false);
+		GameObject.Find("MainMenuCanvas").SetActive(false);
 		GameObject.Find("FirstPersonCharacter").GetComponent<UnityStandardAssets.ImageEffects.Blur>().enabled = false;
 		gameState.InMainMenu = false;
 		yield return null;
