@@ -29,7 +29,7 @@ public class StartButton : MonoBehaviour {
 	IEnumerator DisableCanvas() {
 		yield return new WaitForSeconds(1);
 		GameObject.Find("Canvas").SetActive(false);
-		GameObject.Find("FirstPersonCharacter").GetComponent<UnityStandardAssets.ImageEffects.VignetteAndChromaticAberration>().enabled = false;
+		GameObject.Find("FirstPersonCharacter").GetComponent<UnityStandardAssets.ImageEffects.Blur>().enabled = false;
 		gameState.InMainMenu = false;
 		yield return null;
 	}
