@@ -4,7 +4,8 @@ using System.Collections.Generic;
 
 public class RewindObject : MonoBehaviour {
 	const int LIMIT = 250;
-	private bool rewinding = false;
+	public bool rewinding { get; set; }
+
 	private LinkedList<Vector3> history = new LinkedList<Vector3>();
 	private LinkedList<Quaternion> rot_history = new LinkedList<Quaternion>();
 
@@ -17,6 +18,7 @@ public class RewindObject : MonoBehaviour {
 	private VHSPostProcessEffect vhs;
 
 	public void Start() {
+		rewinding = false;
 		startPos = gameObject.transform.position;
 		startRot = gameObject.transform.rotation;
 
@@ -87,8 +89,12 @@ public class RewindObject : MonoBehaviour {
 				yield return 0;
 			}
 			moving = false;
-			gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-			gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+
+			Rigidbody rigidbody;
+			if(rigidbody = gameObject.GetComponent<Rigidbody>()){
+				rigidbody.velocity = Vector3.zero;
+				rigidbody.angularVelocity = Vector3.zero;
+			}
 		}
 	}
 }
