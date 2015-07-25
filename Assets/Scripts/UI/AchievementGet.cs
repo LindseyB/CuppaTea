@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Helpers;
 
 public class AchievementGet : MonoBehaviour {
 	private const float SLIDE_DURATION = 1f;
@@ -10,7 +11,6 @@ public class AchievementGet : MonoBehaviour {
 	private Vector3 enabledPos;
 	private bool moving = false;
 
-
 	void Start () {
 		enabledPos = new Vector3(0, -Screen.height/7, 0);
 		disabledPos = new Vector3(0, -Screen.height/7 - 80, 0);
@@ -18,13 +18,15 @@ public class AchievementGet : MonoBehaviour {
 		gameObject.transform.localPosition = disabledPos;
 	}
 
-	void Update() {
-		if(Input.GetKey(KeyCode.Alpha1)) {
-			DisplayAchievement("You did a thing!");
+	public void TriggerAchievement(Achievement a) {
+		// TODO: tell AchievementRecorder to write out achievement
+		if(!a.achieved) {
+			a.achieved = true;
+			DisplayAchievement(a.name);
 		}
 	}
 
-	public void DisplayAchievement(string achievement) {
+	void DisplayAchievement(string achievement) {
 		gameObject.GetComponentInChildren<Text>().text = achievement;
 		StartCoroutine(SlideDisplay());
 	}

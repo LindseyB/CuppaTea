@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Helpers;
 
 public class Mug : RewindObject, Usable {
 	private GrabAndDrop grabber;
@@ -10,6 +11,7 @@ public class Mug : RewindObject, Usable {
 	private GameObject overflowingWater;
 	private GameObject go;
 	private GameObject milkSwirl;
+	private AchievementGet achievementGet;
 	
 	private bool hasWater;
 	private int temp;
@@ -35,6 +37,8 @@ public class Mug : RewindObject, Usable {
 		milkSwirl = normalWater.transform.GetChild(0).gameObject;
 		spilledWater = GameObject.Find("mug-spill");
 		overflowingWater = gameObject.transform.GetChild(1).gameObject;
+
+		achievementGet = GameObject.FindObjectOfType<AchievementGet>() as AchievementGet;
 
 		waterObjects = new GameObject[]{ normalWater, spilledWater, overflowingWater };
 
@@ -75,23 +79,20 @@ public class Mug : RewindObject, Usable {
 		} else if(grabber.grabbedObject && grabber.grabbedObject.name.Contains("lemon-slice")) {
 			UseDupedObject();
 			lemonCount++;
+			curdledCheck();
 		} else if(grabber.grabbedObject && grabber.grabbedObject.name == "creamer") { 
+			if(!hasWater){
+				normalWater.SetActive(true);
+				foreach(GameObject water in waterObjects){
+					water.gameObject.GetComponent<Renderer>().material.SetColor("_TintColor", milkColor);
+				}
+			}
+
 			go = grabber.grabbedObject;
 			grabber.DropObject();
 			go.GetComponent<MoveTo>().ResetPosition();
 			creamCount++;
-			if(creamCount <= 3){ 
-				milkSwirl.SetActive(true);
-				milkSwirl.GetComponent<FluidSim>().curdled = lemonCount > 0;
-				milkSwirl.GetComponent<FluidSim>().StartAdd();
-
-			} else if(creamCount > 3 && !milkSwirl.GetComponent<FluidSim>().curdled) {
-				milkSwirl.SetActive(false);
-				teaColor = (milkColor + teaColor)/2;
-				foreach(GameObject water in waterObjects){
-					water.gameObject.GetComponent<Renderer>().material.SetColor("_TintColor", teaColor);
-				}
-			}
+			curdledCheck();
 		} else if (grabber.grabbedObject && grabber.grabbedObject.tag == "Tea") {
 			SetTeaColor();
 			UseDupedObject();
@@ -164,6 +165,25 @@ public class Mug : RewindObject, Usable {
 		}
 
 		base.Update();
+	}
+
+	private void curdledCheck() {
+		if(lemonCount > 0 && creamCount > 0){
+			achievementGet.TriggerAchievement(AchievementRecorder.curdledMess);
+		}
+
+		if(creamCount <= 3){ 
+			milkSwirl.SetActive(true);
+			milkSwirl.GetComponent<FluidSim>().curdled = lemonCount > 0;
+			milkSwirl.GetComponent<FluidSim>().StartAdd();
+			
+		} else if(creamCount > 3 && !milkSwirl.GetComponent<FluidSim>().curdled) {
+			milkSwirl.SetActive(false);
+			teaColor = (milkColor + teaColor)/2;
+			foreach(GameObject water in waterObjects){
+				water.gameObject.GetComponent<Renderer>().material.SetColor("_TintColor", teaColor);
+			}
+		}
 	}
 
 	private void UseDupedObject(){
