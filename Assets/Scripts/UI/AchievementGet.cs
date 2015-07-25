@@ -13,7 +13,7 @@ public class AchievementGet : MonoBehaviour {
 
 	void Start () {
 		enabledPos = new Vector3(0, -Screen.height/7, 0);
-		disabledPos = new Vector3(0, -Screen.height/7 - 40, 0);
+		disabledPos = new Vector3(0, -Screen.height/7 - 80, 0);
 
 		gameObject.transform.localPosition = disabledPos;
 	}
