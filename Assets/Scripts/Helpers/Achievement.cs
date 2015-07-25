@@ -21,7 +21,7 @@ namespace Helpers {
 	}
 
 	public class AchievementRecorder : MonoBehaviour {
-		public static Achievement curdledMess = new Achievement("Curdled Mess", "Ew I'm not drinking that");
+		public static Achievement curdledMess = new Achievement("Curdled Mess", "Ew! I'm not drinking that!");
 
 		// TODO: add reading and writing the achievements to and from user storage
 	}

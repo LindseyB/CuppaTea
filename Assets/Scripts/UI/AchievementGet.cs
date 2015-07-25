@@ -22,12 +22,14 @@ public class AchievementGet : MonoBehaviour {
 		// TODO: tell AchievementRecorder to write out achievement
 		if(!a.achieved) {
 			a.achieved = true;
-			DisplayAchievement(a.name);
+			DisplayAchievement(a);
 		}
 	}
 
-	void DisplayAchievement(string achievement) {
-		gameObject.GetComponentInChildren<Text>().text = achievement;
+	void DisplayAchievement(Achievement a) {
+		Text[] textObjects = gameObject.GetComponentsInChildren<Text>();
+		textObjects[0].text = a.name;
+		textObjects[1].text = a.description;
 		StartCoroutine(SlideDisplay());
 	}
 
