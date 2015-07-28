@@ -7,7 +7,7 @@ public class Kettle : RewindObject, Usable {
 	[SerializeField] private AudioSource boilAudio;
 	[SerializeField] public AudioSource pourAudio;
 
-	private bool heating;
+	public bool heating;
 	public int temp;
 	private float timer;
 
@@ -31,6 +31,8 @@ public class Kettle : RewindObject, Usable {
 			if(!boilAudio.isPlaying){
 				boilAudio.Play();
 			}
+		} else if(boilAudio.isPlaying) {
+			boilAudio.Stop();
 		}
 
 		// if we are heating or cooling

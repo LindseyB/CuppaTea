@@ -11,8 +11,10 @@ public class TableFlip : RewindObject {
 
 	private Vector3 startPosition;
 	private Quaternion startRotation;
+	private Kettle kettle;
 
 	new void Start () {
+		kettle = GameObject.Find("kettle").GetComponent<Kettle>();
 		startPosition = gameObject.transform.position;
 		startRotation = gameObject.transform.rotation;
 
@@ -45,7 +47,7 @@ public class TableFlip : RewindObject {
 	}
 
 	void OnCollisionEnter(Collision collision) {
-		if(!GameState.Rewinding && !GameState.InMainMenu){ collideAudio.Play(); }
+		if(!GameState.Rewinding && !GameState.InMainMenu && !kettle.heating){ collideAudio.Play(); }
 
 		if (animate && timer > ROTATE_TIME && 
 		    collision.collider.name == "Floor" && 
