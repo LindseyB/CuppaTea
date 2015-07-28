@@ -48,10 +48,13 @@ public class RewindObject : MonoBehaviour {
 		if(Input.GetKey(KeyCode.R)) {
 			vhs.enabled = true;
 			rewinding = true;
+			GameState.Rewinding = true;
 			Rewind();
 		} else {
 			vhs.enabled = false;
 			rewinding = false;
+			vhs.rewindAudio.Stop();
+			GameState.Rewinding = false;
 		}
 	}
 

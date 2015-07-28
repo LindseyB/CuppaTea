@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections;
 
 public class SugarJar : RewindObject, Usable {
+	[SerializeField] private AudioSource collideAudio;
+
 	private GrabAndDrop grabber;
 	private Vector3 scale;
 	private GameObject sugarObject;
@@ -25,6 +27,10 @@ public class SugarJar : RewindObject, Usable {
 
 		grabber.TryGrabObject(sugarObjectDupe);
 		sugarObjectDupe.SetActive(true);
+	}
+
+	void OnCollisionEnter(Collision collision) {
+		if(!GameState.Rewinding && !GameState.InMainMenu){ collideAudio.Play(); }
 	}
 
 }

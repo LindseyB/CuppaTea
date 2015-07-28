@@ -2,5 +2,6 @@
 using System.Collections;
 
 public class GameState : MonoBehaviour {
-	public bool InMainMenu = true;	
+	public static bool InMainMenu = true;	
+	public static bool Rewinding = false;
 }

@@ -7,18 +7,18 @@ public class StartButton : MonoBehaviour {
 	[SerializeField] private Color startColor;
 	[SerializeField] private Color hoverColor;
 
-	private GameState gameState;
 	private Text buttonText;
+	private AudioListener audioListener;
 
 	void Start(){
+		audioListener = FindObjectOfType<AudioListener>() as AudioListener;
 		buttonText = gameObject.transform.GetChild (0).GetComponent<Text> ();
-		gameState = FindObjectOfType (typeof(GameState)) as GameState;
-
 		buttonText.color = startColor;
 		gameObject.GetComponent<Button>().onClick.AddListener(() => { startGame(); }); 
 	}
 
 	private void startGame(){
+		audioListener.enabled = true;
 		foreach (Text text in GameObject.Find("MainMenuCanvas").GetComponentsInChildren<Text>()) {
 			text.CrossFadeAlpha (0.0f, 0.5f, true);
 		}
@@ -42,7 +42,7 @@ public class StartButton : MonoBehaviour {
 		yield return new WaitForSeconds(0.6f);
 		GameObject.Find("MainMenuCanvas").SetActive(false);
 		GameObject.Find("FirstPersonCharacter").GetComponent<UnityStandardAssets.ImageEffects.Blur>().enabled = false;
-		gameState.InMainMenu = false;
+		GameState.InMainMenu = false;
 		yield return null;
 	}
 

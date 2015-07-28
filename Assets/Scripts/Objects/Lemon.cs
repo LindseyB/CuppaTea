@@ -2,6 +2,8 @@
 using System.Collections;
 
 public class Lemon : RewindObject, Usable {
+	[SerializeField] private AudioSource collideAudio;
+
 	private GrabAndDrop grabber;
 	private GameObject lemonObject;
 	private GameObject lemonObjectDupe;
@@ -24,5 +26,9 @@ public class Lemon : RewindObject, Usable {
 		lemonObjectDupe.transform.localScale = scale;
 		grabber.TryGrabObject(lemonObjectDupe);
 		lemonObjectDupe.SetActive(true);
+	}
+
+	void OnCollisionEnter(Collision collision) {
+		if(!GameState.Rewinding && !GameState.InMainMenu){ collideAudio.Play(); }
 	}
 }

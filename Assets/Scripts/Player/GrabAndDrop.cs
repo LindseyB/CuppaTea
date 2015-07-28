@@ -8,13 +8,11 @@ public class GrabAndDrop : MonoBehaviour {
 	public GameObject grabbedObject;
 	private float grabbedObjectSize;
 	private HandCursor cursor;
-	private GameState gameState;
 	private GameObject table;
 	private HoverHighlight hh;
 
 	void Start () {
 		cursor = FindObjectOfType (typeof(HandCursor)) as HandCursor;
-		gameState = FindObjectOfType (typeof(GameState)) as GameState;
 		table = GameObject.Find("table");
 	}
 
@@ -63,7 +61,7 @@ public class GrabAndDrop : MonoBehaviour {
 	}
 
 	void Update () {
-		if (gameState.InMainMenu) { return; }
+		if (GameState.InMainMenu) { return; }
 
 		// pick up or drop object
 		if (Input.GetMouseButtonDown (0)) {

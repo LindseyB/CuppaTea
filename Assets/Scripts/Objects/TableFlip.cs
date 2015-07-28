@@ -2,17 +2,17 @@
 using System.Collections;
 
 public class TableFlip : RewindObject {
+	[SerializeField] private AudioSource collideAudio;
+
 	private const float ROTATION_MAX = 360.0f;
 	private const float ROTATE_TIME = 1.0f;
 	private float timer = 0.0f;
 	public bool animate = false;
-	private GameState gameState;
 
 	private Vector3 startPosition;
 	private Quaternion startRotation;
 
 	new void Start () {
-		gameState = FindObjectOfType (typeof(GameState)) as GameState;
 		startPosition = gameObject.transform.position;
 		startRotation = gameObject.transform.rotation;
 
@@ -20,7 +20,7 @@ public class TableFlip : RewindObject {
 	}
 
 	new void Update () {
-		if (gameState.InMainMenu) { return; }
+		if (GameState.InMainMenu) { return; }
 
 		if(gameObject.transform.rotation == startRotation && gameObject.transform.position == startPosition) {
 			gameObject.GetComponent<Rigidbody>().isKinematic = true;
@@ -45,6 +45,8 @@ public class TableFlip : RewindObject {
 	}
 
 	void OnCollisionEnter(Collision collision) {
+		if(!GameState.Rewinding && !GameState.InMainMenu){ collideAudio.Play(); }
+
 		if (animate && timer > ROTATE_TIME && 
 		    collision.collider.name == "Floor" && 
 		    gameObject.transform.forward.y < 0.8) {

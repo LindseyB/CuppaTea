@@ -3,6 +3,8 @@ using System.Collections;
 using Helpers;
 
 public class Mug : RewindObject, Usable {
+	[SerializeField] private AudioSource collideAudio;
+
 	private GrabAndDrop grabber;
 	private GameObject kettle;
 	private ParticleSystem steam;
@@ -201,5 +203,9 @@ public class Mug : RewindObject, Usable {
 		} else {
 			teaColor = ((Color)teaColors[teaName] + teaColor)/2;
 		}
+	}
+
+	void OnCollisionEnter(Collision collision) {
+		if(!GameState.Rewinding && !GameState.InMainMenu){ collideAudio.Play(); }
 	}
 }

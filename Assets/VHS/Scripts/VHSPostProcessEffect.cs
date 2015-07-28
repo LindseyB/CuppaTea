@@ -3,6 +3,8 @@ using System.Collections;
 
 [RequireComponent (typeof(Camera))]
 public class VHSPostProcessEffect : MonoBehaviour {
+	[SerializeField] public AudioSource rewindAudio;
+
 	Material m;
 	public Shader shader;
 	public MovieTexture VHS;
@@ -14,6 +16,12 @@ public class VHSPostProcessEffect : MonoBehaviour {
 		m.SetTexture("_VHSTex", VHS);
 		VHS.loop = true;
 		VHS.Play();
+	}
+
+	void Update() {
+		if(enabled && !rewindAudio.isPlaying){ 
+			rewindAudio.Play(); 
+		}
 	}
 
 	void OnRenderImage(RenderTexture source, RenderTexture destination){

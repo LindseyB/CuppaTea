@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Kettle : RewindObject, Usable {
 	[SerializeField] private ParticleSystem steam;
+	[SerializeField] private AudioSource collideAudio;
 
 	private bool heating;
 	public int temp;
@@ -44,6 +45,10 @@ public class Kettle : RewindObject, Usable {
 		}
 
 		base.Update();
+	}
+
+	void OnCollisionEnter(Collision collision) {
+		if(!GameState.Rewinding && !GameState.InMainMenu){ collideAudio.Play(); }
 	}
 
 	private void updateTemp(){

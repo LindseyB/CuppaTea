@@ -3,19 +3,17 @@ using System.Collections;
 
 public class MoveCamera : MonoBehaviour {
 	private GameObject[] bounds;
-	private GameState gameState;
 	private GrabAndDrop grabber;
 
 	private const float SPEED = 2f;
 
 	void Start() {
 		bounds = GameObject.FindGameObjectsWithTag("Boundary");
-		gameState = FindObjectOfType (typeof(GameState)) as GameState;
 		grabber = GameObject.Find ("FPSController").GetComponent<GrabAndDrop>();
 	}
 
 	void Update () {
-		if (gameState.InMainMenu) { return; }
+		if (GameState.InMainMenu) { return; }
 
 		Vector3 position = gameObject.transform.position;
 
