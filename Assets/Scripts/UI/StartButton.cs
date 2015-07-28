@@ -23,6 +23,10 @@ public class StartButton : MonoBehaviour {
 			text.CrossFadeAlpha (0.0f, 0.5f, true);
 		}
 
+		foreach(AudioSource source in GameObject.FindObjectsOfType<AudioSource>()) {
+			source.mute = false;
+		}
+
 		StartCoroutine("UnBlur");
 		StartCoroutine("DisableCanvas");
 	}
