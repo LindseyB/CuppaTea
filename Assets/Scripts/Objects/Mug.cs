@@ -64,6 +64,7 @@ public class Mug : RewindObject, Usable {
 
 	public void Use() {
 		if (grabber.grabbedObject == kettle) {
+			kettle.GetComponent<Kettle>().pourAudio.Play();
 			if(hasWater){
 				normalWater.SetActive(false);
 				spilledWater.GetComponent<Renderer>().enabled = false;

@@ -4,6 +4,8 @@ using System.Collections;
 public class Kettle : RewindObject, Usable {
 	[SerializeField] private ParticleSystem steam;
 	[SerializeField] private AudioSource collideAudio;
+	[SerializeField] private AudioSource boilAudio;
+	[SerializeField] public AudioSource pourAudio;
 
 	private bool heating;
 	public int temp;
@@ -24,7 +26,11 @@ public class Kettle : RewindObject, Usable {
 
 	new void Update() {
 		if (heating) {
-			gameObject.transform.Translate(Vector3.forward * Time.deltaTime);
+			gameObject.transform.Translate(Vector3.forward * Time.deltaTime * 0.5f);
+
+			if(!boilAudio.isPlaying){
+				boilAudio.Play();
+			}
 		}
 
 		// if we are heating or cooling
@@ -48,7 +54,7 @@ public class Kettle : RewindObject, Usable {
 	}
 
 	void OnCollisionEnter(Collision collision) {
-		if(!GameState.Rewinding && !GameState.InMainMenu){ collideAudio.Play(); }
+		if(!GameState.Rewinding && !GameState.InMainMenu && !boilAudio.isPlaying){ collideAudio.Play(); }
 	}
 
 	private void updateTemp(){
