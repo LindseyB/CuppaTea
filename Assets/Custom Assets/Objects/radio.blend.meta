@@ -16,9 +16,11 @@ ModelImporter:
     2300000: mute
     2300002: radio
     2300004: volume
+    2300006: //RootNode
     3300000: mute
     3300002: radio
     3300004: volume
+    3300006: //RootNode
     4300000: radio
     4300002: volume
     4300004: mute
