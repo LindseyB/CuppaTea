@@ -6,10 +6,25 @@ ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Armature
+    100004: head
+    100006: leftarm
+    100008: leftleg
+    100010: rightarm
+    100012: rightleg
+    100014: spine
     400000: //RootNode
+    400002: Armature
+    400004: head
+    400006: leftarm
+    400008: leftleg
+    400010: rightarm
+    400012: rightleg
+    400014: spine
     2300000: //RootNode
     3300000: //RootNode
     4300000: Sphere_013
+    4300002: bear
     7400000: Default Take
     9500000: //RootNode
   materials:
