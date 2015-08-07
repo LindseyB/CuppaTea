@@ -10,6 +10,7 @@ public class GrabAndDrop : MonoBehaviour {
 	private HandCursor cursor;
 	private GameObject table;
 	private HoverHighlight hh;
+	private GrabHandler grabHandler;
 
 	void Start () {
 		cursor = FindObjectOfType (typeof(HandCursor)) as HandCursor;
@@ -41,7 +42,13 @@ public class GrabAndDrop : MonoBehaviour {
 	public void TryGrabObject(GameObject grabObject) {
 		if (grabObject) {
 			grabbedObject = grabObject;
-			grabbedObjectSize = grabObject.GetComponent<Renderer>().bounds.size.magnitude;
+
+			if(grabHandler = grabObject.GetComponent<GrabHandler>()) { 
+				grabbedObjectSize = grabHandler.grabObject.GetComponent<Renderer>().bounds.size.magnitude; 
+			} else {
+				grabbedObjectSize = grabObject.GetComponent<Renderer>().bounds.size.magnitude;
+			}
+
 			cursor.ToggleCursor();
 			// disable the stripes overlay
 			if(hh = grabbedObject.GetComponent<HoverHighlight>()) {
