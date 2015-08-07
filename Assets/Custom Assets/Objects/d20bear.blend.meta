@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 4290c22e7e9e17843beaffd0a13d7337
-timeCreated: 1438892544
+timeCreated: 1438904676
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
@@ -978,11 +978,7 @@ ModelImporter:
     bakeSimulation: 0
     optimizeGameObjects: 0
     motionNodeName: 
-    animationImportErrors: 'MuscleClip ''d20bear'' conversion failed: Required human
-      bone ''Head'' not found
-
-
-'
+    animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
@@ -1020,7 +1016,7 @@ ModelImporter:
   copyAvatar: 0
   humanDescription:
     human:
-    - boneName: ORG-hips
+    - boneName: root
       humanName: Hips
       limit:
         min: {x: 0, y: 0, z: 0}
@@ -1076,7 +1072,7 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: ORG-spine
+    - boneName: ORG-chest
       humanName: Spine
       limit:
         min: {x: 0, y: 0, z: 0}
@@ -1084,16 +1080,8 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: ORG-chest
-      humanName: Chest
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: DEF-neck
-      humanName: Neck
+    - boneName: DEF-head
+      humanName: Head
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -1260,6 +1248,30 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
+    - boneName: ORG-f_middle_01_L
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: ORG-f_middle_02_L
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: ORG-f_middle_03_L
+      humanName: Left Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
     - boneName: ORG-thumb_01_R
       humanName: Right Thumb Proximal
       limit:
@@ -1284,8 +1296,24 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: DEF-f_index_01_R_01
+    - boneName: ORG-f_index_01_R
       humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: ORG-f_index_02_R
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: ORG-f_index_03_R
+      humanName: Right Index Distal
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -1340,7 +1368,7 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: ORG-f_index_01_R
+    - boneName: ORG-f_pinky_01_R
       humanName: Right Little Proximal
       limit:
         min: {x: 0, y: 0, z: 0}
@@ -1348,7 +1376,7 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: ORG-f_index_02_R
+    - boneName: ORG-f_pinky_02_R
       humanName: Right Little Intermediate
       limit:
         min: {x: 0, y: 0, z: 0}
@@ -1356,7 +1384,7 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: ORG-f_index_03_R
+    - boneName: ORG-f_pinky_03_R
       humanName: Right Little Distal
       limit:
         min: {x: 0, y: 0, z: 0}
@@ -1371,9 +1399,9 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: bear
-      position: {x: .948865056, y: .0999830589, z: 2.86690211}
-      rotation: {x: .707106829, y: 0, z: 0, w: .707106709}
-      scale: {x: .350000024, y: .350000024, z: .175000012}
+      position: {x: 1.05766535, y: .060307581, z: 2.85389471}
+      rotation: {x: .707106829, y: -4.10416163e-08, z: 1.2712678e-08, w: .707106709}
+      scale: {x: .350000054, y: .350000024, z: .175000012}
       transformModified: 1
     - name: metarig
       position: {x: -.969516456, y: -2.03243542, z: .611079156}
@@ -1696,12 +1724,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: rig
-      position: {x: -.987054288, y: -1.9605608, z: .642931759}
+      position: {x: -1.09585452, y: -1.94755304, z: .603256166}
       rotation: {x: -.707106829, y: 0, z: -0, w: .707106709}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: root
-      position: {x: 0, y: 0, z: 0}
+      position: {x: 1.0958544, y: 1.13699687, z: 3.38448954}
       rotation: {x: 0, y: 0, z: -.707106709, w: .707106829}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
@@ -1792,7 +1820,7 @@ ModelImporter:
       transformModified: 1
     - name: ORG-shoulder_L
       position: {x: -.260750532, y: -.0182999801, z: .077906847}
-      rotation: {x: -.344758898, y: -.603226006, z: .357202947, w: .624232113}
+      rotation: {x: -.428784579, y: -.550539076, z: .318757564, w: .641439199}
       scale: {x: .999999821, y: .999999821, z: 1}
       transformModified: 1
     - name: DEF-shoulder_L
@@ -1802,7 +1830,7 @@ ModelImporter:
       transformModified: 1
     - name: ORG-upper_arm_L
       position: {x: -.945833921, y: -.313842535, z: -.541909873}
-      rotation: {x: .505489886, y: .426954955, z: .645033062, w: .382258832}
+      rotation: {x: .783977211, y: .125817165, z: .221945077, w: .56594187}
       scale: {x: .999999702, y: .999999821, z: .999999881}
       transformModified: 1
     - name: DEF-upper_arm_02_L
@@ -1812,7 +1840,7 @@ ModelImporter:
       transformModified: 1
     - name: ORG-forearm_L
       position: {x: -.625747025, y: 2.98023224e-08, z: 5.96046448e-08}
-      rotation: {x: -.00202775956, y: -.0939010382, z: -.177406445, w: .97964555}
+      rotation: {x: -.00380546064, y: -.0258724634, z: -.0307559203, w: .999184847}
       scale: {x: 1, y: .99999994, z: .99999994}
       transformModified: 1
     - name: DEF-forearm_02_L
@@ -1867,7 +1895,7 @@ ModelImporter:
       transformModified: 1
     - name: ORG-f_index_01_L
       position: {x: -.133271933, y: -1.34110451e-07, z: 4.47034836e-08}
-      rotation: {x: -.128444165, y: .139081076, z: -.11878708, w: .974704146}
+      rotation: {x: -.126374155, y: .00391632877, z: -.012423858, w: .991897106}
       scale: {x: .999999821, y: 1.00000024, z: 1.00000012}
       transformModified: 1
     - name: DEF-f_index_01_L_02
@@ -1877,7 +1905,7 @@ ModelImporter:
       transformModified: 1
     - name: ORG-f_index_02_L
       position: {x: -.086227946, y: 1.49011612e-08, z: -6.70552254e-08}
-      rotation: {x: -.106199577, y: .0575550012, z: -.053300567, w: .991245747}
+      rotation: {x: -.106444083, y: .0291247331, z: -.0269729178, w: .993526042}
       scale: {x: .99999994, y: .99999994, z: .999999821}
       transformModified: 1
     - name: DEF-f_index_02_L
@@ -1897,7 +1925,7 @@ ModelImporter:
       transformModified: 1
     - name: ORG-thumb_01_L
       position: {x: .0159333274, y: .0463963225, z: .00813964754}
-      rotation: {x: .486345887, y: -.186494857, z: -.184882224, w: .833370209}
+      rotation: {x: .472360253, y: -.244408563, z: -.22166118, w: .817316711}
       scale: {x: 1.00000012, y: 1.00000012, z: 1.00000024}
       transformModified: 1
     - name: DEF-thumb_01_L_02
@@ -1907,7 +1935,7 @@ ModelImporter:
       transformModified: 1
     - name: ORG-thumb_02_L
       position: {x: -.0799038112, y: 4.47034836e-08, z: -2.98023224e-08}
-      rotation: {x: .145393297, y: .161274269, z: -.067584835, w: .973798573}
+      rotation: {x: .147579223, y: .0320504233, z: -.0134323305, w: .98843962}
       scale: {x: .999999762, y: .999999821, z: .999999762}
       transformModified: 1
     - name: DEF-thumb_02_L
@@ -1942,7 +1970,7 @@ ModelImporter:
       transformModified: 1
     - name: ORG-f_middle_01_L
       position: {x: -.130517647, y: 8.19563866e-08, z: 1.1920929e-07}
-      rotation: {x: -.20869343, y: .132714257, z: -.172082141, w: .953531206}
+      rotation: {x: -.217014194, y: -.0282829497, z: -.0407067388, w: .974909127}
       scale: {x: 1, y: 1, z: 1.00000012}
       transformModified: 1
     - name: DEF-f_middle_01_L_02
@@ -1952,7 +1980,7 @@ ModelImporter:
       transformModified: 1
     - name: ORG-f_middle_02_L
       position: {x: -.0948429853, y: -1.11758709e-08, z: -4.47034836e-08}
-      rotation: {x: -.200280473, y: .103451103, z: -.0601435192, w: .972403407}
+      rotation: {x: -.201587245, y: .0325080715, z: -.0189014189, w: .9787485}
       scale: {x: 1, y: 1.00000012, z: 1}
       transformModified: 1
     - name: DEF-f_middle_02_L
@@ -1987,7 +2015,7 @@ ModelImporter:
       transformModified: 1
     - name: ORG-f_ring_01_L
       position: {x: -.133593649, y: 5.21540642e-08, z: -5.58793545e-08}
-      rotation: {x: -.307183385, y: .161009833, z: -.231723487, w: .908855557}
+      rotation: {x: -.339023739, y: -.0672182664, z: -.0916258022, w: .933889389}
       scale: {x: 1, y: .99999994, z: .999999881}
       transformModified: 1
     - name: DEF-f_ring_01_L_02
@@ -1997,7 +2025,7 @@ ModelImporter:
       transformModified: 1
     - name: ORG-f_ring_02_L
       position: {x: -.0857840925, y: 5.58793545e-08, z: 2.98023224e-08}
-      rotation: {x: -.130933359, y: .0741055235, z: -.0209172443, w: .988396347}
+      rotation: {x: -.131219223, y: .0382744595, z: -.010803611, w: .990555286}
       scale: {x: .999999881, y: .999999821, z: .999999881}
       transformModified: 1
     - name: DEF-f_ring_02_L
@@ -2062,7 +2090,7 @@ ModelImporter:
       transformModified: 1
     - name: ORG-shoulder_R
       position: {x: -.260750502, y: .0183000211, z: .077906847}
-      rotation: {x: .344758749, y: -.603226066, z: -.357202977, w: .624232113}
+      rotation: {x: .428784609, y: -.550538898, z: -.318757594, w: .641439199}
       scale: {x: .999999642, y: .999999762, z: 1}
       transformModified: 1
     - name: DEF-shoulder_R
@@ -2072,7 +2100,7 @@ ModelImporter:
       transformModified: 1
     - name: ORG-upper_arm_R
       position: {x: -.945833921, y: .313842714, z: -.541909993}
-      rotation: {x: .505489707, y: -.426954985, z: .645033121, w: -.382258862}
+      rotation: {x: .78397727, y: -.125816986, z: .221945077, w: -.565941811}
       scale: {x: .999999821, y: .999999821, z: 1}
       transformModified: 1
     - name: DEF-upper_arm_02_R
@@ -2081,8 +2109,8 @@ ModelImporter:
       scale: {x: 1, y: .99999994, z: .99999994}
       transformModified: 1
     - name: ORG-forearm_R
-      position: {x: -.569999993, y: -.159999996, z: .0209999997}
-      rotation: {x: .00202775141, y: -.0939010456, z: .177406475, w: .97964555}
+      position: {x: -.625747085, y: 3.7252903e-08, z: 4.47034836e-08}
+      rotation: {x: .00380544364, y: -.025872495, z: .0307561159, w: .999184787}
       scale: {x: 1, y: .99999994, z: .99999994}
       transformModified: 1
     - name: DEF-forearm_02_R
@@ -2137,7 +2165,7 @@ ModelImporter:
       transformModified: 1
     - name: ORG-f_index_01_R
       position: {x: -.133271813, y: 1.34110451e-07, z: 8.94069672e-08}
-      rotation: {x: .128444165, y: .139081046, z: .118787117, w: .974704146}
+      rotation: {x: .125526533, y: .0565306023, z: .0133497994, w: .990388393}
       scale: {x: 1, y: 1.00000024, z: 1.00000024}
       transformModified: 1
     - name: DEF-f_index_01_R_02
@@ -2147,7 +2175,7 @@ ModelImporter:
       transformModified: 1
     - name: ORG-f_index_02_R
       position: {x: -.0862279162, y: 2.23517418e-08, z: -5.96046448e-08}
-      rotation: {x: .106199585, y: .0575549863, z: .0533005632, w: .991245747}
+      rotation: {x: .106443867, y: .0291254632, z: .0269722305, w: .993526042}
       scale: {x: .99999994, y: .99999994, z: .999999821}
       transformModified: 1
     - name: DEF-f_index_02_R
@@ -2177,7 +2205,7 @@ ModelImporter:
       transformModified: 1
     - name: ORG-thumb_02_R
       position: {x: -.0799038261, y: 2.98023224e-08, z: -2.98023224e-08}
-      rotation: {x: -.145393252, y: .161274299, z: .067584835, w: .973798633}
+      rotation: {x: -.147579312, y: .0320496261, z: .0134316059, w: .98843956}
       scale: {x: .999999881, y: 1, z: .999999821}
       transformModified: 1
     - name: DEF-thumb_02_R
@@ -2212,7 +2240,7 @@ ModelImporter:
       transformModified: 1
     - name: ORG-f_middle_01_R
       position: {x: -.130517542, y: -1.56462193e-07, z: 1.11758709e-07}
-      rotation: {x: .20869343, y: .132714227, z: .172082186, w: .953531206}
+      rotation: {x: .215265393, y: .019492032, z: .0377443209, w: .975631237}
       scale: {x: .999999881, y: .999999881, z: 1}
       transformModified: 1
     - name: DEF-f_middle_01_R_02
@@ -2222,7 +2250,7 @@ ModelImporter:
       transformModified: 1
     - name: ORG-f_middle_02_R
       position: {x: -.0948429853, y: 7.4505806e-08, z: 8.94069672e-08}
-      rotation: {x: .200280488, y: .103451066, z: .0601435117, w: .972403407}
+      rotation: {x: .201587185, y: .0325104035, z: .0188993234, w: .978748441}
       scale: {x: 1, y: 1, z: .999999881}
       transformModified: 1
     - name: DEF-f_middle_02_R
@@ -2257,7 +2285,7 @@ ModelImporter:
       transformModified: 1
     - name: ORG-f_ring_01_R
       position: {x: -.133593678, y: -5.21540642e-08, z: 3.72529008e-09}
-      rotation: {x: .307183325, y: .161009774, z: .231723472, w: .908855557}
+      rotation: {x: .336819917, y: -.0218572952, z: .0804806426, w: .937868595}
       scale: {x: .999999881, y: .999999881, z: .999999881}
       transformModified: 1
     - name: DEF-f_ring_01_R_02
@@ -2267,7 +2295,7 @@ ModelImporter:
       transformModified: 1
     - name: ORG-f_ring_02_R
       position: {x: -.0857841223, y: 1.11758709e-08, z: 2.98023224e-08}
-      rotation: {x: .130933344, y: .0741054937, z: .020917248, w: .988396347}
+      rotation: {x: .131219253, y: .0382735021, z: .0108022355, w: .990555346}
       scale: {x: .99999994, y: .999999762, z: .99999994}
       transformModified: 1
     - name: DEF-f_ring_02_R
@@ -2302,7 +2330,7 @@ ModelImporter:
       transformModified: 1
     - name: ORG-f_pinky_01_R
       position: {x: -.1431797, y: -1.04308128e-07, z: 1.49011612e-07}
-      rotation: {x: .440759629, y: .238977864, z: .256949157, w: .826194704}
+      rotation: {x: .506902993, y: -.0607123971, z: .115728244, w: .85203898}
       scale: {x: .99999994, y: .999999881, z: 1}
       transformModified: 1
     - name: DEF-f_pinky_01_R_02
@@ -2312,7 +2340,7 @@ ModelImporter:
       transformModified: 1
     - name: ORG-f_pinky_02_R
       position: {x: -.053358674, y: 8.94069672e-08, z: 2.38418579e-07}
-      rotation: {x: .0816900134, y: .0464830138, z: -.00188996189, w: .995571434}
+      rotation: {x: .0817089528, y: .0412637666, z: -.00167771801, w: .995800257}
       scale: {x: .999999821, y: .999999821, z: .999999881}
       transformModified: 1
     - name: DEF-f_pinky_02_R
@@ -2332,7 +2360,7 @@ ModelImporter:
       transformModified: 1
     - name: ORG-thigh_L
       position: {x: 1.05641627, y: -.642859101, z: .833830833}
-      rotation: {x: -.0562533736, y: .568861246, z: .122602873, w: .811295867}
+      rotation: {x: -.00610235333, y: .955932975, z: .216880918, w: .197781563}
       scale: {x: 1, y: 1, z: .99999994}
       transformModified: 1
     - name: DEF-thigh_02_L
@@ -2367,7 +2395,7 @@ ModelImporter:
       transformModified: 1
     - name: ORG-foot_L
       position: {x: -.627162755, y: 4.09781933e-08, z: -1.11758709e-08}
-      rotation: {x: .0449827798, y: -.487191945, z: -.201882631, w: .848447978}
+      rotation: {x: .0556821227, y: -.924274862, z: -.2702218, w: .263809979}
       scale: {x: .999999881, y: .999999762, z: .999999821}
       transformModified: 1
     - name: DEF-foot_L
@@ -2387,7 +2415,7 @@ ModelImporter:
       transformModified: 1
     - name: ORG-thigh_R
       position: {x: 1.05641639, y: .642858982, z: .833830833}
-      rotation: {x: .056253463, y: .568861246, z: -.122602887, w: .811295867}
+      rotation: {x: .00610244274, y: .955932975, z: -.216880888, w: .197781578}
       scale: {x: 1.00000012, y: 1, z: 1}
       transformModified: 1
     - name: DEF-thigh_02_R
@@ -2422,7 +2450,7 @@ ModelImporter:
       transformModified: 1
     - name: ORG-foot_R
       position: {x: -.627162755, y: 8.19563866e-08, z: 1.86264504e-09}
-      rotation: {x: -.0449828617, y: -.487191975, z: .201882645, w: .848447978}
+      rotation: {x: -.0556822196, y: -.924274921, z: .27022177, w: .263809919}
       scale: {x: .99999994, y: .999999881, z: 1}
       transformModified: 1
     - name: DEF-foot_R
@@ -2447,7 +2475,7 @@ ModelImporter:
     armStretch: .0500000007
     legStretch: .0500000007
     feetSpacing: 0
-    rootMotionBoneName: 
+    rootMotionBoneName: root
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 3
   additionalBone: 0
