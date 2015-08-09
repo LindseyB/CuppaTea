@@ -44,7 +44,8 @@ public class GrabAndDrop : MonoBehaviour {
 			grabbedObject = grabObject;
 
 			if(grabHandler = grabObject.GetComponent<GrabHandler>()) { 
-				grabbedObjectSize = grabHandler.grabObject.GetComponent<Renderer>().bounds.size.magnitude; 
+				grabbedObjectSize = grabHandler.grabObject.GetComponent<Renderer>().bounds.size.magnitude;
+				if(grabbedObject.name != "root"){ grabbedObject = GameObject.Find("root"); }
 			} else {
 				grabbedObjectSize = grabObject.GetComponent<Renderer>().bounds.size.magnitude;
 			}
