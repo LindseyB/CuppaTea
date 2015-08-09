@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GlitchBear : MonoBehaviour {	
+public class GlitchBear : MonoBehaviour {
 	public MovieTexture glitch;
 
 	void Start() {
@@ -11,6 +11,5 @@ public class GlitchBear : MonoBehaviour {
 		glitch.loop = true;
 		glitch.Play();
 		glitch.wrapMode = TextureWrapMode.Repeat;
-
-	}	
+	}
 }
