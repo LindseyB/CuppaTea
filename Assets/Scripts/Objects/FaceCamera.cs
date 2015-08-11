@@ -14,7 +14,7 @@ public class FaceCamera : MonoBehaviour {
 		forward.y = 0.0f;
 
 		dist = Vector3.Distance(Camera.main.transform.position, gameObject.transform.position);
-		gameObject.GetComponent<TextMesh>().fontSize = 60 + (int)(dist*20);
+		gameObject.GetComponent<TextMesh>().fontSize = 60 + (int)(dist*40);
 
 		if(parent.transform.forward.y < 1){
 			// turn off if on side
