@@ -169,7 +169,7 @@ public class Mug : RewindObject, Usable {
 			achievementGet.TriggerAchievement(AchievementRecorder.curdledMess);
 		}
 
-		if(creamCount <= 3){ 
+		if(creamCount <= 3 && creamCount > 0){ 
 			milkSwirl.SetActive(true);
 			milkSwirl.GetComponent<FluidSim>().curdled = lemonCount > 0;
 			milkSwirl.GetComponent<FluidSim>().StartAdd();
