@@ -12,7 +12,6 @@ public class GrabHandler : MonoBehaviour, Usable {
 	public void Use() {
 		if (grabber.grabbedObject.name == "mug") {
 			grabber.grabbedObject.GetComponent<Mug>().drink();
-			grabber.DropObject();
 		}
 	}
 }
