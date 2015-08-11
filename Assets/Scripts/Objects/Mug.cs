@@ -31,7 +31,7 @@ public class Mug : RewindObject, Usable {
 	private GameObject[] waterObjects;
 
 	new void Start () {
-		grabber = GameObject.Find ("FPSController").GetComponent<GrabAndDrop>();
+		grabber = GameObject.Find("FPSController").GetComponent<GrabAndDrop>();
 		kettle = GameObject.Find("kettle");
 		steam = GameObject.Find("mug-steam").GetComponent<ParticleSystem>();
 
@@ -90,7 +90,6 @@ public class Mug : RewindObject, Usable {
 					water.gameObject.GetComponent<Renderer>().material.SetColor("_TintColor", milkColor);
 				}
 			}
-
 			go = grabber.grabbedObject;
 			grabber.DropObject();
 			go.GetComponent<MoveTo>().ResetPosition();
@@ -101,12 +100,7 @@ public class Mug : RewindObject, Usable {
 			UseDupedObject();
 			teaCount++;
 		} else {
-			// drink
-			normalWater.SetActive(false);
-			overflowingWater.SetActive(false);
-			spilledWater.GetComponent<Renderer>().enabled = false;
-			hasWater = false;
-			sugarCount = lemonCount = creamCount = teaCount = 0;
+			drink();
 		}
 	}
 
@@ -208,5 +202,13 @@ public class Mug : RewindObject, Usable {
 
 	void OnCollisionEnter(Collision collision) {
 		if(!GameState.Rewinding && !GameState.InMainMenu){ collideAudio.Play(); }
+	}
+
+	public void drink() {
+		normalWater.SetActive(false);
+		overflowingWater.SetActive(false);
+		spilledWater.GetComponent<Renderer>().enabled = false;
+		hasWater = false;
+		sugarCount = lemonCount = creamCount = teaCount = 0;
 	}
 }
