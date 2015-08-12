@@ -42,17 +42,20 @@ public class GrabAndDrop : MonoBehaviour {
 	public void TryGrabObject(GameObject grabObject) {
 		if (grabObject) {
 			grabbedObject = grabObject;
+			hh = grabbedObject.GetComponent<HoverHighlight>();
 
 			if(grabHandler = grabObject.GetComponent<GrabHandler>()) { 
 				grabbedObjectSize = grabHandler.grabObject.GetComponent<Renderer>().bounds.size.magnitude;
 				if(grabbedObject.name != "root"){ grabbedObject = GameObject.Find("root"); }
+			} else if(hh && hh.renderObject){
+				grabbedObjectSize = hh.renderObject.GetComponent<Renderer>().bounds.size.magnitude;
 			} else {
 				grabbedObjectSize = grabObject.GetComponent<Renderer>().bounds.size.magnitude;
 			}
 
 			cursor.ToggleCursor();
 			// disable the stripes overlay
-			if(hh = grabbedObject.GetComponent<HoverHighlight>()) {
+			if(hh) {
 				hh.DisableHighlight();
 			}
 

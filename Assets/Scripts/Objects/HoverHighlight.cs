@@ -2,13 +2,19 @@
 using System.Collections;
 
 public class HoverHighlight : MonoBehaviour {
+	[SerializeField] public GameObject renderObject;
 	private Texture2D overlayTexture;
 	private Material material;
 	private GrabAndDrop grabber;
 
 	public void Start() {
 		overlayTexture = Resources.Load("stripes") as Texture2D;
-		material = gameObject.GetComponent<Renderer>().material;
+		if(renderObject){
+			material = renderObject.GetComponent<Renderer>().material;
+		} else {
+			material = gameObject.GetComponent<Renderer>().material;
+		}
+
 		grabber = FindObjectOfType (typeof(GrabAndDrop)) as GrabAndDrop;
 	}
 
