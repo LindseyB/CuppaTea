@@ -22,11 +22,12 @@ public class Kettle : RewindObject, Usable {
 	public void Use() {
 		// toggle heating
 		heating = !heating;
+		gameObject.GetComponent<Animator>().Play("Boil");
 	}
 
 	new void Update() {
 		if (heating) {
-			gameObject.transform.Translate(Vector3.forward * Time.deltaTime * 0.5f);
+			//gameObject.transform.Translate(Vector3.forward * Time.deltaTime * 0.5f);
 
 			if(!boilAudio.isPlaying){
 				boilAudio.Play();
