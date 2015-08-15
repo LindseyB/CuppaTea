@@ -31,7 +31,7 @@ public class GrabAndDrop : MonoBehaviour {
 		}
 
 		foreach (RaycastHit hit in hits) {
-			if (hit.rigidbody && hit.rigidbody.gameObject.tag == "Interactable") {
+			if (hit.rigidbody && (hit.rigidbody.gameObject.tag == "Interactable" || hit.rigidbody.gameObject.tag == "UsableOnly")) {
 				return hit.rigidbody.gameObject;
 			}
 		}

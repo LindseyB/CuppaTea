@@ -27,8 +27,7 @@ public class FluidSim : MonoBehaviour {
 
 	void Start() {
 		// basic empty texture
-		tex = new Texture2D(32, 32, TextureFormat.ARGB32, false);
-		tex.alphaIsTransparency = true;
+		tex = new Texture2D(32, 32,  TextureFormat.Alpha8, false);
 		tex.filterMode = FilterMode.Bilinear;
 		GetComponent<Renderer>().material.mainTexture = tex;
 		width = tex.width;
