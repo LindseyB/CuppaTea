@@ -17,27 +17,27 @@ public class MoveCamera : MonoBehaviour {
 
 		Vector3 position = gameObject.transform.position;
 
-		if (Input.GetKey((KeyCode)GameControls.Controls.ForwardArrow) || Input.GetKey((KeyCode)GameControls.Controls.Forward)) {
+		if (Input.GetButton("MoveForward")) {
 			gameObject.transform.Translate(Vector3.forward * Time.deltaTime * SPEED);
 			boundsCheck(position);
 		}
 
-		if (Input.GetKey((KeyCode)GameControls.Controls.BackwardsArrow) || Input.GetKey((KeyCode)GameControls.Controls.Backwards)) {
+		if (Input.GetButton("MoveBack")) {
 			gameObject.transform.Translate(Vector3.back * Time.deltaTime * SPEED);
 			boundsCheck(position);
 		}
 
-		if (Input.GetKey((KeyCode)GameControls.Controls.RightArrow) || Input.GetKey((KeyCode)GameControls.Controls.Right)) {
+		if (Input.GetButton("MoveRight")) {
 			gameObject.transform.Translate(Vector3.right * Time.deltaTime * SPEED);
 			boundsCheck(position);
 		}
 
-		if (Input.GetKey((KeyCode)GameControls.Controls.LeftArrow) || Input.GetKey((KeyCode)GameControls.Controls.Left)) {
+		if (Input.GetButton("MoveLeft")) {
 			gameObject.transform.Translate(Vector3.left * Time.deltaTime * SPEED);
 			boundsCheck(position);
 		}
 
-		if (Input.GetKey((KeyCode)GameControls.Controls.Up) || Input.GetKey(KeyCode.JoystickButton16)) {
+		if (Input.GetButton("Up")) {
 			gameObject.transform.Translate(Vector3.up * Time.deltaTime * SPEED);
 			boundsCheck(position);
 		}

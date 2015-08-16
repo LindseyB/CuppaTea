@@ -45,7 +45,7 @@ public class RewindObject : MonoBehaviour {
 			rot_history.AddLast(transform.rotation);
 		}
 
-		if(Input.GetKey(KeyCode.R)) {
+		if(Input.GetButton("Rewind")) {
 			vhs.enabled = true;
 			rewinding = true;
 			GameState.Rewinding = true;

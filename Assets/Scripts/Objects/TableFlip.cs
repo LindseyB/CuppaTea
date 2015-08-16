@@ -30,7 +30,7 @@ public class TableFlip : RewindObject {
 			gameObject.GetComponent<Rigidbody>().isKinematic = false;
 		}
 
-		if (Input.GetKeyDown((KeyCode)GameControls.Controls.Rage) && !animate){
+		if (Input.GetButtonDown("Rage") && !animate){
 			timer = 0;
 			animate = true;
 		}
