@@ -33,4 +33,8 @@ public class HoverHighlight : MonoBehaviour {
 	public void DisableHighlight() {
 		material.SetTexture("_Detail", null);
 	}
+
+	public bool Enabled() {
+		return !(material.GetTexture("_Detail") == null);
+	}
 }
