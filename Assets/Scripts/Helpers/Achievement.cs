@@ -40,10 +40,12 @@ namespace Helpers {
 	}
 
 	public class AchievementRecorder : MonoBehaviour {
-		public static Achievement curdledMess = new Achievement(0, "Curdled Mess", "Ew! I'm not drinking that!");
-
 		// Used for writing out achievments
-		public static List<Achievement> achievements = new List<Achievement>();
+		public static List<Achievement> achievements = new List<Achievement>(){
+			new Achievement(0, "Curdled Mess", "Ew! I'm not drinking that!"),
+		};
+
+		public static Achievement curdledMess = achievements[0];
 
 		public static void readAchievements() {
 			// Read the achievements
@@ -52,25 +54,16 @@ namespace Helpers {
 				FileStream file = File.Open(Application.persistentDataPath + "/CuppaTea.ct", FileMode.Open);
 				achievements = (List<Achievement>)bf.Deserialize(file);
 				file.Close();
-
-				// I wish C# had metaprogramming
-				// As it is this I hate it and it will get ugly
-				curdledMess = achievements[curdledMess.index];
 			}
 
-			// Since this will need to happen with all achievements we probably want to keep it in the list
-			// But we use them outside of the list in the code to easily name them
-			// So maybe we need an enum for the outside things to reference the correct achievement
-			curdledMess.SetReference();
-			if(!curdledMess.achieved){
-				curdledMess.Hide(); 
+			foreach (Achievement a in achievements){
+				a.SetReference();
+				if(!a.achieved){ a.Hide(); }
 			}
 		}
 
 		public static void writeAchievements() {
 			// Write the achivements
-			achievements.Add(curdledMess);
-
 			BinaryFormatter bf = new BinaryFormatter();
 			FileStream file = File.Create (Application.persistentDataPath + "/CuppaTea.ct");	
 			bf.Serialize(file, achievements);
