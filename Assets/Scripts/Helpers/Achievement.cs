@@ -6,8 +6,10 @@ namespace Helpers {
 		public string name;
 		public string description;
 		public bool achieved;
+		public int index;
 
-		public Achievement(string n, string d) {
+		public Achievement(int i, string n, string d) {
+			index = i;
 			name = n;
 			description = d;
 			achieved = false;
@@ -21,7 +23,7 @@ namespace Helpers {
 	}
 
 	public class AchievementRecorder : MonoBehaviour {
-		public static Achievement curdledMess = new Achievement("Curdled Mess", "Ew! I'm not drinking that!");
+		public static Achievement curdledMess = new Achievement(0, "Curdled Mess", "Ew! I'm not drinking that!");
 
 		// TODO: add reading and writing the achievements to and from user storage
 	}

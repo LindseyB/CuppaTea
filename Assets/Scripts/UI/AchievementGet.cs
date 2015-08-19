@@ -10,10 +10,13 @@ public class AchievementGet : MonoBehaviour {
 	private Vector3 disabledPos;
 	private Vector3 enabledPos;
 	private bool moving = false;
+	private GameObject corkboard;
 
 	void Start () {
 		enabledPos = new Vector3(0, -Screen.height/7, 0);
 		disabledPos = new Vector3(0, -Screen.height/7 - 80, 0);
+
+		corkboard = GameObject.Find("corkboard");
 
 		gameObject.transform.localPosition = disabledPos;
 	}
@@ -22,6 +25,7 @@ public class AchievementGet : MonoBehaviour {
 		// TODO: tell AchievementRecorder to write out achievement
 		if(!a.achieved) {
 			a.achieved = true;
+			DisplayAchievementNote(a);
 			DisplayAchievement(a);
 		}
 	}
@@ -31,6 +35,10 @@ public class AchievementGet : MonoBehaviour {
 		textObjects[0].text = a.name;
 		textObjects[1].text = a.description;
 		StartCoroutine(SlideDisplay());
+	}
+
+	public void DisplayAchievementNote(Achievement a) {
+		corkboard.transform.GetChild(a.index).gameObject.SetActive(true);
 	}
 
 	IEnumerator SlideDisplay() {
