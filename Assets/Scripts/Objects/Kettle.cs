@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Helpers;
 
 public class Kettle : RewindObject, Usable {
 	[SerializeField] private ParticleSystem steam;
@@ -11,10 +12,14 @@ public class Kettle : RewindObject, Usable {
 	public int temp;
 	private float timer;
 
+	private AchievementGet achievementGet;
+
 	new void Start () {
 		heating = false;
 		timer = 1;
 		temp = 20;
+
+		achievementGet = GameObject.FindObjectOfType<AchievementGet>() as AchievementGet;
 
 		base.Start();
 	}
@@ -39,6 +44,10 @@ public class Kettle : RewindObject, Usable {
 			}
 		} else if(boilAudio.isPlaying) {
 			boilAudio.Stop();
+		}
+
+		if(temp >= 467) {
+			achievementGet.TriggerAchievement(AchievementRecorder.hotLikeVenus);
 		}
 
 		// if we are heating or cooling
