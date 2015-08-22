@@ -49,17 +49,19 @@ namespace Helpers {
 			new Achievement(4, "Hot Like Venus", "Well, 467°C"),
 			new Achievement(5, "Tea Party Foul!", "You gotta clean that up"),
 			new Achievement(6, "┬─┬﻿ ノ( ゜-゜ノ)", "I'll just put this back"),
-			new Achievement(7, "Mad Tea Party", "I'm fine I don't know about you")
+			new Achievement(7, "Mad Tea Party", "I'm fine I don't know about you"),
+			new Achievement(8, "Oolong Long Time", "It's been awhile")
 		};
 
-		public static Achievement curdledMess = achievements[0];
-		public static Achievement firstCuppa = achievements[1];
-		public static Achievement rageFlip = achievements[2];
-		public static Achievement rewind = achievements[3];
-		public static Achievement hotLikeVenus = achievements[4];
-		public static Achievement teaPartyFoul = achievements[5];
-		public static Achievement unRage = achievements[6];
-		public static Achievement madTeaParty = achievements[7];
+		public static Achievement curdledMess      = achievements[0];
+		public static Achievement firstCuppa       = achievements[1];
+		public static Achievement rageFlip         = achievements[2];
+		public static Achievement rewind           = achievements[3];
+		public static Achievement hotLikeVenus     = achievements[4];
+		public static Achievement teaPartyFoul     = achievements[5];
+		public static Achievement unRage           = achievements[6];
+		public static Achievement madTeaParty      = achievements[7];
+		public static Achievement oolongLongTime   = achievements[8];
 
 		public static void readAchievements() {
 			// Read the achievements

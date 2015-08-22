@@ -26,6 +26,10 @@ public class Mug : RewindObject, Usable {
 	private int creamCount = 0;
 	private int lemonCount = 0;
 
+	private bool hasOolong = false;
+	private float oolongTimer = 0;
+	private const float OOLONG_TIME = 100;
+
 	private Hashtable teaColors = new Hashtable();
 	private GameObject[] waterObjects;
 
@@ -108,6 +112,9 @@ public class Mug : RewindObject, Usable {
 				water.gameObject.GetComponent<Renderer>().material.SetTextureOffset("_MainTex", new Vector2(offset, 0));
 				water.gameObject.GetComponent<Renderer>().material.SetTextureOffset("_BumpMap", new Vector2(offset, 0));
 			}
+
+			if(hasOolong){ oolongTimer += Time.deltaTime; }
+			if(hasOolong && oolongTimer >= OOLONG_TIME) { achievementGet.TriggerAchievement(AchievementRecorder.oolongLongTime); }
 		}
 
 		// cool temp over time
@@ -193,6 +200,9 @@ public class Mug : RewindObject, Usable {
 	private void SetTeaColor() {
 		char[] delimiterChars = { '-' };
 		string teaName = grabber.grabbedObject.name.Split(delimiterChars)[0];
+
+		if(teaName == "oolong") { hasOolong = true; }
+
 		if(teaCount == 0){
 			teaColor = (Color)teaColors[teaName];
 		} else {
