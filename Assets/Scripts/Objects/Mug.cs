@@ -101,6 +101,8 @@ public class Mug : RewindObject, Usable {
 			UseDupedObject();
 			teaCount++;
 		} else {
+			if(teaCount == 0){ achievementGet.TriggerAchievement(AchievementRecorder.cupOfWhat); }
+
 			drink();
 		}
 	}
