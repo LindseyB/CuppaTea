@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Helpers;
 
 public class RewindObject : MonoBehaviour {
 	const int LIMIT = 250;
@@ -16,6 +17,7 @@ public class RewindObject : MonoBehaviour {
 	private bool hitSet = false;
 
 	private VHSPostProcessEffect vhs;
+	private AchievementGet achievementGet;
 
 	public void Start() {
 		rewinding = false;
@@ -23,6 +25,7 @@ public class RewindObject : MonoBehaviour {
 		startRot = gameObject.transform.rotation;
 
 		vhs = GameObject.FindObjectOfType<VHSPostProcessEffect>();
+		achievementGet = GameObject.FindObjectOfType<AchievementGet>() as AchievementGet;
 	}
 
 	void OnCollisionEnter(Collision collision) {
@@ -46,6 +49,7 @@ public class RewindObject : MonoBehaviour {
 		}
 
 		if(Input.GetButton("Rewind")) {
+			achievementGet.TriggerAchievement(AchievementRecorder.rewind);
 			vhs.enabled = true;
 			rewinding = true;
 			GameState.Rewinding = true;
