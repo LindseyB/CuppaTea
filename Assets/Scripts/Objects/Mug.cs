@@ -103,6 +103,7 @@ public class Mug : RewindObject, Usable {
 		} else {
 			if(teaCount == 0){ achievementGet.TriggerAchievement(AchievementRecorder.cupOfWhat); }
 			if(sugarCount > teaCount){ achievementGet.TriggerAchievement(AchievementRecorder.teaWithYourSugar); }
+			if(lemonCount >= 5){ achievementGet.TriggerAchievement(AchievementRecorder.smartlyTartly); }
 
 			drink();
 		}
