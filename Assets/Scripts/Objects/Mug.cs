@@ -27,6 +27,10 @@ public class Mug : RewindObject, Usable {
 	private int lemonCount = 0;
 
 	private bool hasOolong = false;
+	private bool hasSencha = false;
+	private bool hasPuerh  = false;
+	private bool hasDarjeeling = false;
+
 	private float oolongTimer = 0;
 	private const float OOLONG_TIME = 100;
 
@@ -205,11 +209,15 @@ public class Mug : RewindObject, Usable {
 		char[] delimiterChars = { '-' };
 		string teaName = grabber.grabbedObject.name.Split(delimiterChars)[0];
 
-		if(teaName == "oolong") { hasOolong = true; }
+		if(teaName == "oolong")     { hasOolong = true; }
+		if(teaName == "puerh" )     { hasPuerh  = true; }
+		if(teaName == "sencha")     { hasSencha = true; }
+		if(teaName == "darjeeling") { hasDarjeeling = true; }
 
 		if(teaCount == 0){
 			teaColor = (Color)teaColors[teaName];
 		} else {
+			if(hasOolong && hasPuerh && hasSencha && hasDarjeeling){ achievementGet.TriggerAchievement(AchievementRecorder.uniTea); }
 			teaColor = ((Color)teaColors[teaName] + teaColor)/2;
 		}
 	}
