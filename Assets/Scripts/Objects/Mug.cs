@@ -13,7 +13,6 @@ public class Mug : RewindObject, Usable {
 	private GameObject overflowingWater;
 	private GameObject go;
 	private GameObject milkSwirl;
-	private AchievementGet achievementGet;
 	
 	private bool hasWater;
 	private int temp;
@@ -39,8 +38,6 @@ public class Mug : RewindObject, Usable {
 		milkSwirl = normalWater.transform.GetChild(0).gameObject;
 		spilledWater = GameObject.Find("mug-spill");
 		overflowingWater = gameObject.transform.GetChild(1).gameObject;
-
-		achievementGet = GameObject.FindObjectOfType<AchievementGet>() as AchievementGet;
 
 		waterObjects = new GameObject[]{ normalWater, spilledWater, overflowingWater };
 
@@ -141,6 +138,7 @@ public class Mug : RewindObject, Usable {
 		if (hasWater && gameObject.transform.forward.y < 0.8 && 
 		    (!grabber.grabbedObject ||
 		    grabber.grabbedObject.name != gameObject.name)) {
+			achievementGet.TriggerAchievement(AchievementRecorder.teaPartyFoul);
 			spilledWater.GetComponent<Renderer>().enabled = true; // display spilled water
 
 			// move to the location of the mug except for in y dir

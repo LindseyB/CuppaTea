@@ -13,11 +13,9 @@ public class TableFlip : RewindObject {
 	private Vector3 startPosition;
 	private Quaternion startRotation;
 	private Kettle kettle;
-	private AchievementGet achievementGet;
 
 	new void Start () {
 		kettle = GameObject.Find("kettle").GetComponent<Kettle>();
-		achievementGet = GameObject.FindObjectOfType<AchievementGet>() as AchievementGet;
 		startPosition = gameObject.transform.position;
 		startRotation = gameObject.transform.rotation;
 

@@ -17,7 +17,7 @@ public class RewindObject : MonoBehaviour {
 	private bool hitSet = false;
 
 	private VHSPostProcessEffect vhs;
-	private AchievementGet achievementGet;
+	protected AchievementGet achievementGet;
 
 	public void Start() {
 		rewinding = false;

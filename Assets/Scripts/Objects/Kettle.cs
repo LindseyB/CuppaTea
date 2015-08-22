@@ -12,14 +12,10 @@ public class Kettle : RewindObject, Usable {
 	public int temp;
 	private float timer;
 
-	private AchievementGet achievementGet;
-
 	new void Start () {
 		heating = false;
 		timer = 1;
 		temp = 20;
-
-		achievementGet = GameObject.FindObjectOfType<AchievementGet>() as AchievementGet;
 
 		base.Start();
 	}
