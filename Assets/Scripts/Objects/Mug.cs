@@ -102,6 +102,7 @@ public class Mug : RewindObject, Usable {
 			teaCount++;
 		} else {
 			if(teaCount == 0){ achievementGet.TriggerAchievement(AchievementRecorder.cupOfWhat); }
+			if(sugarCount > teaCount){ achievementGet.TriggerAchievement(AchievementRecorder.teaWithYourSugar); }
 
 			drink();
 		}
@@ -222,5 +223,9 @@ public class Mug : RewindObject, Usable {
 		spilledWater.GetComponent<Renderer>().enabled = false;
 		hasWater = false;
 		sugarCount = lemonCount = creamCount = teaCount = 0;
+
+		foreach (Transform child in gameObject.GetComponentsInChildren<Transform>()) {
+			if(!child.gameObject.name.Contains("mug")){ Destroy(child.gameObject); }
+		}
 	}
 }

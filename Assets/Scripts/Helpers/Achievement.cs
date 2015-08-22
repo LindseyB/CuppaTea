@@ -40,10 +40,9 @@ namespace Helpers {
 	}
 
 	public class AchievementRecorder : MonoBehaviour {
-		// Used for writing out achievments
 		public static List<Achievement> achievements = new List<Achievement>(){
 			new Achievement(0, "Curdled Mess", "Ew! I'm not drinking that!"),
-			new Achievement(1, "First Cuppa", "Some clever text I can't think of"),
+			new Achievement(1, "First Cuppa", "Well it seems like you've figured this out"),
 			new Achievement(2, "(╯°□°）╯︵ ┻━┻", "FFFFFFFFFFFuuuuuuuuu"),
 			new Achievement(3, "Where we are going", "we don't need roads"),
 			new Achievement(4, "Hot Like Venus", "Well, 467°C"),
@@ -51,7 +50,8 @@ namespace Helpers {
 			new Achievement(6, "┬─┬﻿ ノ( ゜-゜ノ)", "I'll just put this back"),
 			new Achievement(7, "Mad Tea Party", "I'm fine I don't know about you"),
 			new Achievement(8, "Oolong Long Time", "It's been awhile"),
-			new Achievement(9, "Cup of What", "That wasn't tea")
+			new Achievement(9, "Cup of What", "That wasn't tea"),
+			new Achievement(10, "Tea With Your Sugar?", "Sucrose overdose")
 		};
 
 		public static Achievement curdledMess      = achievements[0];
@@ -64,9 +64,9 @@ namespace Helpers {
 		public static Achievement madTeaParty      = achievements[7];
 		public static Achievement oolongLongTime   = achievements[8];
 		public static Achievement cupOfWhat        = achievements[9];
+		public static Achievement teaWithYourSugar = achievements[10];
 
 		public static void readAchievements() {
-			// Read the achievements
 			if(File.Exists(Application.persistentDataPath + "/CuppaTea.ct")) {
 				BinaryFormatter bf = new BinaryFormatter();
 
@@ -82,7 +82,6 @@ namespace Helpers {
 		}
 
 		public static void writeAchievements() {
-			// Write the achivements
 			BinaryFormatter bf = new BinaryFormatter();
 			FileStream file = File.Create (Application.persistentDataPath + "/CuppaTea.ct");	
 			bf.Serialize(file, achievements);
