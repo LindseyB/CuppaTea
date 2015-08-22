@@ -9,6 +9,7 @@ public class TableFlip : RewindObject {
 	private const float ROTATE_TIME = 1.0f;
 	private float timer = 0.0f;
 	public bool animate = false;
+	public bool flipped;
 
 	private Vector3 startPosition;
 	private Quaternion startRotation;
@@ -25,8 +26,13 @@ public class TableFlip : RewindObject {
 	new void Update () {
 		if (GameState.InMainMenu) { return; }
 
+		if(GameState.Rewinding && !flipped) {
+			achievementGet.TriggerAchievement(AchievementRecorder.unRage);
+		}
+
 		if(gameObject.transform.rotation == startRotation && gameObject.transform.position == startPosition) {
 			gameObject.GetComponent<Rigidbody>().isKinematic = true;
+			flipped = false;
 		} else {
 			gameObject.GetComponent<Rigidbody>().isKinematic = false;
 		}
@@ -35,6 +41,7 @@ public class TableFlip : RewindObject {
 			achievementGet.TriggerAchievement(AchievementRecorder.rageFlip);
 			timer = 0;
 			animate = true;
+			flipped = true;
 		}
 
 		if (animate) {

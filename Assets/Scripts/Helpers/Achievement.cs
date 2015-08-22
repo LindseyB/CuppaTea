@@ -47,7 +47,8 @@ namespace Helpers {
 			new Achievement(2, "(╯°□°）╯︵ ┻━┻", "FFFFFFFFFFFuuuuuuuuu"),
 			new Achievement(3, "Where we are going", "we don't need roads"),
 			new Achievement(4, "Hot Like Venus", "Well, 467°C"),
-			new Achievement(5, "Tea Party Foul!", "You gotta clean that up")
+			new Achievement(5, "Tea Party Foul!", "You gotta clean that up"),
+			new Achievement(6, "┬─┬﻿ ノ( ゜-゜ノ)", "I'll just put this back")
 		};
 
 		public static Achievement curdledMess = achievements[0];
@@ -56,6 +57,7 @@ namespace Helpers {
 		public static Achievement rewind = achievements[3];
 		public static Achievement hotLikeVenus = achievements[4];
 		public static Achievement teaPartyFoul = achievements[5];
+		public static Achievement unRage = achievements[6];
 
 		public static void readAchievements() {
 			// Read the achievements
