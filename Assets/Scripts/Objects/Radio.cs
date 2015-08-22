@@ -6,6 +6,9 @@ public class Radio : MonoBehaviour, Usable {
 
 	void Start() {
 		highlight = gameObject.GetComponent<HoverHighlight>() as HoverHighlight;
+
+		// TODO: remove!
+		AudioListener.volume = 0f;
 	}		
 
 	public void Use() {

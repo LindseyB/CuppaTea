@@ -43,14 +43,19 @@ namespace Helpers {
 		// Used for writing out achievments
 		public static List<Achievement> achievements = new List<Achievement>(){
 			new Achievement(0, "Curdled Mess", "Ew! I'm not drinking that!"),
+			new Achievement(1, "First Cuppa", "Some clever text I can't think of"),
+			new Achievement(2, "(╯°□°）╯︵ ┻━┻", "FFFFFFFFFFFuuuuuuuuu")
 		};
 
 		public static Achievement curdledMess = achievements[0];
+		public static Achievement firstCuppa = achievements[1];
+		public static Achievement rageFlip = achievements[2];
 
 		public static void readAchievements() {
 			// Read the achievements
 			if(File.Exists(Application.persistentDataPath + "/CuppaTea.ct")) {
 				BinaryFormatter bf = new BinaryFormatter();
+
 				FileStream file = File.Open(Application.persistentDataPath + "/CuppaTea.ct", FileMode.Open);
 				achievements = (List<Achievement>)bf.Deserialize(file);
 				file.Close();

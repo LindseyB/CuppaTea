@@ -127,7 +127,9 @@ public class Mug : RewindObject, Usable {
 		}
 
 		if (hasWater && teaCount > 0 && temp > 40) {
-			// darken
+			achievementGet.TriggerAchievement(AchievementRecorder.firstCuppa);
+
+			// brewing
 			normalWater.gameObject.SetActive(true);
 			teaColor.a += (Time.deltaTime/51);
 			if(teaColor.a > 0.8f){ teaColor.a = 0.8f; }
