@@ -48,7 +48,7 @@ public class RewindObject : MonoBehaviour {
 			rot_history.AddLast(transform.rotation);
 		}
 
-		if(Input.GetButton("Rewind")) {
+		if(Input.GetButton("Rewind") && !GameState.Blackhole) {
 			achievementGet.TriggerAchievement(AchievementRecorder.rewind);
 			vhs.enabled = true;
 			rewinding = true;
