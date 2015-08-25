@@ -42,7 +42,7 @@ namespace Helpers {
 	public class AchievementRecorder : MonoBehaviour {
 		public static List<Achievement> achievements = new List<Achievement>(){
 			new Achievement(0, "Curdled Mess", "Ew! I'm not drinking that!"),
-			new Achievement(1, "First Cuppa", "Well it seems like you've figured this out"),
+			new Achievement(1, "First Cuppa", "You got this!"),
 			new Achievement(2, "(╯°□°）╯︵ ┻━┻", "FFFFFFFFFFFuuuuuuuuu"),
 			new Achievement(3, "Where we are going", "we don't need roads"),
 			new Achievement(4, "Hot Like Venus", "Well, 467°C"),
