@@ -4,6 +4,8 @@ using UnityEngine.UI;
 using Helpers;
 
 public class AchievementGet : MonoBehaviour {
+	[SerializeField] private GameObject achievementCountDisplay;
+
 	private const float SLIDE_DURATION = 1f;
 	private const float DISPLAY_DURATION = 5f;
 
@@ -23,6 +25,7 @@ public class AchievementGet : MonoBehaviour {
 
 	void Awake() {
 		achievedCount = Helpers.AchievementRecorder.readAchievements();
+		achievementCountDisplay.GetComponent<TextMesh>().text = achievedCount.ToString();
 	}
 
 
@@ -33,6 +36,7 @@ public class AchievementGet : MonoBehaviour {
 	public void TriggerAchievement(Achievement a) {
 		if(!a.achieved) {
 			achievedCount++;
+			achievementCountDisplay.GetComponent<TextMesh>().text = achievedCount.ToString();
 			a.Achieved();
 
 			if(achievedCount == NUMBER_OF_ACHIEVEMENTS) {
