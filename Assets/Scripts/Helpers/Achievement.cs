@@ -76,7 +76,10 @@ namespace Helpers {
 		public static Achievement bearable         = achievements[14];
 		public static Achievement brewTeaFull      = achievements[15];
 
-		public static void readAchievements() {
+		public static Achievement metaAchievement = new Achievement(-1, "Meta Achievement", "Achieve all the things!");
+
+		public static int readAchievements() {
+			int count = 0;
 			if(File.Exists(Application.persistentDataPath + "/CuppaTea.ct")) {
 				BinaryFormatter bf = new BinaryFormatter();
 
@@ -87,8 +90,14 @@ namespace Helpers {
 
 			foreach (Achievement a in achievements){
 				a.SetReference();
-				if(!a.achieved){ a.Hide(); }
+				if(!a.achieved){ 
+					a.Hide(); 
+				} else {
+					count++;
+				}
 			}
+
+			return count;
 		}
 
 		public static void writeAchievements() {

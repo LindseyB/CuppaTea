@@ -7,9 +7,12 @@ public class AchievementGet : MonoBehaviour {
 	private const float SLIDE_DURATION = 1f;
 	private const float DISPLAY_DURATION = 5f;
 
+	private const int NUMBER_OF_ACHIEVEMENTS = 16;
+
 	private Vector3 disabledPos;
 	private Vector3 enabledPos;
 	private bool moving = false;
+	private int achievedCount = 0;
 
 	void Start () {
 		enabledPos = new Vector3(0, -Screen.height/7, 0);
@@ -19,7 +22,7 @@ public class AchievementGet : MonoBehaviour {
 	}
 
 	void Awake() {
-		Helpers.AchievementRecorder.readAchievements();
+		achievedCount = Helpers.AchievementRecorder.readAchievements();
 	}
 
 
@@ -29,8 +32,14 @@ public class AchievementGet : MonoBehaviour {
 
 	public void TriggerAchievement(Achievement a) {
 		if(!a.achieved) {
+			achievedCount++;
 			a.Achieved();
-			DisplayAchievement(a);
+
+			if(achievedCount == NUMBER_OF_ACHIEVEMENTS) {
+				DisplayAchievement(AchievementRecorder.metaAchievement);
+			} else {
+				DisplayAchievement(a);
+			}
 		}
 	}
 
