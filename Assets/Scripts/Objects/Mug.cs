@@ -71,6 +71,7 @@ public class Mug : RewindObject, Usable {
 		if (grabber.grabbedObject == kettle) {
 			kettle.GetComponent<Kettle>().pourAudio.Play();
 			if(hasWater){
+				achievementGet.TriggerAchievement(AchievementRecorder.eTeaOverflow);
 				normalWater.SetActive(false);
 				spilledWater.GetComponent<Renderer>().enabled = false;
 				overflowingWater.SetActive(true);

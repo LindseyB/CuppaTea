@@ -53,7 +53,8 @@ namespace Helpers {
 			new Achievement(9, "Cup of What", "That wasn't tea"),
 			new Achievement(10, "Tea With Your Sugar?", "Sucrose overdose"),
 			new Achievement(11, "Smartly Tartly", "I've made a huge mistake"),
-			new Achievement(12, "uniTEA", "All the teas in harmony")
+			new Achievement(12, "uniTEA", "All the teas in harmony"),
+			new Achievement(13, "ETeaOverflow", "at 0x00746561")
 		};
 
 		public static Achievement curdledMess      = achievements[0];
@@ -69,6 +70,7 @@ namespace Helpers {
 		public static Achievement teaWithYourSugar = achievements[10];
 		public static Achievement smartlyTartly    = achievements[11];
 		public static Achievement uniTea           = achievements[12];
+		public static Achievement eTeaOverflow     = achievements[13];
 
 		public static void readAchievements() {
 			if(File.Exists(Application.persistentDataPath + "/CuppaTea.ct")) {
