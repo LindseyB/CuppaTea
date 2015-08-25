@@ -26,6 +26,9 @@ public class Mug : RewindObject, Usable {
 	private int creamCount = 0;
 	private int lemonCount = 0;
 
+	private int startTemp; 
+	private float brewTime = 0;
+
 	private bool hasOolong = false;
 	private bool hasSencha = false;
 	private bool hasPuerh  = false;
@@ -80,6 +83,7 @@ public class Mug : RewindObject, Usable {
 				spilledWater.GetComponent<Renderer>().enabled = false;
 				overflowingWater.SetActive(false);
 				temp = kettle.GetComponent<Kettle>().temp;
+				startTemp = temp;
 				hasWater = true;
 			}
 		} else if(grabber.grabbedObject && grabber.grabbedObject.name.Contains("sugar")) {
@@ -143,6 +147,7 @@ public class Mug : RewindObject, Usable {
 			achievementGet.TriggerAchievement(AchievementRecorder.firstCuppa);
 
 			// brewing
+			brewTime += Time.deltaTime;
 			normalWater.gameObject.SetActive(true);
 			teaColor.a += (Time.deltaTime/51);
 			if(teaColor.a > 0.8f){ teaColor.a = 0.8f; }
@@ -228,15 +233,53 @@ public class Mug : RewindObject, Usable {
 	}
 
 	public void drink() {
+		if(isPerfect()){ achievementGet.TriggerAchievement(AchievementRecorder.brewTeaFull); }
 		normalWater.SetActive(false);
 		overflowingWater.SetActive(false);
 		spilledWater.GetComponent<Renderer>().enabled = false;
 		hasWater = false;
-		sugarCount = lemonCount = creamCount = teaCount = 0;
+		brewTime = sugarCount = lemonCount = creamCount = teaCount = 0;
 
 		foreach (Transform child in gameObject.GetComponentsInChildren<Transform>()) {
 			if(!child.gameObject.name.Contains("mug")){ Destroy(child.gameObject); }
 		}
+	}
+
+	private bool isPerfect() {
+		if (hasDarjeeling){
+			return ( (teaCount == 1) && 
+			         ( startTemp >= 90 ) &&
+			         ( brewTime >= 180 && brewTime <= 300 ) &&
+			         ( creamCount == 0 ) &&
+			         ( sugarCount == 0 ) 
+			        );
+		} else if (hasPuerh) {
+			return ( (teaCount == 1) && 
+			        ( startTemp >= 90 ) &&
+			        ( brewTime >= 60 && brewTime <= 120 ) &&
+			        ( creamCount == 0 ) &&
+			        ( sugarCount == 0 ) &&
+			        ( lemonCount == 0)
+			       );
+		} else if (hasOolong) {
+			return ( (teaCount == 1) && 
+			        ( startTemp <= 80 && startTemp >= 70) &&
+			        ( brewTime >= 60 && brewTime <= 300 ) &&
+			        ( creamCount == 0 ) &&
+			        ( sugarCount == 0 ) &&
+			        ( lemonCount == 0)
+			        );
+		} else if (hasSencha) {
+			return ( (teaCount == 1) && 
+			        ( startTemp <= 75 && startTemp >= 60) &&
+			        ( brewTime >= 60 && brewTime <= 300 ) &&
+			        ( creamCount == 0 ) &&
+			        ( sugarCount == 0 ) &&
+			        ( lemonCount == 0)
+			       );
+		}
+
+		return false;
 	}
 
 	public bool isGlitchBearFav() {
