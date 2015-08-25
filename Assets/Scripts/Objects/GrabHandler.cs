@@ -15,6 +15,11 @@ public class GrabHandler : MonoBehaviour, Usable {
 	public void Use() {
 		if (grabber.grabbedObject.name == "mug") {
 			achievementGet.TriggerAchievement(AchievementRecorder.madTeaParty);
+
+			if(grabber.grabbedObject.GetComponent<Mug>().isGlitchBearFav()) {
+				achievementGet.TriggerAchievement(AchievementRecorder.bearable);
+			}
+
 			grabber.grabbedObject.GetComponent<Mug>().drink();
 		}
 	}

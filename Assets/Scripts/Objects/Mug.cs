@@ -238,4 +238,8 @@ public class Mug : RewindObject, Usable {
 			if(!child.gameObject.name.Contains("mug")){ Destroy(child.gameObject); }
 		}
 	}
+
+	public bool isGlitchBearFav() {
+		return (!hasWater && (teaCount == 0) && (lemonCount == 0) && (sugarCount > 0) && (creamCount > 0)); 
+	}
 }
