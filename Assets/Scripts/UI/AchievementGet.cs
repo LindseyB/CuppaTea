@@ -37,6 +37,7 @@ public class AchievementGet : MonoBehaviour {
 
 			if(achievedCount == NUMBER_OF_ACHIEVEMENTS) {
 				DisplayAchievement(AchievementRecorder.metaAchievement);
+				GameState.Blackhole = true;
 			} else {
 				DisplayAchievement(a);
 			}
