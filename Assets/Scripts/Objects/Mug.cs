@@ -4,6 +4,7 @@ using Helpers;
 
 public class Mug : RewindObject, Usable {
 	[SerializeField] private AudioSource collideAudio;
+	[SerializeField] private AudioSource sipAudio;
 
 	private GrabAndDrop grabber;
 	private GameObject kettle;
@@ -113,6 +114,8 @@ public class Mug : RewindObject, Usable {
 			if(teaCount == 0){ achievementGet.TriggerAchievement(AchievementRecorder.cupOfWhat); }
 			if(sugarCount > teaCount){ achievementGet.TriggerAchievement(AchievementRecorder.teaWithYourSugar); }
 			if(lemonCount >= 5){ achievementGet.TriggerAchievement(AchievementRecorder.smartlyTartly); }
+
+			sipAudio.Play();
 
 			drink();
 		}
