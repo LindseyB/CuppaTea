@@ -11,6 +11,7 @@ namespace Helpers {
 		public string description;
 		public bool achieved;
 		public int index;
+		public int points;
 		private string objectName;
 
 		[System.NonSerialized]
@@ -23,6 +24,7 @@ namespace Helpers {
 			achieved = false;
 			objectName = "achievement" + ((index+1).ToString());
 			noteObject = GameObject.Find(objectName);
+			points = (int)(Random.Range(10000f, 100000f));
 		}
 
 		public void SetReference() {
@@ -88,9 +90,9 @@ namespace Helpers {
 				file.Close();
 			}
 
-			foreach (Achievement a in achievements){
+			foreach (Achievement a in achievements) {
 				a.SetReference();
-				if(!a.achieved){ 
+				if(!a.achieved) { 
 					a.Hide(); 
 				} else {
 					count++;
@@ -98,6 +100,16 @@ namespace Helpers {
 			}
 
 			return count;
+		}
+
+		public static int totalPoints() {
+			int total = 0;
+			foreach (Achievement a in achievements) {
+
+				if(a.achieved) { total += a.points; }
+			}
+
+			return total;
 		}
 
 		public static void writeAchievements() {

@@ -5,6 +5,7 @@ using Helpers;
 
 public class AchievementGet : MonoBehaviour {
 	[SerializeField] private GameObject achievementCountDisplay;
+	[SerializeField] private GameObject pointsDisplay;
 
 	private const float SLIDE_DURATION = 1f;
 	private const float DISPLAY_DURATION = 5f;
@@ -24,13 +25,14 @@ public class AchievementGet : MonoBehaviour {
 	}
 
 	void Awake() {
-		achievedCount = Helpers.AchievementRecorder.readAchievements();
+		achievedCount = AchievementRecorder.readAchievements();
 		achievementCountDisplay.GetComponent<TextMesh>().text = achievedCount.ToString();
+		pointsDisplay.GetComponent<TextMesh>().text = "points: " + AchievementRecorder.totalPoints();
 	}
 
 
 	void OnApplicationQuit() {
-		Helpers.AchievementRecorder.writeAchievements();
+		AchievementRecorder.writeAchievements();
 	}
 
 	public void TriggerAchievement(Achievement a) {
@@ -38,6 +40,8 @@ public class AchievementGet : MonoBehaviour {
 			achievedCount++;
 			achievementCountDisplay.GetComponent<TextMesh>().text = achievedCount.ToString();
 			a.Achieved();
+
+			pointsDisplay.GetComponent<TextMesh>().text = "points: " + AchievementRecorder.totalPoints();
 
 			if(achievedCount == NUMBER_OF_ACHIEVEMENTS) {
 				DisplayAchievement(AchievementRecorder.metaAchievement);
