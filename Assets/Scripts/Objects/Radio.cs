@@ -3,16 +3,20 @@ using System.Collections;
 
 public class Radio : MonoBehaviour, Usable {
 	private HoverHighlight highlight;
+	private ParticleSystem system;
 
 	void Start() {
 		highlight = gameObject.GetComponent<HoverHighlight>() as HoverHighlight;
+		system = gameObject.GetComponentInChildren<ParticleSystem>() as ParticleSystem;
 	}		
 
 	public void Use() {
 		if(AudioListener.volume > 0f) {
 			AudioListener.volume = 0f;
+			system.Stop();
 		} else {
 			AudioListener.volume = 1f;
+			system.Play();
 		}
 	}
 
