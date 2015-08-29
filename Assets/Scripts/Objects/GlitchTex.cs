@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GlitchBear : MonoBehaviour {
+public class GlitchTex : MonoBehaviour {
 	public MovieTexture glitch;
 
 	void Start() {

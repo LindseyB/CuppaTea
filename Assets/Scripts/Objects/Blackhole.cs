@@ -11,8 +11,11 @@ public class Blackhole : MonoBehaviour {
 			GameObject directionalLight = GameObject.Find("Directional Light");
 			GameObject.Find("Music").GetComponent<AudioSource>().enabled = false;
 
+			ParticleSystem ps = directionalLight.GetComponentInChildren<ParticleSystem>();
+
 			directionalLight.GetComponentInChildren<AudioSource>().enabled = true;
-			directionalLight.GetComponentInChildren<ParticleSystem>().Play();
+			ps.Play();
+			ps.transform.GetChild(0).gameObject.SetActive(true);
 
 			Rigidbody rb;
 			if(rb = gameObject.GetComponent<Rigidbody>()){
@@ -21,6 +24,7 @@ public class Blackhole : MonoBehaviour {
 			}
 
 			StartCoroutine(GravitySuck(directionalLight.transform.position, Random.Range(50.0f, 100f)));
+			StartCoroutine(EndBlackHole(10f, ps,directionalLight.GetComponentInChildren<AudioSource>()));
 		}
 	}
 
@@ -36,5 +40,11 @@ public class Blackhole : MonoBehaviour {
 			}
 			moving = false;
 		}
+	}
+
+	IEnumerator EndBlackHole(float waitTime, ParticleSystem ps, AudioSource audio) {
+		yield return new WaitForSeconds(waitTime);
+		ps.Stop();
+		audio.Stop();
 	}
 }
