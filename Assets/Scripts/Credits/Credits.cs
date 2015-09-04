@@ -8,7 +8,9 @@ public class Credits : MonoBehaviour {
 	private List<string> credits = new List<string>(){ 
 								"By Lindsey Bieda",
 	                            "Glitch Bear By Todd Gizzi",
-	                            "Purr Programming support by Dash"
+	                            "Purr Programming support by Dash",
+								"Public Domain Music:",
+								"A Song of Old Hawaii by Cliff Edwards"
 								};
 	private Text text;
 	
