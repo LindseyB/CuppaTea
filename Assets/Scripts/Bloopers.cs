@@ -7,9 +7,6 @@ public class Bloopers : MonoBehaviour {
 	void Start () {
 		MovieTexture mt = gameObject.GetComponent<RawImage>().mainTexture as MovieTexture;
 		mt.loop = true;
-
-		Debug.Log(AchievementRecorder.totalPoints());
-
 		mt.Play();
 	}
 

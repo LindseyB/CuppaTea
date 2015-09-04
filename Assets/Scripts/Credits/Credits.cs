@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic; 
 using UnityEngine.UI;
+using Helpers;
 
 public class Credits : MonoBehaviour {
-	private string[] credits = { 
+	private List<string> credits = new List<string>(){ 
 								"By Lindsey Bieda",
 	                            "Glitch Bear By Todd Gizzi",
 	                            "Purr Programming support by Dash"
@@ -13,7 +15,14 @@ public class Credits : MonoBehaviour {
 	void Start () {
 		text = gameObject.GetComponent<Text>() as Text;
 		text.canvasRenderer.SetAlpha(0.0f);
+
+		credits.Add("Your score was: " + AchievementRecorder.totalPoints());
+
 		StartCoroutine("DisplayCredits");
+	}
+
+	void Awake() {
+		AchievementRecorder.readAchievements();
 	}
 
 

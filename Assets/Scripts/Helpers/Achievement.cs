@@ -37,7 +37,7 @@ namespace Helpers {
 		}
 
 		public void Hide() {
-			noteObject.SetActive(false);
+			if(noteObject){ noteObject.SetActive(false); }
 		}
 	}
 
