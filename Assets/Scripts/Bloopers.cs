@@ -8,4 +8,10 @@ public class Bloopers : MonoBehaviour {
 		mt.loop = true;
 		mt.Play();
 	}
+
+	void Update() {
+		if (Input.GetKey(KeyCode.Escape)) {
+			Application.LoadLevel(0);
+		}
+	}
 }
