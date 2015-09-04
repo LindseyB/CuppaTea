@@ -73,7 +73,7 @@ public class Kettle : RewindObject, Usable {
 	private void updateTemp(){
 
 		if (heating) {
-			temp+=100; //temp--;
+			temp++;
 		} else if (temp > 20) {
 			temp--;
 		}

@@ -5,8 +5,6 @@ public class Blackhole : MonoBehaviour {
 	bool moving = false;
 
 	void Update () {
-		if(Input.GetKey(KeyCode.G)) { GameState.Blackhole = true; } // TODO: remove - just for testing
-
 		if(GameState.Blackhole) {
 			GameObject directionalLight = GameObject.Find("Directional Light");
 			GameObject.Find("Music").GetComponent<AudioSource>().enabled = false;
