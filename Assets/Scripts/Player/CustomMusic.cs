@@ -30,7 +30,7 @@ public class CustomMusic : MonoBehaviour {
 	IEnumerator PlayAudioList() { 
 		yield return StartCoroutine("DownloadPlaylist");
 
-		while(true){
+		while(audioClips.Count > 0){
 			foreach(AudioClip file in audioClips){
 				audioSource.clip = file;
 				audioSource.Play();
