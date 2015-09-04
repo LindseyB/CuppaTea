@@ -12,4 +12,9 @@ public class GlitchTex : MonoBehaviour {
 		glitch.Play();
 		glitch.wrapMode = TextureWrapMode.Repeat;
 	}
+
+	void Update() {
+		if(!GameState.Glitch) { glitch.Stop(); }
+		if(GameState.Glitch && !glitch.isPlaying) { glitch.Play(); }
+	}
 }
