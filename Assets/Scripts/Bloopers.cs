@@ -11,7 +11,7 @@ public class Bloopers : MonoBehaviour {
 	}
 
 	void Update() {
-		if (Input.GetKey(KeyCode.Escape)) {
+		if (Input.anyKeyDown) {
 			Application.LoadLevel(0);
 		}
 	}
