@@ -33,11 +33,11 @@ namespace Helpers {
 
 		public void Achieved() {
 			achieved = true;
-			noteObject.SetActive(true);
+			noteObject.GetComponent<Renderer>().material.SetFloat("_isGrayscale", 0f);
 		}
 
 		public void Hide() {
-			if(noteObject){ noteObject.SetActive(false); }
+			if(noteObject){ noteObject.GetComponent<Renderer>().material.SetFloat("_isGrayscale", 1f); }
 		}
 	}
 
