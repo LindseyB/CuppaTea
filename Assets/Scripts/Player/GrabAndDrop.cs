@@ -40,7 +40,7 @@ public class GrabAndDrop : MonoBehaviour {
 	}
 	
 	public void TryGrabObject(GameObject grabObject) {
-		if (grabObject) {
+		if (grabObject && grabObject.tag != "UsableOnly") {
 			grabbedObject = grabObject;
 			hh = grabbedObject.GetComponent<HoverHighlight>();
 
