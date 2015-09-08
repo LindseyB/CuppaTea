@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class MouseLook : MonoBehaviour {
 
@@ -26,6 +27,12 @@ public class MouseLook : MonoBehaviour {
 			GetComponent<Rigidbody>().freezeRotation = true;
 		}
 		originalRotation = transform.localRotation;
+
+		if(PlayerPrefs.HasKey("MouseSensitivity")){
+			float sensitivity = PlayerPrefs.GetFloat("MouseSensitivity");
+			sensitivityX = 15F * sensitivity;
+			sensitivityY = 15F * sensitivity;
+		}
 	}
 	
 	void Update () {
@@ -60,8 +67,7 @@ public class MouseLook : MonoBehaviour {
 	
 
 	
-	public static float ClampAngle (float angle, float min, float max)
-	{
+	public static float ClampAngle (float angle, float min, float max) {
 		if (angle < -360F) {
 			angle += 360F;
 		}
@@ -69,5 +75,14 @@ public class MouseLook : MonoBehaviour {
 			angle -= 360F;
 		}
 		return Mathf.Clamp (angle, min, max);
+	}
+
+	public void MouseSensitivity() {
+		float sensitivity = GameObject.Find("Slider").GetComponent<Slider>().value;
+		PlayerPrefs.SetFloat("MouseSensitivity", sensitivity);
+		PlayerPrefs.Save();
+
+		sensitivityX = 15F * sensitivity;
+		sensitivityY = 15F * sensitivity;
 	}
 }
