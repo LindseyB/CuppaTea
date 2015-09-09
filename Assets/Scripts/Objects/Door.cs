@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Helpers;
 
 public class Door : MonoBehaviour, Usable {
 	void Update() {
@@ -13,6 +14,7 @@ public class Door : MonoBehaviour, Usable {
 	}
 
 	private void Exit() {
+		AchievementRecorder.writeAchievements();
 		if (!Application.isEditor) System.Diagnostics.Process.GetCurrentProcess().Kill();
 	}
 }
