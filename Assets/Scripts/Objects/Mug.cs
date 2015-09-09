@@ -27,9 +27,6 @@ public class Mug : RewindObject, Usable {
 	private int creamCount = 0;
 	private int lemonCount = 0;
 
-	private int startTemp; 
-	private float brewTime = 0;
-
 	private bool hasOolong = false;
 	private bool hasSencha = false;
 	private bool hasPuerh  = false;
@@ -84,7 +81,6 @@ public class Mug : RewindObject, Usable {
 				spilledWater.GetComponent<Renderer>().enabled = false;
 				overflowingWater.SetActive(false);
 				temp = kettle.GetComponent<Kettle>().temp;
-				startTemp = temp;
 				hasWater = true;
 			}
 		} else if(grabber.grabbedObject && grabber.grabbedObject.name.Contains("sugar")) {
@@ -150,7 +146,6 @@ public class Mug : RewindObject, Usable {
 			achievementGet.TriggerAchievement(AchievementRecorder.firstCuppa);
 
 			// brewing
-			brewTime += Time.deltaTime;
 			normalWater.gameObject.SetActive(true);
 			teaColor.a += (Time.deltaTime/51);
 			if(teaColor.a > 0.8f){ teaColor.a = 0.8f; }
@@ -241,7 +236,7 @@ public class Mug : RewindObject, Usable {
 		overflowingWater.SetActive(false);
 		spilledWater.GetComponent<Renderer>().enabled = false;
 		hasWater = false;
-		brewTime = sugarCount = lemonCount = creamCount = teaCount = 0;
+		sugarCount = lemonCount = creamCount = teaCount = 0;
 
 		foreach (Transform child in gameObject.GetComponentsInChildren<Transform>()) {
 			if(!child.gameObject.name.Contains("mug")){ Destroy(child.gameObject); }
