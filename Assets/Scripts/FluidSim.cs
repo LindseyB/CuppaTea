@@ -283,8 +283,7 @@ public class FluidSim : MonoBehaviour {
 		if(timeForAdds <= 0){ add = false; }
 	}
 	
-	void Draw()
-	{
+	void Draw() {
 		// visualize water
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {

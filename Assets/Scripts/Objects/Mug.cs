@@ -235,11 +235,16 @@ public class Mug : RewindObject, Usable {
 		normalWater.SetActive(false);
 		overflowingWater.SetActive(false);
 		spilledWater.GetComponent<Renderer>().enabled = false;
+		milkSwirl.SetActive(false);
 		hasWater = false;
 		sugarCount = lemonCount = creamCount = teaCount = 0;
 
 		foreach (Transform child in gameObject.GetComponentsInChildren<Transform>()) {
 			if(!child.gameObject.name.Contains("mug")){ Destroy(child.gameObject); }
+		}
+
+		foreach(GameObject water in waterObjects){
+			water.gameObject.GetComponent<Renderer>().material.SetColor("_TintColor", new Color(1f, 1f, 1f, 0f));
 		}
 	}
 
