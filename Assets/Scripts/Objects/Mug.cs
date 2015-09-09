@@ -251,31 +251,23 @@ public class Mug : RewindObject, Usable {
 	private bool isPerfect() {
 		if (hasDarjeeling){
 			return ( (teaCount == 1) && 
-			         ( startTemp >= 90 ) &&
-			         ( brewTime >= 180 && brewTime <= 300 ) &&
 			         ( creamCount == 0 ) &&
 			         ( sugarCount == 0 ) 
 			        );
 		} else if (hasPuerh) {
 			return ( (teaCount == 1) && 
-			        ( startTemp >= 90 ) &&
-			        ( brewTime >= 60 && brewTime <= 120 ) &&
 			        ( creamCount == 0 ) &&
 			        ( sugarCount == 0 ) &&
 			        ( lemonCount == 0)
 			       );
 		} else if (hasOolong) {
 			return ( (teaCount == 1) && 
-			        ( startTemp <= 80 && startTemp >= 70) &&
-			        ( brewTime >= 60 && brewTime <= 300 ) &&
 			        ( creamCount == 0 ) &&
 			        ( sugarCount == 0 ) &&
 			        ( lemonCount == 0)
 			        );
 		} else if (hasSencha) {
-			return ( (teaCount == 1) && 
-			        ( startTemp <= 75 && startTemp >= 60) &&
-			        ( brewTime >= 60 && brewTime <= 300 ) &&
+			return ( (teaCount == 1) &&
 			        ( creamCount == 0 ) &&
 			        ( sugarCount == 0 ) &&
 			        ( lemonCount == 0)
