@@ -1,0 +1,7 @@
+Package: cuppatea
+Version: 0.1-1
+Section: base
+Priority: optional
+Architecture: any
+Maintainer: Lindsey Bieda <me@rarlindseysmash.com>
+Description: Cuppa Tea
