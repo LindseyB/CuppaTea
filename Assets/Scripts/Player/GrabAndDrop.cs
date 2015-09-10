@@ -24,6 +24,13 @@ public class GrabAndDrop : MonoBehaviour {
 			                             grabbedObject.GetComponent<Collider>().bounds.extents.x,
 			                             Camera.main.ScreenPointToRay(Input.mousePosition).direction,
 			                             range);
+
+			// prioritize glitch bear for hover events
+			foreach (RaycastHit hit in hits) {
+				if(hit.rigidbody && hit.rigidbody.gameObject.transform.root.gameObject.name == "d20bear"){
+					return hit.rigidbody.gameObject;
+				}
+			}
 		} else {
 			hits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition).origin, 
 			                          Camera.main.ScreenPointToRay(Input.mousePosition).direction,
