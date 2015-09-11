@@ -140,5 +140,9 @@ public class AchievementGet : MonoBehaviour {
 
 	public void resetAchievements() {
 		AchievementRecorder.resetAchievements();
+		points = 0;
+		achievedCount = 0;
+		pointsDisplay.GetComponent<TextMesh>().text = "points: " + points;
+		achievementCountDisplay.GetComponent<TextMesh>().text = achievedCount.ToString();
 	}
 }
