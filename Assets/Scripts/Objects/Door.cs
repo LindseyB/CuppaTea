@@ -14,7 +14,7 @@ public class Door : MonoBehaviour, Usable {
 	}
 
 	private void Exit() {
-		AchievementRecorder.writeAchievements();
+		if(!GameState.SpeedRunMode){ AchievementRecorder.writeAchievements(); }
 		if (!Application.isEditor) System.Diagnostics.Process.GetCurrentProcess().Kill();
 	}
 }

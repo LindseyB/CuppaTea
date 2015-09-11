@@ -36,6 +36,11 @@ namespace Helpers {
 			noteObject.GetComponent<Renderer>().material.SetFloat("_isGrayscale", 0f);
 		}
 
+		public void Unachieved() {
+			achieved = false;
+			noteObject.GetComponent<Renderer>().material.SetFloat("_isGrayscale", 1f);
+		}
+
 		public void Hide() {
 			if(noteObject){ noteObject.GetComponent<Renderer>().material.SetFloat("_isGrayscale", 1f); }
 		}
@@ -100,6 +105,13 @@ namespace Helpers {
 			}
 
 			return count;
+		}
+
+		public static void initSpeedRunAchievements() {
+			foreach (Achievement a in achievements) {
+				a.Unachieved();
+			}
+
 		}
 
 		public static int totalPoints() {

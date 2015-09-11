@@ -8,6 +8,7 @@ public class GameState : MonoBehaviour {
 	public static bool Blackhole = false;
 	public static bool Glitch = true;
 	public static bool FirstStart = true;
+	public static bool SpeedRunMode = false;
 
 	void ToggleGlitch() {
 		Glitch = !Glitch;
