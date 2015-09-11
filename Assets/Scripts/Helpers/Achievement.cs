@@ -24,7 +24,7 @@ namespace Helpers {
 			achieved = false;
 			objectName = "achievement" + ((index+1).ToString());
 			noteObject = GameObject.Find(objectName);
-			points = (int)(Random.Range(10000f, 100000f));
+			points = 0;
 		}
 
 		public void SetReference() {
@@ -34,11 +34,13 @@ namespace Helpers {
 		public void Achieved() {
 			achieved = true;
 			noteObject.GetComponent<Renderer>().material.SetFloat("_isGrayscale", 0f);
+			points = (int)(Random.Range(10000f, 100000f));
 		}
 
 		public void Unachieved() {
 			achieved = false;
 			noteObject.GetComponent<Renderer>().material.SetFloat("_isGrayscale", 1f);
+			points = 0;
 		}
 
 		public void Hide() {
@@ -117,7 +119,6 @@ namespace Helpers {
 		public static int totalPoints() {
 			int total = 0;
 			foreach (Achievement a in achievements) {
-
 				if(a.achieved) { total += a.points; }
 			}
 
@@ -133,6 +134,9 @@ namespace Helpers {
 
 		public static void resetAchievements() {
 			File.Delete(Application.persistentDataPath + "/CuppaTea.ct");
+			foreach (Achievement a in achievements) {
+				a.Unachieved();
+			}
 		}
 	}
 }

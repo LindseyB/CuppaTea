@@ -17,6 +17,7 @@ public class AchievementGet : MonoBehaviour {
 	private Vector3 enabledPos;
 	private bool moving = false;
 	private int achievedCount = 0;
+	private int points = 0;
 
 	private DateTime startTime;
 	private Text speedRunText;
@@ -35,8 +36,7 @@ public class AchievementGet : MonoBehaviour {
 
 	void Awake() {
 		achievedCount = AchievementRecorder.readAchievements();
-		achievementCountDisplay.GetComponent<TextMesh>().text = achievedCount.ToString();
-		pointsDisplay.GetComponent<TextMesh>().text = "points: " + AchievementRecorder.totalPoints();
+
 
 		if(achievedCount == NUMBER_OF_ACHIEVEMENTS) {
 			// reset achievements for this session only 
@@ -44,6 +44,10 @@ public class AchievementGet : MonoBehaviour {
 			GameState.SpeedRunMode = true;
 			achievedCount = 0;
 		}
+
+		points = AchievementRecorder.totalPoints();
+		pointsDisplay.GetComponent<TextMesh>().text = "points: " + points;
+		achievementCountDisplay.GetComponent<TextMesh>().text = achievedCount.ToString();
 	}
 
 	void Update() {
@@ -75,8 +79,9 @@ public class AchievementGet : MonoBehaviour {
 			achievedCount++;
 			achievementCountDisplay.GetComponent<TextMesh>().text = achievedCount.ToString();
 			a.Achieved();
+			points += a.points;
 
-			pointsDisplay.GetComponent<TextMesh>().text = "points: " + AchievementRecorder.totalPoints();
+			pointsDisplay.GetComponent<TextMesh>().text = "points: " + points;
 
 			if(achievedCount == NUMBER_OF_ACHIEVEMENTS) {
 				DisplayAchievement(AchievementRecorder.metaAchievement);
