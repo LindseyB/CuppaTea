@@ -26,13 +26,12 @@ public class TableFlip : RewindObject {
 	new void Update () {
 		if (GameState.InMainMenu) { return; }
 
-		if(GameState.Rewinding && !flipped) {
+		if(GameState.Rewinding && flipped) {
 			achievementGet.TriggerAchievement(AchievementRecorder.unRage);
 		}
 
 		if(gameObject.transform.rotation == startRotation && gameObject.transform.position == startPosition) {
 			gameObject.GetComponent<Rigidbody>().isKinematic = true;
-			flipped = false;
 		} else {
 			gameObject.GetComponent<Rigidbody>().isKinematic = false;
 		}
