@@ -114,9 +114,13 @@ namespace Helpers {
 
 		public static void writeAchievements() {
 			BinaryFormatter bf = new BinaryFormatter();
-			FileStream file = File.Create (Application.persistentDataPath + "/CuppaTea.ct");	
+			FileStream file = File.Create(Application.persistentDataPath + "/CuppaTea.ct");	
 			bf.Serialize(file, achievements);
 			file.Close();
+		}
+
+		public static void resetAchievements() {
+			File.Delete(Application.persistentDataPath + "/CuppaTea.ct");
 		}
 	}
 }

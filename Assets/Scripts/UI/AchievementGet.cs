@@ -88,4 +88,8 @@ public class AchievementGet : MonoBehaviour {
 			yield return 0;
 		}
 	}
+
+	public void resetAchievements() {
+		AchievementRecorder.resetAchievements();
+	}
 }
