@@ -37,7 +37,6 @@ public class AchievementGet : MonoBehaviour {
 	void Awake() {
 		achievedCount = AchievementRecorder.readAchievements();
 
-
 		if(achievedCount == NUMBER_OF_ACHIEVEMENTS) {
 			// reset achievements for this session only 
 			AchievementRecorder.initSpeedRunAchievements();
@@ -74,7 +73,8 @@ public class AchievementGet : MonoBehaviour {
 		AchievementRecorder.writeAchievements();
 	}
 
-	public void TriggerAchievement(Achievement a) {
+	public void TriggerAchievement(int achievement_index) {
+		Achievement a = AchievementRecorder.getAchievement(achievement_index);
 		if(!a.achieved) {
 			achievedCount++;
 			achievementCountDisplay.GetComponent<TextMesh>().text = achievedCount.ToString();

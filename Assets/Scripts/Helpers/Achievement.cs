@@ -68,24 +68,28 @@ namespace Helpers {
 			new Achievement(15, "Brew Tea Full", "It's so beautiful")
 		};
 
-		public static Achievement curdledMess      = achievements[0];
-		public static Achievement firstCuppa       = achievements[1];
-		public static Achievement rageFlip         = achievements[2];
-		public static Achievement rewind           = achievements[3];
-		public static Achievement hotLikeVenus     = achievements[4];
-		public static Achievement teaPartyFoul     = achievements[5];
-		public static Achievement unRage           = achievements[6];
-		public static Achievement madTeaParty      = achievements[7];
-		public static Achievement oolongLongTime   = achievements[8];
-		public static Achievement cupOfWhat        = achievements[9];
-		public static Achievement teaWithYourSugar = achievements[10];
-		public static Achievement smartlyTartly    = achievements[11];
-		public static Achievement uniTea           = achievements[12];
-		public static Achievement eTeaOverflow     = achievements[13];
-		public static Achievement bearable         = achievements[14];
-		public static Achievement brewTeaFull      = achievements[15];
+		public static int curdledMess      = 0;
+		public static int firstCuppa       = 1;
+		public static int rageFlip         = 2;
+		public static int rewind           = 3;
+		public static int hotLikeVenus     = 4;
+		public static int teaPartyFoul     = 5;
+		public static int unRage           = 6;
+		public static int madTeaParty      = 7;
+		public static int oolongLongTime   = 8;
+		public static int cupOfWhat        = 9;
+		public static int teaWithYourSugar = 10;
+		public static int smartlyTartly    = 11;
+		public static int uniTea           = 12;
+		public static int eTeaOverflow     = 13;
+		public static int bearable         = 14;
+		public static int brewTeaFull      = 15;
 
 		public static Achievement metaAchievement = new Achievement(-1, "Meta Achievement", "Achieve all the things!");
+
+		public static Achievement getAchievement(int achievement){
+			return achievements[achievement];
+		}
 
 		public static int readAchievements() {
 			int count = 0;
@@ -124,7 +128,7 @@ namespace Helpers {
 
 			return total;
 		}
-
+		
 		public static void writeAchievements() {
 			BinaryFormatter bf = new BinaryFormatter();
 			FileStream file = File.Create(Application.persistentDataPath + "/CuppaTea.ct");	
