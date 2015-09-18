@@ -1,5 +1,5 @@
 # Cuppa Tea
-2015's best tea simulation game
+#### 2015's best tea simulation game
 
 Windows Installation and Running
 --------------------
