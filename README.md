@@ -27,4 +27,4 @@ Linux Installation and Running
 - Glitch Bear By Todd Gizzi
 - Purr Programming support by Dash
 - Public Domain Music: A Song of Old Hawaii by Cliff Edwards
-- Special Thanks: Jóhann Hannesson (@JohannBenedikt) for providing voice acting for the trailer
+- Special Thanks: Jóhann Hannesson (@JohannBenedikt) for providing voice acting for the trailer and Emily St. for providing additional platform testing support. 
